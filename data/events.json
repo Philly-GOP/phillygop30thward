@@ -1,0 +1,29 @@
+{
+  "note": "Ward calendar. Add an event by copying one block. date = YYYY-MM-DD; start/end = 24-hour HH:MM (leave out for all-day); kind = election, ward, or party. Past events hide themselves.",
+  "events": [
+    {
+      "date": "2026-10-19",
+      "title": "Last day to register to vote",
+      "details": "Register or update your party and address before the November 3 election.",
+      "kind": "election",
+      "link": "https://www.pavoterservices.pa.gov/pages/VoterRegistrationApplication.aspx"
+    },
+    {
+      "date": "2026-10-27",
+      "title": "Last day to apply for a mail-in ballot",
+      "details": "Apply online or at the county election office.",
+      "kind": "election",
+      "link": "https://www.pa.gov/agencies/vote/voter-support/mail-in-and-absentee-ballot/mail-ballot-before-election-day"
+    },
+    {
+      "date": "2026-11-03",
+      "start": "07:00",
+      "end": "20:00",
+      "title": "Election Day",
+      "details": "Polls open 7 a.m. to 8 p.m. Mail ballots must reach the county by 8 p.m. — not postmarked, received.",
+      "where": "Your division's polling place",
+      "kind": "election",
+      "link": "voting.html#polls"
+    }
+  ]
+}
