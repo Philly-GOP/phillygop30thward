@@ -1,12 +1,14 @@
 // Refreshes the site's data files. Run daily by .github/workflows/update-data.yml.
 //  - data/ward-leaders.json  Republican ward leaders, from the Committee of Seventy (contact details not copied)
 //  - data/seats.json         committee seats filled vs. open, citywide and for the 30th Ward
+//  - data/polling.json       polling place for each 30th Ward division (city data)
 // Seats = 2 per division (city division map) filled by the 2026 primary (data/elected-2026.json)
 // plus appointments since then (data/appointed.json, edited by hand).
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 
 const HOME_WARD = '30';
 const SEVENTY = 'https://seventy.org/get-informed/philadelphia-ward-leaders-committeepeople/republican-ward-leaders/';
+const POLLING = 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/POLLING_PLACES/FeatureServer/0/query';
 const DIVISIONS = 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/Political_Divisions/FeatureServer/0/query';
 const file = p => new URL(`../data/${p}`, import.meta.url);
 const read = p => existsSync(file(p)) ? JSON.parse(readFileSync(file(p), 'utf8')) : null;
@@ -91,9 +93,28 @@ async function seats() {
   });
 }
 
+// ---- Polling places (city data) ----
+const KEEP_UPPER = new Set(['PHA', 'YMCA', 'YWCA', 'PAL', 'SEPTA', 'US', 'PA']);
+export function tidy(s) {
+  return s.replace(/Y M C A/gi, 'YMCA').replace(/\s*@\s*/g, ' at ').replace(/\[([^\]]+)\]/g, '($1)')
+    .toLowerCase().replace(/[a-z0-9]+/g, w => KEEP_UPPER.has(w.toUpperCase()) ? w.toUpperCase()
+      : /^\d/.test(w) ? w : w[0].toUpperCase() + w.slice(1))
+    .replace(/ (At|Of|The|And|For) /g, (m, w) => ` ${w.toLowerCase()} `);
+}
+
+async function polling() {
+  const q = `?where=ward%3D${+HOME_WARD}&outFields=division,placename,street_address,zip_code&orderByFields=division&returnGeometry=false&f=json`;
+  const j = await (await fetch(POLLING + q)).json();
+  if (!j.features?.length) throw new Error('No polling places returned');
+  const places = j.features.map(({ attributes: a }) => ({
+    division: a.division, name: tidy(a.placename), address: tidy(a.street_address), zip: a.zip_code,
+  }));
+  return save('polling.json', { source: 'City of Philadelphia polling places', ward: HOME_WARD, places });
+}
+
 // Each part fails on its own, so a bad day for one source doesn't block the other.
 let failed = false;
-for (const [name, job] of [['ward leaders', leaders], ['seats', seats]]) {
+for (const [name, job] of [['ward leaders', leaders], ['seats', seats], ['polling places', polling]]) {
   try { console.log(`${name}: ${await job()}`); }
   catch (e) { failed = true; console.error(`${name}: FAILED — ${e.message}`); }
 }
