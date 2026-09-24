@@ -1,0 +1,299 @@
+{
+  "source": "https://seventy.org/get-informed/philadelphia-ward-leaders-committeepeople/republican-ward-leaders/",
+  "total": 67,
+  "vacantCount": 20,
+  "vacant": [
+    "4",
+    "6",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "20",
+    "24",
+    "28",
+    "29",
+    "32",
+    "44",
+    "47",
+    "49",
+    "50",
+    "52",
+    "60"
+  ],
+  "wards": [
+    {
+      "ward": "1",
+      "leader": "Billy Lanzillotti, Sr"
+    },
+    {
+      "ward": "2",
+      "leader": "Anthony Christina"
+    },
+    {
+      "ward": "3",
+      "leader": "Ron Blue"
+    },
+    {
+      "ward": "4",
+      "leader": null
+    },
+    {
+      "ward": "5",
+      "leader": "Michael Cibik"
+    },
+    {
+      "ward": "6",
+      "leader": null
+    },
+    {
+      "ward": "7",
+      "leader": "Bruce Holtz"
+    },
+    {
+      "ward": "8",
+      "leader": "Albert Doering IV"
+    },
+    {
+      "ward": "9",
+      "leader": "Mark Umansky"
+    },
+    {
+      "ward": "10",
+      "leader": null
+    },
+    {
+      "ward": "11",
+      "leader": null
+    },
+    {
+      "ward": "12",
+      "leader": null
+    },
+    {
+      "ward": "13",
+      "leader": null
+    },
+    {
+      "ward": "14",
+      "leader": null
+    },
+    {
+      "ward": "15",
+      "leader": null
+    },
+    {
+      "ward": "16",
+      "leader": null
+    },
+    {
+      "ward": "17",
+      "leader": "Todd Johnson"
+    },
+    {
+      "ward": "18",
+      "leader": "Vincent Fenerty, Jr."
+    },
+    {
+      "ward": "19",
+      "leader": "Carlos Santiago, Jr."
+    },
+    {
+      "ward": "20",
+      "leader": null
+    },
+    {
+      "ward": "21",
+      "leader": "Rindi Khanuja"
+    },
+    {
+      "ward": "22",
+      "leader": "Calvin Tucker"
+    },
+    {
+      "ward": "23",
+      "leader": "Charles O’Connor, Jr."
+    },
+    {
+      "ward": "24",
+      "leader": null
+    },
+    {
+      "ward": "25",
+      "leader": "Deborah Clegg"
+    },
+    {
+      "ward": "26",
+      "leader": "George Gunning"
+    },
+    {
+      "ward": "27",
+      "leader": "Matthew Wolfe"
+    },
+    {
+      "ward": "28",
+      "leader": null
+    },
+    {
+      "ward": "29",
+      "leader": null
+    },
+    {
+      "ward": "30",
+      "leader": "Scott Cohen"
+    },
+    {
+      "ward": "31",
+      "leader": "Vincent Fenerty, Jr."
+    },
+    {
+      "ward": "32",
+      "leader": null
+    },
+    {
+      "ward": "33",
+      "leader": "Louis Cabrera, Sr."
+    },
+    {
+      "ward": "34",
+      "leader": "Tiffany Vann"
+    },
+    {
+      "ward": "35",
+      "leader": "Linwood Holland"
+    },
+    {
+      "ward": "36",
+      "leader": "Marjilyn Murray"
+    },
+    {
+      "ward": "37",
+      "leader": "Jessica Arriaga"
+    },
+    {
+      "ward": "38",
+      "leader": "Michael Couch"
+    },
+    {
+      "ward": "39A",
+      "leader": "Billy Lanzilotti"
+    },
+    {
+      "ward": "39B",
+      "leader": "Sonny Mazzone"
+    },
+    {
+      "ward": "40",
+      "leader": "Craig Melidosian"
+    },
+    {
+      "ward": "41",
+      "leader": "Robert Kownacki"
+    },
+    {
+      "ward": "42",
+      "leader": "David Rodriguez"
+    },
+    {
+      "ward": "43",
+      "leader": "Emilio Vasquez"
+    },
+    {
+      "ward": "44",
+      "leader": null
+    },
+    {
+      "ward": "45",
+      "leader": "Charles O’Connor, Jr."
+    },
+    {
+      "ward": "46",
+      "leader": "Denise Furey"
+    },
+    {
+      "ward": "47",
+      "leader": null
+    },
+    {
+      "ward": "48",
+      "leader": "Mike Burke"
+    },
+    {
+      "ward": "49",
+      "leader": null
+    },
+    {
+      "ward": "50",
+      "leader": null
+    },
+    {
+      "ward": "51",
+      "leader": "Morris Manson"
+    },
+    {
+      "ward": "52",
+      "leader": null
+    },
+    {
+      "ward": "53",
+      "leader": "Gary Grisafi"
+    },
+    {
+      "ward": "54",
+      "leader": "Aaron Bashir"
+    },
+    {
+      "ward": "55",
+      "leader": "Christopher Vogler"
+    },
+    {
+      "ward": "56",
+      "leader": "Peter Gill"
+    },
+    {
+      "ward": "57",
+      "leader": "Mark Costanzo"
+    },
+    {
+      "ward": "58",
+      "leader": "Joseph Giedemann"
+    },
+    {
+      "ward": "59",
+      "leader": "Connie Winters"
+    },
+    {
+      "ward": "60",
+      "leader": null
+    },
+    {
+      "ward": "61",
+      "leader": "John Yust"
+    },
+    {
+      "ward": "62",
+      "leader": "Charles O’Connor, Jr."
+    },
+    {
+      "ward": "63",
+      "leader": "James Nicolo"
+    },
+    {
+      "ward": "64",
+      "leader": "Bill Heeney"
+    },
+    {
+      "ward": "65",
+      "leader": "Joseph Zieminski"
+    },
+    {
+      "ward": "66",
+      "leader": "Michael Costanzo"
+    }
+  ],
+  "checked": "2026-09-24",
+  "changed": "2026-09-24"
+}
