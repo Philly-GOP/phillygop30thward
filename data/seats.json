@@ -1,13 +1,15 @@
 {
   "sources": {
     "divisions": "https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/Political_Divisions/FeatureServer/0/query",
-    "elected": "Committee of Seventy — Republican Committeepeople (elected 2026)"
+    "elected": "Committee of Seventy — Republican Committeepeople (elected 2026)",
+    "appointedEstimate": "About 200 appointed after the 2026 primary, per Claudia Vargas, 'Is the Philly GOP dead?', Sept. 22, 2026. Update when a better count is available."
   },
   "citywide": {
     "divisions": 1703,
     "seats": 3406,
-    "filled": 305,
-    "open": 3101
+    "filled": 504,
+    "open": 2902,
+    "estimated": true
   },
   "ward": {
     "number": "30",
