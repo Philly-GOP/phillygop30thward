@@ -1,0 +1,110 @@
+{
+  "source": "City of Philadelphia polling places",
+  "ward": "30",
+  "places": [
+    {
+      "division": 1,
+      "name": "Gideon Hall at Scottish Rite House",
+      "address": "1525 Fitzwater St",
+      "zip": "19146"
+    },
+    {
+      "division": 2,
+      "name": "Scottish Rite Tower",
+      "address": "1530 Fitzwater St",
+      "zip": "19146"
+    },
+    {
+      "division": 3,
+      "name": "Kimmel Center",
+      "address": "300 S Broad St",
+      "zip": "19102"
+    },
+    {
+      "division": 4,
+      "name": "Universal Charter School",
+      "address": "1427 Catharine St",
+      "zip": "19146"
+    },
+    {
+      "division": 5,
+      "name": "YMCA (Christian St Branch)",
+      "address": "1724 Christian St",
+      "zip": "19146"
+    },
+    {
+      "division": 6,
+      "name": "Anderson Recreation Center",
+      "address": "740 S 17th St",
+      "zip": "19146"
+    },
+    {
+      "division": 7,
+      "name": "Anderson Recreation Center",
+      "address": "740 S 17th St",
+      "zip": "19146"
+    },
+    {
+      "division": 8,
+      "name": "Storefront (617 S 24th St)",
+      "address": "617 S 24th St",
+      "zip": "19146"
+    },
+    {
+      "division": 9,
+      "name": "Arthur School",
+      "address": "2000 Catharine St",
+      "zip": "19146"
+    },
+    {
+      "division": 10,
+      "name": "YMCA (Christian St Branch)",
+      "address": "1724 Christian St",
+      "zip": "19146"
+    },
+    {
+      "division": 11,
+      "name": "Arthur School",
+      "address": "2000 Catharine St",
+      "zip": "19146"
+    },
+    {
+      "division": 12,
+      "name": "Birchwood at Grays Ferry (PHA)",
+      "address": "2309 Carpenter St",
+      "zip": "19146"
+    },
+    {
+      "division": 13,
+      "name": "YMCA (Christian St Branch)",
+      "address": "1724 Christian St",
+      "zip": "19146"
+    },
+    {
+      "division": 14,
+      "name": "Arthur School",
+      "address": "2000 Catharine St",
+      "zip": "19146"
+    },
+    {
+      "division": 15,
+      "name": "Arthur School",
+      "address": "2000 Catharine St",
+      "zip": "19146"
+    },
+    {
+      "division": 16,
+      "name": "Storefront (617 S 24th St)",
+      "address": "617 S 24th St",
+      "zip": "19146"
+    },
+    {
+      "division": 17,
+      "name": "Birchwood at Grays Ferry (PHA)",
+      "address": "2309 Carpenter St",
+      "zip": "19146"
+    }
+  ],
+  "checked": "2026-09-24",
+  "changed": "2026-09-24"
+}
