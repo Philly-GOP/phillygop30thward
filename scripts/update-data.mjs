@@ -73,9 +73,18 @@ async function seats() {
     return { divisions: list.length, seats: seatsTotal, filled: seatsFilled, open: seatsTotal - seatsFilled };
   };
   const home = divs.filter(d => d.slice(0, 2) === HOME_WARD);
+  // Citywide appointments aren't published seat by seat, so use the best available estimate
+  // (or the seats we've listed ourselves, if that's higher).
+  const a = read('appointed.json');
+  const listed = Object.values(a.appointed).reduce((n, v) => n + v, 0);
+  const city = summarize(divs);
+  const extra = Math.max(0, (a.citywideAppointedEstimate || 0) - listed);
+  city.filled = Math.min(city.seats, city.filled + extra);
+  city.open = city.seats - city.filled;
+  city.estimated = extra > 0;
   return save('seats.json', {
-    sources: { divisions: DIVISIONS, elected: 'Committee of Seventy — Republican Committeepeople (elected 2026)' },
-    citywide: summarize(divs),
+    sources: { divisions: DIVISIONS, elected: 'Committee of Seventy — Republican Committeepeople (elected 2026)', appointedEstimate: a.citywideSource || null },
+    citywide: city,
     ward: { number: HOME_WARD, ...summarize(home),
       openDivisions: home.filter(d => filled(d) < 2).map(d => +d.slice(2)) },
     divisionList: divs,
