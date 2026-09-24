@@ -234,7 +234,7 @@
         <p class="serif city-lede">Philadelphia has 66 wards and 1,703 divisions. Every one of them is entitled to two Republican committee people and a ward leader. Most of those seats are empty.</p>
       </div>
       <div class="city-stats">
-        <div class="cstat"><b id="c-open">3,101</b><span>of <span id="c-seats">3,406</span> Republican committee seats are open citywide</span></div>
+        <div class="cstat"><b id="c-open">~2,900</b><span>of <span id="c-seats">3,406</span> Republican committee seats are open citywide, counting about 200 appointed since the primary</span></div>
         <div class="cstat"><b id="l-vac">20</b><span>of <span id="l-total">67</span> Republican ward leader posts are vacant</span></div>
       </div>
       <div class="vacant">
@@ -338,7 +338,7 @@
   var get=function(f){return fetch('data/'+f+'?v='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json();});};
   get('seats.json').then(function(s){
     set('w-divs',s.ward.divisions); set('w-open',s.ward.open); set('w-seats',s.ward.seats);
-    set('c-open',fmt(s.citywide.open)); set('c-seats',fmt(s.citywide.seats));
+    set('c-open',s.citywide.estimated?'~'+fmt(Math.round(s.citywide.open/100)*100):fmt(s.citywide.open)); set('c-seats',fmt(s.citywide.seats));
     set('w-asof','Counts from the 2026 primary results plus appointments since. Checked '+nice(s.checked)+'.');
   }).catch(function(){});
   get('ward-leaders.json').then(function(l){
