@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voter Info · 30th Ward Republicans</title>
+<meta name="description" content="Key dates, polling places and what is on the ballot for voters in Philadelphia's 30th Ward.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Thirtieth Ward Republicans, home">
+      <svg width="32" height="34" viewBox="0 0 100 100" aria-hidden="true"><path d="M16 6h68l-7 34-9 54H32l-9-54z" fill="#F4EEE1"/><text x="50" y="62" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-size="42" font-weight="800" fill="#16305C">30</text></svg>
+      <span>THIRTIETH WARD REPUBLICANS</span>
+    </a>
+    <nav aria-label="Main">
+      <a class="nl" href="index.html#job">The job</a>
+      <a class="nl" href="index.html#city">Citywide</a>
+      <a class="nl" href="voting.html" aria-current="page">Voter info</a>
+      <a class="nl" href="voting.html#calendar">Calendar</a>
+      <a class="btn btn-red" href="index.html#start">Find my division</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">Voter information · Ward 30</p>
+      <h1>Vote on November 3.</h1>
+      <p class="countdown" id="countdown">Election Day is Tuesday, November 3. Polls are open 7 a.m. to 8 p.m.</p>
+    </div>
+  </section>
+
+  <section class="sec band" id="calendar">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Calendar</p>
+        <h2 class="big">Key dates.</h2>
+      </div>
+      <ol class="events">
+        <li class="event"><div class="ev-body"><h3>Last day to register: Monday, October 19</h3></div></li>
+        <li class="event"><div class="ev-body"><h3>Last day to apply for a mail-in ballot: Tuesday, October 27</h3></div></li>
+        <li class="event"><div class="ev-body"><h3>Election Day: Tuesday, November 3, 7 a.m. to 8 p.m.</h3></div></li>
+      </ol>
+      <p class="sec-lede">Ward meetings and party events are added here as they are scheduled. Use <b>Add to calendar</b> to save any date to your phone.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="polls">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Where you vote</p>
+        <h2 class="big">Polling places in the 30th Ward.</h2>
+      </div>
+      <p class="sec-lede">You vote at your division's polling place. Not sure of your division? The state's <a href="https://www.pavoterservices.pa.gov/Pages/PollingPlaceInfo.aspx" rel="noopener">polling place lookup</a> finds it from your address.</p>
+      <table class="polls">
+        <thead><tr><th scope="col">Div.</th><th scope="col">Polling place</th><th scope="col"><span class="sr-only">Map</span></th></tr></thead>
+        <tbody id="poll-rows"></tbody>
+      </table>
+      <p class="asof" id="poll-asof">From the City of Philadelphia's polling place list. Locations can change before an election, so confirm yours with the lookup above.</p>
+    </div>
+  </section>
+
+  <section class="sec band" id="ballot">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">On your ballot</p>
+        <h2 class="big">What 30th Ward voters will see.</h2>
+      </div>
+      <div class="ballot">
+        <div class="race"><span class="office">Governor &amp; Lieutenant Governor</span><span class="who">Stacy Garrity &amp; Jason Richey (R)</span><p class="note">Running against Josh Shapiro &amp; Austin Davis (D).</p></div>
+        <div class="race empty"><span class="office">U.S. House · 3rd District</span><span class="who">No Republican on the ballot</span><p class="note">Chris Rabb (D) and Dennis Mahoney (I) are running for the open seat. The whole ward is in the 3rd District.</p></div>
+        <div class="race empty"><span class="office">State House · 182nd District</span><span class="who">No Republican on the ballot</span><p class="note">Ben Waxman (D, incumbent). Covers divisions 1–3, 6–9, 15 and 16.</p></div>
+        <div class="race empty"><span class="office">State House · 186th District</span><span class="who">No Republican on the ballot</span><p class="note">Jordan Harris (D, incumbent). Covers divisions 4, 5, 10–14 and 17.</p></div>
+      </div>
+      <p class="sec-lede">Our state senate seat (1st District) is not up this year. There are also two statewide ballot questions. See your full <a href="https://vote.phila.gov/voting/candidates-for-office/" rel="noopener">sample ballot</a>.</p>
+      <div class="callout">
+        <p>Three empty lines on one ballot. That is what an empty ward looks like.</p>
+        <a class="btn btn-red" href="index.html#start" style="padding:14px 26px;font-size:16px">Take a seat</a>
+      </div>
+      <p class="asof">Candidates from the <a href="https://thephiladelphiacitizen.org/pa-election-guide/" rel="noopener">Philadelphia Citizen's 2026 election guide</a>; district lines from the City of Philadelphia.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="links">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Get it done</p>
+        <h2 class="big">Official links.</h2>
+      </div>
+      <div class="links">
+        <a href="https://www.pavoterservices.pa.gov/pages/voterregistrationstatus.aspx" rel="noopener"><b>Check your registration</b><span>Confirm your party, address and division.</span><small>pavoterservices.pa.gov</small></a>
+        <a href="https://www.pavoterservices.pa.gov/Pages/VoterRegistrationApplication.aspx" rel="noopener"><b>Register or switch parties</b><span>Online, in about five minutes. Deadline October 19.</span><small>pavoterservices.pa.gov</small></a>
+        <a href="https://www.pa.gov/agencies/vote/voter-support/mail-in-and-absentee-ballot/mail-ballot-before-election-day" rel="noopener"><b>Vote by mail</b><span>Apply by October 27. The county must receive it by 8 p.m. November 3.</span><small>pa.gov</small></a>
+        <a href="https://www.pavoterservices.pa.gov/Pages/PollingPlaceInfo.aspx" rel="noopener"><b>Find your polling place</b><span>By address, from the state.</span><small>pavoterservices.pa.gov</small></a>
+        <a href="https://vote.phila.gov/voting/candidates-for-office/" rel="noopener"><b>See your sample ballot</b><span>Every race and question in Philadelphia.</span><small>vote.phila.gov</small></a>
+        <a href="https://phillygop.com/" rel="noopener"><b>Philadelphia Republican Party</b><span>Candidates, events and how to get involved citywide.</span><small>phillygop.com</small></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="meetings">
+  <div class="wrap">
+    <div class="ft">
+      <div class="ft-brand">
+        <svg width="42" height="45" viewBox="0 0 100 100" aria-hidden="true"><path d="M16 6h68l-7 34-9 54H32l-9-54z" fill="#F4EEE1"/><text x="50" y="62" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-size="42" font-weight="800" fill="#16305C">30</text></svg>
+        <div><strong>THIRTIETH WARD</strong><small>REPUBLICAN COMMITTEE · PHILADELPHIA</small></div>
+      </div>
+      <div class="ft-cols">
+        <div>
+          <h2>WARD MEETINGS</h2>
+          <p>Dates, times and places<br>are posted on <a href="voting.html#calendar">our calendar</a>.</p>
+        </div>
+        <div>
+          <h2>REACH US</h2>
+          <p>[WARD EMAIL]<br>[PHONE]<br>[MAILING ADDRESS]</p>
+        </div>
+        <div>
+          <h2>CITY PARTY</h2>
+          <p><a href="https://phillygop.com/" rel="noopener">Philadelphia Republican Party</a><br><a href="voting.html">Voter information</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="legal">
+      <div>PAID FOR BY THE 30TH WARD REPUBLICAN COMMITTEE</div>
+      <div>NOT AUTHORIZED BY ANY CANDIDATE OR CANDIDATE'S COMMITTEE</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  fetch('data/polling.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(p){
+    var tb=document.getElementById('poll-rows'); tb.innerHTML='';
+    p.places.forEach(function(x){
+      var tr=document.createElement('tr'), q=encodeURIComponent(x.address+', Philadelphia, PA '+x.zip);
+      tr.innerHTML='<td class="div"></td><td><div class="place"></div><div class="addr"></div></td><td><a rel="noopener">Map</a></td>';
+      tr.children[0].textContent=x.division;
+      tr.querySelector('.place').textContent=x.name;
+      tr.querySelector('.addr').textContent=x.address+', '+x.zip;
+      var a=tr.querySelector('a'); a.href='https://www.google.com/maps/search/?api=1&query='+q; a.setAttribute('aria-label','Map of '+x.name);
+      tb.appendChild(tr);
+    });
+    if(p.checked) document.getElementById('poll-asof').textContent="From the City of Philadelphia's polling place list, last checked "+new Date(p.checked+'T12:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})+'. Locations can change before an election, so confirm yours with the lookup above.';
+  }).catch(function(){});
+})();
+</script>
+<script src="cal.js"></script>
+</body>
+</html>
