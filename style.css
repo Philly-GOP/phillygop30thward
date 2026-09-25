@@ -117,7 +117,7 @@
   form{flex:1;max-width:600px;display:flex;flex-direction:column;gap:20px}
   .row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
   label,.legend{display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-  input[type=text],input[type=email],input[type=tel]{font:400 16px var(--sans);color:var(--navy);background:var(--cream);border:1.5px solid var(--field);min-height:50px;padding:13px 15px;border-radius:0;width:100%;letter-spacing:0;text-transform:none}
+  input[type=text],input[type=email],input[type=tel],textarea{font:400 16px var(--sans);color:var(--navy);background:var(--cream);border:1.5px solid var(--field);min-height:50px;padding:13px 15px;border-radius:0;width:100%;letter-spacing:0;text-transform:none}
   input::placeholder{color:#7C8CAB}
   input:focus{border-color:var(--navy);outline:none;box-shadow:0 0 0 3px rgba(22,48,92,.15)}
   fieldset{border:0;margin:0;padding:4px 0 0;display:flex;flex-direction:column;gap:10px}
@@ -252,3 +252,5 @@
   .mark{flex-shrink:0;filter:drop-shadow(0 2px 0 rgba(0,0,0,.18))}
   .brand span{font-size:17px;letter-spacing:.16em}
   @media (max-width:520px){.mark{width:58px;height:58px}.brand span{font-size:12px;letter-spacing:.12em}}
+  textarea{resize:vertical;min-height:110px;line-height:1.5}
+  .about-lede{font-size:clamp(18px,1.5vw,21px);line-height:1.5;margin:14px 0 0;max-width:56ch}

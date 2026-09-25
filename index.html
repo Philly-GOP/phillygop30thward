@@ -17,10 +17,10 @@
     Calendar: edit data/events.json
   FORM: set data-endpoint on <form id="signup"> to a form service URL (see README).
 -->
-<link rel="stylesheet" href="style.css?v=20260925d">
+<link rel="stylesheet" href="style.css?v=20260925f">
 </head>
 <body>
-<a class="skip" href="#start">Skip to sign-up</a>
+<a class="skip" href="#start">Skip to contact</a>
 
 <header>
   <div class="wrap">
@@ -34,7 +34,7 @@
       <a class="nl" href="#coming-up">Calendar</a>
       <a class="nl" href="#city">Citywide</a>
       <a class="nl" href="voting.html">Voter info</a>
-      <a class="btn btn-red" href="#start">Find my division</a>
+      <a class="btn btn-red" href="#start">Get in touch</a>
     </nav>
   </div>
 </header>
@@ -47,8 +47,8 @@
         <h1>The 30th Ward, division by division.</h1>
         <p class="lede serif">Each division is a few blocks, with two Republican committee seats. The map shows which ones have someone in them.</p>
         <div class="ctas">
-          <a class="btn btn-red" href="#start">Find my division</a>
-          <a class="btn btn-line" href="#job">What the job is</a>
+          <a class="btn btn-red" href="#start">Get in touch</a>
+          <a class="btn btn-line" href="#about">Meet the ward</a>
         </div>
       </div>
       <figure class="ward-map" aria-label="Map of the 30th Ward's 17 divisions, shaded by filled committee seats">
@@ -96,7 +96,8 @@
     <div class="wrap">
       <div>
         <p class="eyebrow">Who we are</p>
-        <h2 class="big">Two neighbors. Seventeen divisions.</h2>
+        <h2 class="big">17 divisions. 34 seats. One ward leader.</h2>
+        <p class="serif about-lede">Every division in the 30th gets two Republican committee people, and Scott leads them all. Call it our division of labor.</p>
       </div>
       <div class="people">
         <div class="person">
@@ -201,10 +202,10 @@
   <section class="start" id="start">
     <div class="wrap">
       <div class="start-head">
-        <p class="eyebrow">Start here</p>
-        <h2>Tell us your address. We will tell you your division.</h2>
-        <p>A person from the ward reads every one of these. You will hear back from a neighbor, not a form letter.</p>
-        <p class="lookup">Want to look it up yourself? The state's <a href="https://www.pavoterservices.pa.gov/Pages/PollingPlaceInfo.aspx" target="_blank" rel="noopener">polling place lookup</a> shows your ward and division from your address.</p>
+        <p class="eyebrow">Get in touch</p>
+        <h2>Questions? Want to help? Talk to us.</h2>
+        <p>Learn more about the ward, find a way to get involved, or just ask a question. Scott or Shirah reads every message, and you will hear back from a neighbor, not a form letter.</p>
+        <p class="lookup">Prefer email? Write to <a href="mailto:info@phillygop30thward.com">info@phillygop30thward.com</a>.</p>
       </div>
 
       <!-- Set data-endpoint to your form service URL, e.g. https://formspree.io/f/xxxxxxx -->
@@ -213,23 +214,24 @@
           <label>First name<input type="text" name="first_name" placeholder="First" autocomplete="given-name" required></label>
           <label>Last name<input type="text" name="last_name" placeholder="Last" autocomplete="family-name" required></label>
         </div>
-        <label>Street address<input type="text" name="address" placeholder="Number and street, Philadelphia PA" autocomplete="street-address" required></label>
+        <label>Street address (optional)<input type="text" name="address" placeholder="Number and street, Philadelphia PA" autocomplete="street-address"></label>
         <div class="row">
           <label>Email<input type="email" name="email" placeholder="you@example.com" autocomplete="email" required></label>
           <label>Phone (optional)<input type="tel" name="phone" placeholder="(215) 000-0000" autocomplete="tel"></label>
         </div>
         <fieldset>
-          <legend class="legend">I am interested in</legend>
+          <legend class="legend">I would like to</legend>
           <div class="chips">
-            <label class="chip"><input type="radio" name="interest" value="A committee seat" checked><span>A committee seat</span></label>
-            <label class="chip"><input type="radio" name="interest" value="One election day first"><span>One election day first</span></label>
-            <label class="chip"><input type="radio" name="interest" value="Just keep me posted"><span>Just keep me posted</span></label>
+            <label class="chip"><input type="radio" name="interest" value="Learn more" checked><span>Learn more</span></label>
+            <label class="chip"><input type="radio" name="interest" value="Get involved"><span>Get involved</span></label>
+            <label class="chip"><input type="radio" name="interest" value="Ask a question"><span>Ask a question</span></label>
           </div>
         </fieldset>
+        <label>Message (optional)<textarea name="message" rows="4" placeholder="What is on your mind?"></textarea></label>
         <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="btn btn-red" type="submit">Send it</button>
         <div class="status" id="status" role="status" aria-live="polite"></div>
-        <p class="fine">We use this to find your division and get back to you. We do not sell it and we do not add you to anything you did not ask for.</p>
+        <p class="fine">We use this only to get back to you. We do not sell it and we do not add you to anything you did not ask for.</p>
       </form>
     </div>
   </section>
@@ -290,12 +292,12 @@
   form.addEventListener('submit',function(e){
     e.preventDefault();
     var bad=[].slice.call(form.querySelectorAll('[required]')).filter(function(i){return !i.value.trim()||(i.type==='email'&&!/^\S+@\S+\.\S+$/.test(i.value));});
-    if(bad.length){bad[0].focus();say('Please fill in your name, street address and a valid email.');return;}
+    if(bad.length){bad[0].focus();say('Please fill in your name and a valid email.');return;}
     var url=form.getAttribute('data-endpoint');
-    if(!url){say('Thanks — sign-ups are not switched on yet. Please check back soon.');return;}
+    if(!url){var f=new FormData(form),b='Name: '+f.get('first_name')+' '+f.get('last_name')+'\nEmail: '+f.get('email')+(f.get('phone')?'\nPhone: '+f.get('phone'):'')+(f.get('address')?'\nAddress: '+f.get('address'):'')+'\n\n'+(f.get('message')||'');location.href='mailto:info@phillygop30thward.com?subject='+encodeURIComponent(f.get('interest')+' — 30th Ward')+'&body='+encodeURIComponent(b);say('Your email app should open with your note ready to send.');return;}
     var btn=form.querySelector('button');btn.disabled=true;btn.textContent='Sending…';
     fetch(url,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
-      .then(function(r){if(!r.ok)throw 0;form.reset();say('Got it. A neighbor from the ward will be in touch soon.');})
+      .then(function(r){if(!r.ok)throw 0;form.reset();say('Got it. We will be in touch soon.');})
       .catch(function(){say('Something went wrong sending that. Please try again in a minute.');})
       .then(function(){btn.disabled=false;btn.textContent='Send it';});
   });
