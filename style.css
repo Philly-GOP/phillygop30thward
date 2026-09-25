@@ -261,3 +261,5 @@
   .three.small h4{font-size:19px;font-weight:700;line-height:1.25;margin:10px 0 8px}
   .three.small p{font-size:16px}
   .city .wrap{padding-top:64px}
+  .btn-line-light{border:2px solid var(--cream);color:var(--cream);background:transparent} .btn-line-light:hover{background:var(--cream);color:var(--navy)}
+  .job .three.small h4{color:var(--cream)}
