@@ -263,3 +263,12 @@
   .city .wrap{padding-top:64px}
   .btn-line-light{border:2px solid var(--cream);color:var(--cream);background:transparent} .btn-line-light:hover{background:var(--cream);color:var(--navy)}
   .job .three.small h4{color:var(--cream)}
+  .map-frame{position:relative;margin:0 10px 10px 0}
+  .map-frame::before{content:"";position:absolute;inset:14px -14px -14px 14px;background:var(--red)}
+  .map-frame>svg{position:relative;background:linear-gradient(160deg,#1d3d72,var(--navy));border:3px solid var(--navy);padding:clamp(18px,3vw,36px);box-sizing:border-box}
+  .map-frame::after{content:"";position:absolute;inset:3px 3px 3px 3px;pointer-events:none;background:radial-gradient(rgba(244,238,225,.35) 1px,transparent 1.4px) 0 0/6px 6px,linear-gradient(200deg,transparent 55%,rgba(200,16,46,.35));mix-blend-mode:soft-light}
+  .map-frame .tag{position:absolute;z-index:2;left:-14px;top:-14px;line-height:0;filter:drop-shadow(3px 3px 0 var(--navy))}
+  .map-frame .dv path{stroke:var(--navy)}
+  .map-frame .dv.f2 path{fill:var(--cream)} .map-frame .dv.f2 text{fill:var(--navy)}
+  .k.f2{background:var(--cream);box-shadow:inset 0 0 0 1.5px var(--navy)}
+  .ward-map{gap:26px}
