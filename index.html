@@ -207,10 +207,10 @@
 <footer id="meetings">
   <div class="wrap">
     <div class="ft">
-      <div class="ft-brand">
-        <svg width="42" height="45" viewBox="0 0 100 100" aria-hidden="true"><path d="M16 6h68l-7 34-9 54H32l-9-54z" fill="#F4EEE1"/><text x="50" y="62" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-size="42" font-weight="800" fill="#16305C">30</text></svg>
-        <div><strong>THIRTIETH WARD</strong><small>REPUBLICAN COMMITTEE · PHILADELPHIA</small></div>
-      </div>
+      <a class="ft-brand" href="index.html" aria-label="30th Ward Philadelphia GOP, home">
+        <svg class="mark" width="48" height="50" viewBox="0 0 100 100" aria-hidden="true"><path d="M8 4h84l-8 38-10 54H26L16 42z" fill="#F4EEE1"/><text x="50" y="50" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-size="40" font-weight="800" fill="#16305C">30<tspan font-size="17" dy="-16">TH</tspan></text><text x="50" y="76" text-anchor="middle" font-family="Libre Franklin, Arial, sans-serif" font-size="16" font-weight="800" letter-spacing="1" fill="#C8102E">WARD</text></svg>
+        <span>PHILADELPHIA GOP</span>
+      </a>
       <div class="ft-cols">
         <div>
           <h2>WARD MEETINGS</h2>
@@ -227,8 +227,9 @@
       </div>
     </div>
     <div class="legal">
-      <div>PAID FOR BY THE 30TH WARD REPUBLICAN COMMITTEE</div>
-      <div>NOT AUTHORIZED BY ANY CANDIDATE OR CANDIDATE'S COMMITTEE</div>
+      <div>© <span class="yr">2026</span> 30th Ward Republican Committee. All rights reserved.</div>
+      <div>Paid for by the 30th Ward Republican Committee.</div>
+      <div>Not authorized by any candidate or candidate's committee.</div>
     </div>
   </div>
 </footer>
@@ -268,6 +269,7 @@
   });
 })();
 </script>
+<script>document.querySelectorAll('.yr').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
 <script src="cal.js"></script>
 </body>
 </html>
