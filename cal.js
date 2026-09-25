@@ -34,7 +34,7 @@
       var h=li.querySelector('h3'), tag=document.createElement('span');
       tag.className='ev-tag '+(e.kind||''); tag.textContent=e.kind==='election'?'Election':e.kind==='ward'?'Ward':'Party';
       h.appendChild(tag);
-      if(e.link){var a=document.createElement('a');a.href=e.link;a.textContent=e.title;a.style.color='inherit';if(/^https?:/.test(e.link))a.rel='noopener';h.appendChild(a);}else h.appendChild(document.createTextNode(e.title));
+      if(e.link){var a=document.createElement('a');a.href=e.link;a.textContent=e.title;a.style.color='inherit';if(/^https?:/.test(e.link)){a.rel='noopener';a.target='_blank';}h.appendChild(a);}else h.appendChild(document.createTextNode(e.title));
       var when=dt.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'})+(e.start?', '+time12(e.start)+(e.end?' – '+time12(e.end):''):'');
       li.querySelector('p').textContent=[when,e.where,e.details].filter(Boolean).join(' · ');
       li.querySelector('.ics').setAttribute('aria-label','Add '+e.title+' to your calendar');

@@ -17,7 +17,7 @@
     Calendar: edit data/events.json
   FORM: set data-endpoint on <form id="signup"> to a form service URL (see README).
 -->
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=20260925">
 </head>
 <body>
 <a class="skip" href="#start">Skip to sign-up</a>
@@ -29,12 +29,12 @@
       <span>PHILADELPHIA GOP</span>
     </a>
     <nav aria-label="Main">
-      <a class="nl" href="index.html#job">The job</a>
-      <a class="nl" href="index.html#city">Citywide</a>
-      <a class="nl" href="index.html#about">About</a>
+      <a class="nl" href="#job">The job</a>
+      <a class="nl" href="#city">Citywide</a>
+      <a class="nl" href="#coming-up">Calendar</a>
+      <a class="nl" href="#about">About</a>
       <a class="nl" href="voting.html">Voter info</a>
-      <a class="nl" href="voting.html#calendar">Calendar</a>
-      <a class="btn btn-red" href="index.html#start">Find my division</a>
+      <a class="btn btn-red" href="#start">Find my division</a>
     </nav>
   </div>
 </header>
@@ -44,20 +44,51 @@
     <div class="wrap">
       <div class="hero-copy">
         <p class="eyebrow">Philadelphia · Ward 30</p>
-        <h1>Your block should have a Republican on it.</h1>
-        <p class="lede serif">Every division in this ward is entitled to two committee people. Right now, most of ours have nobody in either seat. If you live here and you are registered Republican, the seat on your street may be sitting open right now.</p>
+        <h1>The 30th Ward, division by division.</h1>
+        <p class="lede serif">Each division is a few blocks, with two Republican committee seats. The map shows which ones have someone in them.</p>
         <div class="ctas">
           <a class="btn btn-red" href="#start">Find my division</a>
           <a class="btn btn-line" href="#job">What the job is</a>
         </div>
       </div>
-      <aside class="stats" aria-label="Where the ward stands">
-        <h2>WHERE THE WARD STANDS</h2>
+      <figure class="ward-map" aria-label="Map of the 30th Ward's 17 divisions, shaded by filled committee seats">
+        <svg viewBox="-12 -12 1024 437" role="img">
+          <g class="dv f0" data-div="1"><title>Division 1</title><path d="M819,122L931,137L919,222L751,200L763,115L819,122Z"/><text x="826" y="166">1</text></g>
+          <g class="dv f0" data-div="2"><title>Division 2</title><path d="M988,144L994,145L975,276L801,254L807,207L919,222L931,137L988,144Z"/><text x="947" y="238">2</text></g>
+          <g class="dv f0" data-div="3"><title>Division 3</title><path d="M826,75L1000,99L994,145L763,115L769,68L826,75Z"/><text x="822" y="99">3</text></g>
+          <g class="dv f1" data-div="4"><title>Division 4</title><path d="M872,263L975,276L956,413L838,397L856,261L872,263Z"/><text x="907" y="330">4</text></g>
+          <g class="dv f0" data-div="5"><title>Division 5</title><path d="M823,256L856,261L838,397L726,383L740,282L796,290L801,254L823,256Z"/><text x="794" y="341">5</text></g>
+          <g class="dv f0" data-div="6"><title>Division 6</title><path d="M757,155L751,200L807,207L796,290L684,275L701,147L757,155Z"/><text x="735" y="239">6</text></g>
+          <g class="dv f0" data-div="7"><title>Division 7</title><path d="M561,41L769,68L757,155L577,131L587,57L531,49L532,37L561,41Z"/><text x="709" y="104">7</text></g>
+          <g class="dv f0" data-div="8"><title>Division 8</title><path d="M330,10L532,37L531,49L587,57L582,91L264,48L229,17L247,0L330,10Z"/><text x="508" y="57">8</text></g>
+          <g class="dv f0" data-div="9"><title>Division 9</title><path d="M701,147L684,275L559,258L571,176L639,185L645,140L701,147Z"/><text x="647" y="227">9</text></g>
+          <g class="dv f0" data-div="10"><title>Division 10</title><path d="M740,282L726,383L614,369L622,312L677,319L684,275L740,282Z"/><text x="698" y="346">10</text></g>
+          <g class="dv f1" data-div="11"><title>Division 11</title><path d="M559,258L684,275L677,319L622,312L614,369L545,360L553,303L496,296L500,273L503,251L559,258Z"/><text x="589" y="300">11</text></g>
+          <g class="dv f0" data-div="12"><title>Division 12</title><path d="M444,243L503,251L496,296L553,303L545,360L371,336L386,236L444,243Z"/><text x="438" y="294">12</text></g>
+          <g class="dv f0" data-div="13"><title>Division 13</title><path d="M391,200L564,223L559,258L386,236L379,280L315,272L321,228L359,196L391,200Z"/><text x="352" y="244">13</text></g>
+          <g class="dv f0" data-div="14"><title>Division 14</title><path d="M571,176L564,223L359,196L396,163L394,174L452,183L455,161L571,176Z"/><text x="542" y="196">14</text></g>
+          <g class="dv f0" data-div="15"><title>Division 15</title><path d="M452,183L394,174L396,163L454,115L645,140L639,185L455,161L452,183Z"/><text x="509" y="145">15</text></g>
+          <g class="dv f0" data-div="16"><title>Division 16</title><path d="M255,39L272,50L582,91L577,131L161,74L229,17L255,39Z"/><text x="229" y="55">16</text></g>
+          <g class="dv f0" data-div="17"><title>Division 17</title><path d="M273,91L454,115L321,228L315,272L379,280L371,336L218,319L164,363L0,239L30,226L49,210L161,74L273,91Z"/><text x="207" y="202">17</text></g>
+        </svg>
+        <figcaption>
+          <span><i class="k f0"></i>Both seats open</span>
+          <span><i class="k f1"></i>One seat filled</span>
+          <span><i class="k f2"></i>Both seats filled</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="stand" aria-label="Where the ward stands">
+    <div class="wrap">
+      <p class="serif stand-copy">Every division in this ward is entitled to two committee people. Right now, most of ours have nobody in either seat. If you live here and you are registered Republican, the seat on your street may be open.</p>
+      <div class="stand-stats">
         <div class="stat"><b id="w-divs">17</b><span>divisions in the 30th Ward</span></div>
-        <div class="stat"><b id="w-open">32</b><span>of <span id="w-seats">34</span> committee seats sitting empty today</span></div>
-        <div class="stat"><b class="n">2</b><span>seats every division is entitled to</span></div>
-        <p class="asof" id="w-asof">Counts from the 2026 primary results plus appointments since.</p>
-      </aside>
+        <div class="stat"><b id="w-open">32</b><span>of <span id="w-seats">34</span> committee seats open today</span></div>
+        <div class="stat"><b class="n">2</b><span>seats in every division</span></div>
+      </div>
+      <p class="asof" id="w-asof">Counts from the 2026 primary results plus appointments since.</p>
     </div>
   </section>
 
@@ -92,7 +123,7 @@
       <div class="city-head">
         <p class="eyebrow">Across Philadelphia</p>
         <h2 class="big">It is not just our ward.</h2>
-        <p class="serif city-lede">Philadelphia has 66 wards and 1,703 divisions. Every one of them is entitled to two Republican committee people and a ward leader. Most of those seats are empty.</p>
+        <p class="serif city-lede">66 wards and 1,703 divisions — each entitled to two Republican committee people and a ward leader. Most seats are empty.</p>
       </div>
       <div class="city-stats">
         <div class="cstat"><b id="c-open">~2,900</b><span>of <span id="c-seats">3,406</span> Republican committee seats are open citywide, counting about 200 appointed since the primary</span></div>
@@ -102,7 +133,7 @@
         <h3>Wards with no Republican ward leader</h3>
         <ul class="chips-list" id="l-list"><li>4</li><li>6</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>20</li><li>24</li><li>28</li><li>29</li><li>32</li><li>44</li><li>47</li><li>49</li><li>50</li><li>52</li><li>60</li></ul>
       </div>
-      <p class="asof" id="c-asof">Sources: <a href="https://seventy.org/get-informed/philadelphia-ward-leaders-committeepeople/" rel="noopener">Committee of Seventy</a> and the City of Philadelphia's division map. Checked daily.</p>
+      <p class="asof" id="c-asof">Sources: <a href="https://seventy.org/get-informed/philadelphia-ward-leaders-committeepeople/" target="_blank" rel="noopener">Committee of Seventy</a> and the City of Philadelphia's division map. Checked daily.</p>
     </div>
   </section>
 
@@ -134,7 +165,7 @@
         </div>
         <div class="q">
           <h3>"I am not sure I am registered Republican."</h3>
-          <p>We will check for you, and if you need to change it, it takes about five minutes at the <a href="https://www.pavoterservices.pa.gov/" rel="noopener">state's site</a>. You do have to be registered R and live in the division — that is genuinely the entire eligibility list.</p>
+          <p>We will check for you, and if you need to change it, it takes about five minutes at the <a href="https://www.pavoterservices.pa.gov/" target="_blank" rel="noopener">state's site</a>. You do have to be registered R and live in the division — that is genuinely the entire eligibility list.</p>
         </div>
       </div>
     </div>
@@ -173,7 +204,7 @@
         <p class="eyebrow">Start here</p>
         <h2>Tell us your address. We will tell you your division.</h2>
         <p>A person from the ward reads every one of these. You will hear back from a neighbor, not a form letter.</p>
-        <p class="lookup">Want to look it up yourself? The state's <a href="https://www.pavoterservices.pa.gov/Pages/PollingPlaceInfo.aspx" rel="noopener">polling place lookup</a> shows your ward and division from your address.</p>
+        <p class="lookup">Want to look it up yourself? The state's <a href="https://www.pavoterservices.pa.gov/Pages/PollingPlaceInfo.aspx" target="_blank" rel="noopener">polling place lookup</a> shows your ward and division from your address.</p>
       </div>
 
       <!-- Set data-endpoint to your form service URL, e.g. https://formspree.io/f/xxxxxxx -->
@@ -222,7 +253,7 @@
         </div>
         <div>
           <h2>CITY PARTY</h2>
-          <p><a href="https://phillygop.com/" rel="noopener">Philadelphia Republican Party</a><br><a href="voting.html">Voter information</a></p>
+          <p><a href="https://phillygop.com/" target="_blank" rel="noopener">Philadelphia Republican Party</a><br><a href="voting.html">Voter information</a></p>
         </div>
       </div>
     </div>
@@ -243,6 +274,7 @@
   get('seats.json').then(function(s){
     set('w-divs',s.ward.divisions); set('w-open',s.ward.open); set('w-seats',s.ward.seats);
     set('c-open',s.citywide.estimated?'~'+fmt(Math.round(s.citywide.open/100)*100):fmt(s.citywide.open)); set('c-seats',fmt(s.citywide.seats));
+    if(s.ward.byDivision){[].forEach.call(document.querySelectorAll('.dv'),function(g){var f=s.ward.byDivision[g.getAttribute('data-div')]||0;g.setAttribute('class','dv '+(f>=2?'f2':f==1?'f1':'f0'));});}
     set('w-asof','Counts from the 2026 primary results plus appointments since. Checked '+nice(s.checked)+'.');
   }).catch(function(){});
   get('ward-leaders.json').then(function(l){
@@ -270,6 +302,6 @@
 })();
 </script>
 <script>document.querySelectorAll('.yr').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
-<script src="cal.js"></script>
+<script src="cal.js?v=20260925"></script>
 </body>
 </html>
