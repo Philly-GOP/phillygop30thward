@@ -88,7 +88,8 @@ async function seats() {
     sources: { divisions: DIVISIONS, elected: 'Committee of Seventy — Republican Committeepeople (elected 2026)', appointedEstimate: a.citywideSource || null },
     citywide: city,
     ward: { number: HOME_WARD, ...summarize(home),
-      openDivisions: home.filter(d => filled(d) < 2).map(d => +d.slice(2)) },
+      openDivisions: home.filter(d => filled(d) < 2).map(d => +d.slice(2)),
+      byDivision: Object.fromEntries(home.map(d => [+d.slice(2), filled(d)])) },
     divisionList: divs,
   });
 }
