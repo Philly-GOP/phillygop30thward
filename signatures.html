@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Email Signatures · 30th Ward</title>
+<style>
+  body{margin:0;background:#F4EEE1;color:#16305C;font-family:Arial,Helvetica,sans-serif}
+  .wrap{max-width:760px;margin:0 auto;padding:40px 20px 60px}
+  h1{font-size:28px;margin:0 0 8px}
+  p.intro{font-size:15px;line-height:1.5;color:#4A5F85;margin:0 0 28px}
+  .card{background:#fff;border:1px solid #DED5C3;padding:24px;margin-bottom:22px}
+  .card h2{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#C8102E;margin:0 0 16px}
+  .sig{padding:10px 0 16px}
+  button{font:700 14px Arial,sans-serif;background:#C8102E;color:#F4EEE1;border:0;padding:11px 18px;cursor:pointer}
+  button:hover{background:#9A0C23}
+  .ok{font-size:13px;color:#4A5F85;margin-left:10px}
+  ol{font-size:14px;line-height:1.6;color:#16305C;padding-left:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Email signatures</h1>
+  <p class="intro">Click <b>Copy signature</b>, then paste it into Gmail under Settings → See all settings → General → Signature → Create new. Scroll down and click Save changes.</p>
+
+  <div class="card">
+    <h2>Scott Cohen</h2>
+    <div class="sig" id="sig-scott">
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;color:#16305C">
+  <tr>
+    <td style="padding:0 16px 0 0;vertical-align:middle">
+      <a href="https://phillygop30thward.com" style="text-decoration:none"><img src="https://phillygop30thward.com/img/sig-badge.png" width="80" height="80" alt="30th Ward" style="display:block;border:0;width:80px;height:80px"></a>
+    </td>
+    <td style="padding:2px 0 2px 16px;border-left:3px solid #C8102E;vertical-align:middle">
+      <div style="font-size:18px;font-weight:bold;line-height:22px;color:#16305C">Scott Cohen</div>
+      <div style="font-size:13px;line-height:19px;color:#4A5F85">Ward Leader</div>
+      <div style="font-size:11px;font-weight:bold;letter-spacing:1.5px;line-height:18px;color:#16305C;padding-top:4px">30TH WARD REPUBLICAN COMMITTEE &middot; PHILADELPHIA GOP</div>
+      <div style="font-size:13px;line-height:20px;padding-top:2px"><a href="https://phillygop30thward.com" style="color:#C8102E;text-decoration:none">phillygop30thward.com</a> <span style="color:#DED5C3">|</span> <a href="mailto:info@phillygop30thward.com" style="color:#C8102E;text-decoration:none">info@phillygop30thward.com</a></div>
+      <div style="font-size:10px;font-weight:bold;letter-spacing:2px;line-height:16px;color:#C8102E;padding-top:6px">NEIGHBORS FIRST. PHILLY ALWAYS.</div>
+    </td>
+  </tr>
+</table>
+    </div>
+    <button data-for="sig-scott">Copy signature</button><span class="ok"></span>
+  </div>
+
+  <div class="card">
+    <h2>Shirah Brown</h2>
+    <div class="sig" id="sig-shirah">
+<table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;color:#16305C">
+  <tr>
+    <td style="padding:0 16px 0 0;vertical-align:middle">
+      <a href="https://phillygop30thward.com" style="text-decoration:none"><img src="https://phillygop30thward.com/img/sig-badge.png" width="80" height="80" alt="30th Ward" style="display:block;border:0;width:80px;height:80px"></a>
+    </td>
+    <td style="padding:2px 0 2px 16px;border-left:3px solid #C8102E;vertical-align:middle">
+      <div style="font-size:18px;font-weight:bold;line-height:22px;color:#16305C">Shirah M. Brown</div>
+      <div style="font-size:13px;line-height:19px;color:#4A5F85">Committeeperson, Division 4 &middot; Operations &amp; Communications</div>
+      <div style="font-size:11px;font-weight:bold;letter-spacing:1.5px;line-height:18px;color:#16305C;padding-top:4px">30TH WARD REPUBLICAN COMMITTEE &middot; PHILADELPHIA GOP</div>
+      <div style="font-size:13px;line-height:20px;padding-top:2px"><a href="https://phillygop30thward.com" style="color:#C8102E;text-decoration:none">phillygop30thward.com</a> <span style="color:#DED5C3">|</span> <a href="mailto:info@phillygop30thward.com" style="color:#C8102E;text-decoration:none">info@phillygop30thward.com</a></div>
+      <div style="font-size:10px;font-weight:bold;letter-spacing:2px;line-height:16px;color:#C8102E;padding-top:6px">NEIGHBORS FIRST. PHILLY ALWAYS.</div>
+    </td>
+  </tr>
+</table>
+    </div>
+    <button data-for="sig-shirah">Copy signature</button><span class="ok"></span>
+  </div>
+
+  <div class="card">
+    <h2>If the copy button doesn't work</h2>
+    <ol>
+      <li>Click just to the left of the round badge and drag to the end of the tagline to highlight the whole signature.</li>
+      <li>Copy (Cmd+C or Ctrl+C).</li>
+      <li>Paste into the Gmail signature box and save.</li>
+    </ol>
+  </div>
+</div>
+<script>
+document.querySelectorAll('button[data-for]').forEach(function(b){
+  b.addEventListener('click',function(){
+    var el=document.getElementById(b.getAttribute('data-for')), ok=b.nextElementSibling;
+    function viaSelection(){
+      var r=document.createRange(); r.selectNodeContents(el);
+      var s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      var done=false; try{done=document.execCommand('copy');}catch(e){}
+      s.removeAllRanges(); return done;
+    }
+    var html=el.innerHTML, text=el.innerText;
+    if(window.ClipboardItem&&navigator.clipboard&&navigator.clipboard.write){
+      navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([text],{type:'text/plain'})})])
+        .then(function(){ok.textContent='Copied. Paste it into Gmail.';})
+        .catch(function(){ok.textContent=viaSelection()?'Copied. Paste it into Gmail.':'Select it by hand (see below).';});
+    } else { ok.textContent=viaSelection()?'Copied. Paste it into Gmail.':'Select it by hand (see below).'; }
+  });
+});
+</script>
+</body>
+</html>
