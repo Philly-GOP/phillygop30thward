@@ -17,7 +17,7 @@
     Calendar: edit data/events.json
   FORM: set data-endpoint on <form id="signup"> to a form service URL (see README).
 -->
-<link rel="stylesheet" href="style.css?v=20260925f">
+<link rel="stylesheet" href="style.css?v=20260925g">
 </head>
 <body>
 <a class="skip" href="#start">Skip to contact</a>
@@ -30,10 +30,9 @@
     </a>
     <nav aria-label="Main">
       <a class="nl" href="#about">About</a>
-      <a class="nl" href="#job">The job</a>
+      <a class="nl" href="#involved">Get involved</a>
       <a class="nl" href="#coming-up">Calendar</a>
-      <a class="nl" href="#city">Citywide</a>
-      <a class="nl" href="voting.html">Voter info</a>
+      <a class="nl" href="voting.html">Resources</a>
       <a class="btn btn-red" href="#start">Get in touch</a>
     </nav>
   </div>
@@ -120,40 +119,62 @@
     </div>
   </section>
 
-  <section class="job" id="job">
+  <section class="job" id="involved">
     <div class="wrap">
       <div>
-        <p class="eyebrow">The job, plainly</p>
-        <h2 class="big">Three things, on your own street.</h2>
+        <p class="eyebrow">Get involved</p>
+        <h2 class="big">There is a place for you in the 30th.</h2>
+        <p class="serif job-lede">Lend a hand on Election Day, be a voice on your block, or take one of the ward's open committee seats. Start wherever you are comfortable.</p>
       </div>
-      <div class="three">
+      <div class="three ways">
         <div>
-          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#A9C0E0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 4l9 6.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
-          <h3>Know about fifty households</h3>
+          <span class="num">01</span>
+          <h3>Work an Election Day</h3>
+          <p>Spend a few hours with us at a polling place in the ward. No paperwork and no commitment afterward.</p>
+        </div>
+        <div>
+          <span class="num">02</span>
+          <h3>Be a voice on your block</h3>
+          <p>Share what is happening in the ward with your neighbors, and bring their questions back to us.</p>
+        </div>
+        <div>
+          <span class="num">03</span>
+          <h3>Take a committee seat</h3>
+          <p>Represent your division as one of its two Republican committee people. Most of ours are open.</p>
+        </div>
+      </div>
+      <div class="seat">
+        <h3 class="seat-h">What a committee seat involves</h3>
+        <div class="three small">
+        <div>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#A9C0E0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 4l9 6.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+          <h4>Know about fifty households</h4>
           <p>A division is a couple of blocks. You already walk it. This is knowing who lives there and being someone they recognize.</p>
         </div>
         <div>
-          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#A9C0E0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M3 10h18"/><path d="M8 3v4M16 3v4"/><path d="M9 15l2 2 4-4"/></svg>
-          <h3>Show up twice a year</h3>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#A9C0E0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1.5"/><path d="M3 10h18"/><path d="M8 3v4M16 3v4"/><path d="M9 15l2 2 4-4"/></svg>
+          <h4>Show up twice a year</h4>
           <p>The primary and the general, at the polling place you already vote at. Plus a handful of ward meetings in between.</p>
         </div>
         <div>
-          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#A9C0E0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h7M9 16h5"/></svg>
-          <h3>Hand people the ballot</h3>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#A9C0E0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h7M9 16h5"/></svg>
+          <h4>Hand people the ballot</h4>
           <p>Most voters meet the Republican Party exactly once — at a folding table outside a school. That is the whole job, and nobody else does it for you.</p>
         </div>
+        </div>
       </div>
+      <p class="ctas"><a class="btn btn-red" href="#start">Get involved</a></p>
     </div>
   </section>
 
-  <section class="sec" id="coming-up">
+  <section class="sec band" id="coming-up">
     <div class="wrap">
       <div>
         <p class="eyebrow">Coming up</p>
         <h2 class="big">On the calendar.</h2>
       </div>
       <ol class="events" data-limit="3"></ol>
-      <p class="sec-lede"><a href="voting.html">Everything you need to vote on November 3</a> — deadlines, your polling place and what is on your ballot.</p>
+      <p class="sec-lede"><a href="voting.html">Voter resources</a> — deadlines, polling places, what is on your ballot and how to look up your division.</p>
     </div>
   </section>
 
@@ -193,7 +214,7 @@
         </div>
         <div class="q">
           <h3>"I am not sure I am registered Republican."</h3>
-          <p>We will check for you, and if you need to change it, it takes about five minutes at the <a href="https://www.pavoterservices.pa.gov/" target="_blank" rel="noopener">state's site</a>. You do have to be registered R and live in the division — that is genuinely the entire eligibility list.</p>
+          <p>We will check for you, and if you need to change it, it takes about five minutes. Our <a href="voting.html#links">voter resources</a> show you how. You do have to be registered R and live in the division — that is genuinely the entire eligibility list.</p>
         </div>
       </div>
     </div>

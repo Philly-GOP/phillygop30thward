@@ -254,3 +254,10 @@
   @media (max-width:520px){.mark{width:58px;height:58px}.brand span{font-size:12px;letter-spacing:.12em}}
   textarea{resize:vertical;min-height:110px;line-height:1.5}
   .about-lede{font-size:clamp(18px,1.5vw,21px);line-height:1.5;margin:14px 0 0;max-width:56ch}
+  .job-lede{font-size:clamp(18px,1.5vw,21px);line-height:1.5;color:var(--on-navy-body);margin:16px 0 0;max-width:56ch}
+  .ways .num{font-size:13px;font-weight:800;letter-spacing:.16em;color:var(--red);background:var(--cream);padding:4px 8px;display:inline-block}
+  .seat{border-top:1px solid rgba(169,192,224,.35);padding-top:36px;display:flex;flex-direction:column;gap:24px}
+  .seat-h{font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--on-navy);margin:0}
+  .three.small h4{font-size:19px;font-weight:700;line-height:1.25;margin:10px 0 8px}
+  .three.small p{font-size:16px}
+  .city .wrap{padding-top:64px}
