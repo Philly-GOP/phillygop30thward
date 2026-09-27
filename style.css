@@ -373,3 +373,28 @@
   @media (min-width:821px){.m-panel,.to-top{display:none!important}}
   @media (max-width:520px){nav .btn-red{padding:10px 12px;font-size:13px}}
   .callout p{flex:1 1 320px}
+  /* citywide ward map */
+  .cw{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);gap:40px;align-items:start}
+  .cw-map{margin:0 12px 12px 0;display:flex;flex-direction:column;gap:22px}
+  .cw-frame>svg{padding:clamp(12px,2vw,24px)}
+  .cw-w{cursor:pointer;outline:none}
+  .cw-w path{stroke:#16305C;stroke-width:2;stroke-linejoin:round;transition:filter .15s}
+  .cw-w:hover path{filter:brightness(1.1)}
+  .cw-w.ours path{stroke:#F4EEE1;stroke-width:5}
+  .cw-w.sel path,.cw-w:focus-visible path{stroke:#F4EEE1;stroke-width:6}
+  .cw-w text{font-family:var(--sans);font-size:15px;font-weight:800;text-anchor:middle;dominant-baseline:middle;pointer-events:none}
+  .cw-dot{fill:#16305C;stroke:#F4EEE1;stroke-width:2;pointer-events:none}
+  .cw-key{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;font-weight:600;color:var(--caption)}
+  .cw-key span{display:inline-flex;align-items:center;gap:8px}
+  .cw-key .k{box-shadow:inset 0 0 0 1px rgba(22,48,92,.35)}
+  .cw-key .k.dot{border-radius:50%;background:var(--navy);box-shadow:0 0 0 2px var(--cream),0 0 0 3px rgba(22,48,92,.35);width:11px;height:11px}
+  .cw-side{display:flex;flex-direction:column;gap:22px;position:sticky;top:130px}
+  .cw-totals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .cw-totals div{border-left:3px solid var(--red);padding-left:12px;display:flex;flex-direction:column;gap:4px}
+  .cw-totals b{font-size:28px;font-weight:800;color:var(--navy);line-height:1}
+  .cw-totals span{font-family:var(--serif);font-size:14px;line-height:1.35}
+  .cw-ours{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+  .cw-ours p{margin:0;font-family:var(--serif);font-size:15px;color:var(--caption)}
+  .cw-ours .btn{padding:10px 18px;font-size:15px}
+  @media (max-width:1100px){.cw{grid-template-columns:1fr}.cw-side{position:static}}
+  @media (max-width:520px){.cw-totals{grid-template-columns:1fr}.cw-w text{font-size:20px}}
