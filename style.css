@@ -340,3 +340,5 @@
   .pp a{font-size:14px;font-weight:700;color:var(--navy);margin-top:auto}
   @media (max-width:1100px){.pp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
   @media (max-width:520px){.pp-grid{grid-template-columns:1fr}}
+  .about .wrap>div:first-child{max-width:none}
+  .about-wide{max-width:none;margin-top:14px}
