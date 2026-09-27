@@ -2,6 +2,16 @@
   "note": "Ward calendar. Add an event by copying one block. date = YYYY-MM-DD; start/end = 24-hour HH:MM (leave out for all-day); kind = election, ward, or party. Past events hide themselves.",
   "events": [
     {
+      "date": "2026-10-04",
+      "start": "12:30",
+      "end": "14:30",
+      "title": "Robyn Bird fundraiser",
+      "details": "Support Republican Robyn Bird for State House (177th District). Tickets from $50.",
+      "where": "Bridesburg Pub, 4254 Richmond St",
+      "kind": "party",
+      "link": "https://secure.anedot.com/friends-of-robyn-bird/events/92d2d0c2-8d0a-4392-bc51-4e3a503d11b4"
+    },
+    {
       "date": "2026-10-19",
       "title": "Last day to register to vote",
       "details": "Register or update your party and address before the November 3 election.",
