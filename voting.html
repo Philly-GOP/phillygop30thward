@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="style.css?v=20260926d">
+<link rel="stylesheet" href="style.css?v=20260926e">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -51,33 +51,20 @@
     </div>
   </section>
 
-  <section class="sec band" id="calendar">
+  <section class="sec" id="links">
     <div class="wrap">
       <div>
-        <p class="eyebrow">Calendar</p>
-        <h2 class="big">Key dates.</h2>
+        <p class="eyebrow">Get it done</p>
+        <h2 class="big">Official links.</h2>
       </div>
-      <ol class="events">
-        <li class="event"><div class="ev-body"><h3>Last day to register: Monday, October 19</h3></div></li>
-        <li class="event"><div class="ev-body"><h3>Last day to apply for a mail-in ballot: Tuesday, October 27</h3></div></li>
-        <li class="event"><div class="ev-body"><h3>Election Day: Tuesday, November 3, 7 a.m. to 8 p.m.</h3></div></li>
-      </ol>
-      <p class="sec-lede">Ward meetings and party events are added here as they are scheduled. Use <b>Add to calendar</b> to save any date to your phone.</p>
-    </div>
-  </section>
-
-  <section class="sec" id="polls">
-    <div class="wrap">
-      <div>
-        <p class="eyebrow">Where you vote</p>
-        <h2 class="big">Polling places in the 30th Ward.</h2>
+      <div class="links">
+        <a href="https://www.pavoterservices.pa.gov/pages/voterregistrationstatus.aspx" target="_blank" rel="noopener"><b>Check your registration</b><span>Confirm your party, address and division.</span><small>pavoterservices.pa.gov</small></a>
+        <a href="https://www.pavoterservices.pa.gov/Pages/VoterRegistrationApplication.aspx" target="_blank" rel="noopener"><b>Register or switch parties</b><span>Online, in about five minutes. Deadline October 19.</span><small>pavoterservices.pa.gov</small></a>
+        <a href="https://www.pa.gov/agencies/vote/voter-support/mail-in-and-absentee-ballot/mail-ballot-before-election-day" target="_blank" rel="noopener"><b>Vote by mail</b><span>Apply by October 27. The county must receive it by 8 p.m. November 3.</span><small>pa.gov</small></a>
+        <a href="https://www.pavoterservices.pa.gov/Pages/PollingPlaceInfo.aspx" target="_blank" rel="noopener"><b>Find your polling place</b><span>By address, from the state.</span><small>pavoterservices.pa.gov</small></a>
+        <a href="https://vote.phila.gov/voting/candidates-for-office/" target="_blank" rel="noopener"><b>See your sample ballot</b><span>Every race and question in Philadelphia.</span><small>vote.phila.gov</small></a>
+        <a href="https://phillygop.com/" target="_blank" rel="noopener"><b>Philadelphia Republican Party</b><span>Candidates, events and how to get involved citywide.</span><small>phillygop.com</small></a>
       </div>
-      <p class="sec-lede">You vote at your division's polling place. Not sure of your division? The state's <a href="https://www.pavoterservices.pa.gov/Pages/PollingPlaceInfo.aspx" target="_blank" rel="noopener">polling place lookup</a> finds it from your address.</p>
-      <table class="polls">
-        <thead><tr><th scope="col">Div.</th><th scope="col">Polling place</th><th scope="col"><span class="sr-only">Map</span></th></tr></thead>
-        <tbody id="poll-rows"></tbody>
-      </table>
-      <p class="asof" id="poll-asof">From the City of Philadelphia's polling place list. Locations can change before an election, so confirm yours with the lookup above.</p>
     </div>
   </section>
 
@@ -102,7 +89,19 @@
     </div>
   </section>
 
-  <section class="sec" id="support">
+  <section class="sec" id="polls">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Where you vote</p>
+        <h2 class="big">Polling places in the 30th Ward.</h2>
+      </div>
+      <p class="sec-lede">Nine locations serve the ward's 17 divisions. Not sure of your division? The state's <a href="https://www.pavoterservices.pa.gov/Pages/PollingPlaceInfo.aspx" target="_blank" rel="noopener">polling place lookup</a> finds it from your address.</p>
+      <div class="pp-grid" id="poll-grid"></div>
+      <p class="asof" id="poll-asof">From the City of Philadelphia's polling place list. Locations can change before an election, so confirm yours with the lookup above.</p>
+    </div>
+  </section>
+
+  <section class="sec band" id="support">
     <div class="wrap">
       <div>
         <p class="eyebrow">Local Republicans to support</p>
@@ -120,23 +119,6 @@
         </article>
       </div>
       <p class="asof">Know a Republican candidate in Philadelphia who could use a boost? <a href="index.html#start">Tell us</a>.</p>
-    </div>
-  </section>
-
-  <section class="sec" id="links">
-    <div class="wrap">
-      <div>
-        <p class="eyebrow">Get it done</p>
-        <h2 class="big">Official links.</h2>
-      </div>
-      <div class="links">
-        <a href="https://www.pavoterservices.pa.gov/pages/voterregistrationstatus.aspx" target="_blank" rel="noopener"><b>Check your registration</b><span>Confirm your party, address and division.</span><small>pavoterservices.pa.gov</small></a>
-        <a href="https://www.pavoterservices.pa.gov/Pages/VoterRegistrationApplication.aspx" target="_blank" rel="noopener"><b>Register or switch parties</b><span>Online, in about five minutes. Deadline October 19.</span><small>pavoterservices.pa.gov</small></a>
-        <a href="https://www.pa.gov/agencies/vote/voter-support/mail-in-and-absentee-ballot/mail-ballot-before-election-day" target="_blank" rel="noopener"><b>Vote by mail</b><span>Apply by October 27. The county must receive it by 8 p.m. November 3.</span><small>pa.gov</small></a>
-        <a href="https://www.pavoterservices.pa.gov/Pages/PollingPlaceInfo.aspx" target="_blank" rel="noopener"><b>Find your polling place</b><span>By address, from the state.</span><small>pavoterservices.pa.gov</small></a>
-        <a href="https://vote.phila.gov/voting/candidates-for-office/" target="_blank" rel="noopener"><b>See your sample ballot</b><span>Every race and question in Philadelphia.</span><small>vote.phila.gov</small></a>
-        <a href="https://phillygop.com/" target="_blank" rel="noopener"><b>Philadelphia Republican Party</b><span>Candidates, events and how to get involved citywide.</span><small>phillygop.com</small></a>
-      </div>
     </div>
   </section>
 </main>
@@ -175,16 +157,21 @@
 <script>
 (function(){
   fetch('data/polling.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(p){
-    var tb=document.getElementById('poll-rows'); tb.innerHTML='';
-    p.places.forEach(function(x){
-      var tr=document.createElement('tr'), q=encodeURIComponent(x.address+', Philadelphia, PA '+x.zip);
-      tr.innerHTML='<td class="div"></td><td><div class="place"></div><div class="addr"></div></td><td><a rel="noopener">Map</a></td>';
-      tr.children[0].textContent=x.division;
-      tr.querySelector('.place').textContent=x.name;
-      tr.querySelector('.addr').textContent=x.address+', '+x.zip;
-      var a=tr.querySelector('a'); a.href='https://www.google.com/maps/search/?api=1&query='+q; a.setAttribute('aria-label','Map of '+x.name);
-      tb.appendChild(tr);
+    var g=document.getElementById('poll-grid'), groups={}, order=[];
+    p.places.forEach(function(x){var k=x.name+'|'+x.address; if(!groups[k]){groups[k]={x:x,d:[]};order.push(k);} groups[k].d.push(+x.division);});
+    order.sort(function(a,b){return Math.min.apply(null,groups[a].d)-Math.min.apply(null,groups[b].d);});
+    g.innerHTML='';
+    order.forEach(function(k){
+      var o=groups[k], x=o.x, c=document.createElement('div'); c.className='pp'; c.setAttribute('data-divs',','+o.d.join(',')+',');
+      o.d.forEach(function(n){var s=document.createElement('span'); s.id='div-'+n; c.appendChild(s);});
+      var q=encodeURIComponent(x.address+', Philadelphia, PA '+x.zip);
+      c.insertAdjacentHTML('beforeend','<p class="pp-divs"></p><h3></h3><p class="pp-addr"></p><a target="_blank" rel="noopener">Map</a>');
+      c.querySelector('.pp-divs').textContent=(o.d.length>1?'Divisions ':'Division ')+o.d.join(', ');
+      c.querySelector('h3').textContent=x.name; c.querySelector('.pp-addr').textContent=x.address+', '+x.zip;
+      var a=c.querySelector('a'); a.href='https://www.google.com/maps/search/?api=1&query='+q; a.setAttribute('aria-label','Map of '+x.name);
+      g.appendChild(c);
     });
+    var m=location.hash.match(/^#div-(\d+)/); if(m){var el=g.querySelector('[data-divs*=",'+m[1]+',"]'); if(el){el.classList.add('hl'); el.scrollIntoView({block:'center'});}}
     if(p.checked) document.getElementById('poll-asof').textContent="From the City of Philadelphia's polling place list, last checked "+new Date(p.checked+'T12:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})+'. Locations can change before an election, so confirm yours with the lookup above.';
   }).catch(function(){});
 })();

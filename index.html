@@ -29,7 +29,7 @@
     Calendar: edit data/events.json
   FORM: set data-endpoint on <form id="signup"> to a form service URL (see README).
 -->
-<link rel="stylesheet" href="style.css?v=20260926d">
+<link rel="stylesheet" href="style.css?v=20260926e">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "30th Ward Republican Committee", "alternateName": ["30th Ward Republicans", "30th Ward GOP", "Philadelphia 30th Ward Republicans"], "url": "https://phillygop30thward.com/", "logo": "https://phillygop30thward.com/img/sig-badge.png", "image": "https://phillygop30thward.com/img/share.jpg", "description": "The Republican Party's local ward committee for Philadelphia's 30th Ward, covering Graduate Hospital and Southwest Center City.", "email": "info@phillygop30thward.com", "areaServed": {"@type": "Place", "name": "30th Ward, Philadelphia, PA (Graduate Hospital and Southwest Center City)"}, "member": [{"@type": "Person", "name": "Scott Cohen", "jobTitle": "Ward Leader"}, {"@type": "Person", "name": "Shirah M. Brown", "jobTitle": "Committeeperson, Division 4"}]}</script>
 </head>
 <body>
@@ -88,7 +88,15 @@
           <span><i class="k f1"></i>One seat filled</span>
           <span><i class="k f2"></i>Both seats filled</span>
         </figcaption>
-      </figure>
+        <div class="dv-panel" id="dv-panel" hidden aria-live="polite">
+          <p class="dv-hint">Division</p>
+          <h3 id="dv-title"></h3>
+          <p id="dv-house"></p>
+          <p id="dv-poll"></p>
+          <p id="dv-seats"></p>
+          <div class="dv-btns"><a class="btn btn-red" id="dv-contact" href="#start">Get In Touch</a><a class="btn btn-line" id="dv-pollink" href="voting.html#polls">Polling Place</a></div>
+        </div>
+        <p class="dv-tip">Tap a division to see its polling place and seats.</p>
     </div>
   </section>
 
@@ -229,7 +237,7 @@
           <div class="chips">
             <label class="chip"><input type="radio" name="interest" value="Learn more" checked><span>Learn More</span></label>
             <label class="chip"><input type="radio" name="interest" value="Get involved"><span>Get Involved</span></label>
-            <label class="chip"><input type="radio" name="interest" value="Ask a question"><span>Ask a question</span></label>
+            <label class="chip"><input type="radio" name="interest" value="Ask a question"><span>Ask a Question</span></label>
           </div>
         </fieldset>
         <label>Message (optional)<textarea name="message" rows="4" placeholder="What is on your mind?"></textarea></label>
@@ -308,6 +316,29 @@
 })();
 </script>
 <script>document.querySelectorAll('.yr').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
+<script>
+(function(){
+  var H182=[1,2,3,6,7,8,9,15,16], panel=document.getElementById('dv-panel'), places={}, filled={};
+  fetch('data/polling.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(p){p.places.forEach(function(x){places[+x.division]=x;});}).catch(function(){});
+  fetch('data/seats.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(s){filled=(s.ward&&s.ward.byDivision)||{};}).catch(function(){});
+  function show(g){
+    var n=+g.getAttribute('data-div'), f=filled[n]||0, pl=places[n];
+    [].forEach.call(document.querySelectorAll('.dv.sel'),function(x){x.classList.remove('sel');}); g.classList.add('sel');
+    document.getElementById('dv-title').textContent='Division '+n;
+    document.getElementById('dv-house').textContent='State House: '+(H182.indexOf(n)>-1?'182nd':'186th')+' District';
+    document.getElementById('dv-poll').textContent=pl?'Votes at '+pl.name+', '+pl.address:'Polling place: see voter resources';
+    document.getElementById('dv-seats').textContent=f>=2?'Both committee seats filled':f==1?'1 of 2 committee seats filled, 1 ready for a neighbor':'Both committee seats ready for a neighbor';
+    document.getElementById('dv-pollink').href='voting.html#div-'+n;
+    document.getElementById('dv-contact').onclick=function(){var m=document.querySelector('#signup [name=message]'); if(m&&!m.value) m.value='I live in Division '+n+'.';};
+    panel.hidden=false; if(window.innerWidth<1100) panel.scrollIntoView({block:'nearest',behavior:'smooth'});
+  }
+  [].forEach.call(document.querySelectorAll('.dv'),function(g){
+    g.setAttribute('tabindex','0'); g.setAttribute('role','button'); g.setAttribute('aria-label','Division '+g.getAttribute('data-div'));
+    g.addEventListener('click',function(){show(g);});
+    g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();show(g);}});
+  });
+})();
+</script>
 <script src="cal.js?v=20260925"></script>
 <script data-goatcounter="https://phillygop30thward.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
