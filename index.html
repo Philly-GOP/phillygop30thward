@@ -55,7 +55,7 @@
       <div class="hero-copy">
         <p class="eyebrow">Neighbors first. Philly always.</p>
         <h1>Your block should have a Republican on it.</h1>
-        <p class="lede serif">Each division is a few blocks, with two Republican committee seats. The map shows which ones have someone in them.</p>
+        <p class="lede serif">Each division is a few blocks, with two Republican committee seats. Find yours on the map.</p>
         <div class="ctas">
           <a class="btn btn-red" href="#start">Get in touch</a>
           <a class="btn btn-line" href="#about">Meet the ward</a>
@@ -82,7 +82,7 @@
           <g class="dv f0" data-div="17"><title>Division 17</title><path d="M273,91L454,115L321,228L315,272L379,280L371,336L218,319L164,363L0,239L30,226L49,210L161,74L273,91Z"/><text x="207" y="202">17</text></g>
         </svg></div>
         <figcaption>
-          <span><i class="k f0"></i>Both seats open</span>
+          <span><i class="k f0"></i>Ready for a neighbor</span>
           <span><i class="k f1"></i>One seat filled</span>
           <span><i class="k f2"></i>Both seats filled</span>
         </figcaption>
@@ -92,10 +92,10 @@
 
   <section class="stand" aria-label="Where the ward stands">
     <div class="wrap">
-      <p class="serif stand-copy">Every division in this ward is entitled to two committee people. Right now, most of ours have nobody in either seat. If you live here and you are registered Republican, the seat on your street may be open.</p>
+      <p class="serif stand-copy">Every division in the 30th has two Republican committee seats, filled by neighbors who know the block. We are building that community one street at a time, and there is room for you in it.</p>
       <div class="stand-stats">
         <div class="stat"><b id="w-divs">17</b> <span>divisions in the 30th Ward</span></div>
-        <div class="stat"><b id="w-open">32</b> <span>of <span id="w-seats">34</span> committee seats open today</span></div>
+        <div class="stat"><b id="w-open">32</b> <span>of <span id="w-seats">34</span> seats ready for a neighbor</span></div>
         <div class="stat"><b class="n">2</b> <span>seats in every division</span></div>
       </div>
       <p class="asof" id="w-asof">Counts from the 2026 primary results plus appointments since.</p>
@@ -173,18 +173,18 @@
     <div class="wrap">
       <div class="city-head">
         <p class="eyebrow">Across Philadelphia</p>
-        <h2 class="big">It is not just our ward.</h2>
-        <p class="serif city-lede">66 wards and 1,703 divisions — each entitled to two Republican committee people and a ward leader. Most seats are empty.</p>
+        <h2 class="big">Part of the Philly GOP.</h2>
+        <p class="serif city-lede">66 wards and 1,703 divisions, each with two Republican committee seats. Every one is a chance to organize.</p>
       </div>
       <div class="city-stats">
-        <div class="cstat"><b id="c-open">~2,900</b><span>of <span id="c-seats">3,406</span> Republican committee seats are open citywide, counting about 200 appointed since the primary</span></div>
-        <div class="cstat"><b id="l-vac">20</b><span>of <span id="l-total">67</span> Republican ward leader posts are vacant</span></div>
+        <div class="cstat"><b id="c-open">~2,900</b><span>of <span id="c-seats">3,406</span> Republican committee seats citywide are ready for a neighbor to step up</span></div>
+        <div class="cstat"><b id="l-vac">20</b><span>of <span id="l-total">67</span> wards are looking for a Republican ward leader</span></div>
       </div>
-      <div class="vacant">
-        <h3>Wards with no Republican ward leader</h3>
-        <ul class="chips-list" id="l-list"><li>4</li><li>6</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>20</li><li>24</li><li>28</li><li>29</li><li>32</li><li>44</li><li>47</li><li>49</li><li>50</li><li>52</li><li>60</li></ul>
+      <div class="callout gop">
+        <p>The 30th Ward is one of 66 wards working together as the Philadelphia Republican Party. See what is happening citywide.</p>
+        <a class="btn btn-red" href="https://phillygop.com/" target="_blank" rel="noopener" style="padding:14px 26px;font-size:16px">Visit Philly GOP</a>
       </div>
-      <p class="asof" id="c-asof">Sources: <a href="https://seventy.org/get-informed/philadelphia-ward-leaders-committeepeople/" target="_blank" rel="noopener">Committee of Seventy</a> and the City of Philadelphia's division map. Checked daily.</p>
+      <p class="asof" id="c-asof">Counts from public election records and the City of Philadelphia's division map. Checked daily.</p>
     </div>
   </section>
 
@@ -271,9 +271,7 @@
   }).catch(function(){});
   get('ward-leaders.json').then(function(l){
     set('l-vac',l.vacantCount); set('l-total',l.total);
-    var ul=document.getElementById('l-list'); ul.innerHTML='';
-    l.vacant.forEach(function(w){var li=document.createElement('li'); li.textContent=w; ul.appendChild(li);});
-    var a=document.getElementById('c-asof'); if(a) a.lastChild.textContent=' and the City of Philadelphia\'s division map. Last checked '+nice(l.checked)+'.';
+        set('c-asof','Counts from public election records and the City of Philadelphia\'s division map. Last checked '+nice(l.checked)+'.');
   }).catch(function(){});
 })();
 (function(){
