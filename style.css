@@ -298,3 +298,15 @@
   .ft-brand .wm{align-items:flex-end}
   .ft-brand .mark{width:64px;height:64px}
   @media (max-width:820px){.ft{flex-direction:column-reverse;align-items:flex-start}.ft-brand{flex-direction:row;text-align:left}.ft-brand .wm{align-items:flex-start}}
+  /* candidates */
+  .cands{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+  .cand{background:#fff;border:1px solid var(--hair);border-top:5px solid var(--red);padding:24px 26px;display:flex;flex-direction:column;gap:6px}
+  .cand-where{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--caption);margin:0}
+  .cand h3{font-size:26px;font-weight:800;margin:4px 0 0;line-height:1.1}
+  .cand-office{font-size:15px;font-weight:600;color:var(--red);margin:0}
+  .cand-why{font-family:var(--serif);font-size:17px;line-height:1.5;margin:8px 0 12px}
+  .cand-links{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:auto}
+  .cand-links .btn{padding:11px 20px;font-size:15px}
+  .cand-site{font-size:14px;color:var(--navy);margin-left:6px}
+  .support-strip .wrap{padding-top:40px;padding-bottom:40px}
+  @media (max-width:820px){.cands{grid-template-columns:1fr}}
