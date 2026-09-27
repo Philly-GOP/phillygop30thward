@@ -313,3 +313,4 @@
   .about-why{margin-top:10px}
   .cand-event{font-size:14px;margin:0 0 14px;padding:10px 12px;background:var(--cream);border-left:3px solid var(--red)}
   .cands:has(> .cand:only-child){grid-template-columns:minmax(0,640px)}
+  .ft-seo{font-size:14px;line-height:1.55;color:var(--on-navy);margin:0;max-width:90ch}
