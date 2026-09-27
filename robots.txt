@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /signatures.html
+
+Sitemap: https://phillygop30thward.com/sitemap.xml
