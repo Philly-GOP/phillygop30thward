@@ -354,3 +354,22 @@
   .cand-event .btn{padding:10px 20px;font-size:15px;margin-top:6px}
   @media (max-width:720px){.cand-feature{flex-direction:column}.cand-art{flex:none;width:min(240px,70%)}}
   #support .sec-lede,#support h2.big{max-width:none}
+  /* let copy span the layout on desktop and tablet */
+  h2.big,.lede,.stand-copy,.sec-lede,.about-lede,.job-lede,.q p,.callout p,.city-head{max-width:none}
+  @media (max-width:1100px){.hero-copy{max-width:none}}
+  /* phone menu + back to top */
+  .menu-btn{display:none;background:transparent;border:2px solid rgba(244,238,225,.5);width:46px;height:44px;padding:0;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+  .menu-btn span{display:block;width:20px;height:2px;background:var(--cream);transition:transform .2s,opacity .2s}
+  header.open .menu-btn span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  header.open .menu-btn span:nth-child(2){opacity:0}
+  header.open .menu-btn span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .m-panel{position:relative;display:flex;flex-direction:column;background:var(--navy);border-top:1px solid rgba(169,192,224,.25);padding:6px var(--pad) 14px}
+  .m-panel[hidden]{display:none}
+  .m-panel a{color:var(--cream);text-decoration:none;font-size:18px;font-weight:600;padding:14px 0;border-bottom:1px solid rgba(169,192,224,.18)}
+  .m-panel a:last-child{border-bottom:0}
+  .to-top{position:fixed;right:16px;bottom:18px;z-index:6;width:48px;height:48px;border-radius:50%;border:2px solid var(--cream);background:var(--red);color:var(--cream);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,0,0,.25);cursor:pointer}
+  .to-top[hidden]{display:none}
+  @media (max-width:820px){.menu-btn{display:flex}nav{gap:10px}}
+  @media (min-width:821px){.m-panel,.to-top{display:none!important}}
+  @media (max-width:520px){nav .btn-red{padding:10px 12px;font-size:13px}}
+  .callout p{flex:1 1 320px}

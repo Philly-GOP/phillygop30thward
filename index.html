@@ -29,7 +29,7 @@
     Calendar: edit data/events.json
   FORM: sends through FormSubmit to info@phillygop30thward.com.
 -->
-<link rel="stylesheet" href="style.css?v=20260927b">
+<link rel="stylesheet" href="style.css?v=20260927c">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "30th Ward Republican Committee", "alternateName": ["30th Ward Republicans", "30th Ward GOP", "Philadelphia 30th Ward Republicans"], "url": "https://phillygop30thward.com/", "logo": "https://phillygop30thward.com/img/sig-badge.png", "image": "https://phillygop30thward.com/img/share.jpg", "description": "The Republican Party's local ward committee for Philadelphia's 30th Ward, covering Graduate Hospital and Southwest Center City.", "email": "info@phillygop30thward.com", "areaServed": {"@type": "Place", "name": "30th Ward, Philadelphia, PA (Graduate Hospital and Southwest Center City)"}, "member": [{"@type": "Person", "name": "Scott Cohen", "jobTitle": "Ward Leader"}, {"@type": "Person", "name": "Shirah M. Brown", "jobTitle": "Committeeperson, Division 4"}]}</script>
 </head>
 <body>
@@ -47,8 +47,10 @@
       <a class="nl" href="#coming-up">Calendar</a>
       <a class="nl" href="voting.html">Resources</a>
       <a class="btn btn-red" href="#start">Get In Touch</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="m-panel"><span></span><span></span><span></span><b class="sr-only">Menu</b></button>
     </nav>
   </div>
+  <div class="m-panel" id="m-panel" hidden><a href="#involved">Get Involved</a><a href="#about">About</a><a href="#coming-up">Calendar</a><a href="voting.html">Resources</a></div>
 </header>
 
 <main id="top">
@@ -340,5 +342,17 @@
 </script>
 <script src="cal.js?v=20260925"></script>
 <script data-goatcounter="https://phillygop30thward.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<button class="to-top" type="button" aria-label="Back to top" hidden><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+(function(){
+  var h=document.querySelector('header'),b=h.querySelector('.menu-btn'),p=document.getElementById('m-panel'),t=document.querySelector('.to-top');
+  function close(){h.classList.remove('open');b.setAttribute('aria-expanded','false');p.hidden=true;}
+  b.addEventListener('click',function(){var o=!h.classList.contains('open');h.classList.toggle('open',o);b.setAttribute('aria-expanded',o);p.hidden=!o;});
+  p.addEventListener('click',function(e){if(e.target.tagName==='A')close();});
+  window.addEventListener('resize',function(){if(window.innerWidth>820)close();});
+  window.addEventListener('scroll',function(){t.hidden=!(window.scrollY>700&&window.innerWidth<=820);},{passive:true});
+  t.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
 </body>
 </html>

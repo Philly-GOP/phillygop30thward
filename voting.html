@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="style.css?v=20260927b">
+<link rel="stylesheet" href="style.css?v=20260927c">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -38,8 +38,10 @@
       <a class="nl" href="index.html#coming-up">Calendar</a>
       <a class="nl" href="voting.html" aria-current="page">Resources</a>
       <a class="btn btn-red" href="index.html#start">Get In Touch</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="m-panel"><span></span><span></span><span></span><b class="sr-only">Menu</b></button>
     </nav>
   </div>
+  <div class="m-panel" id="m-panel" hidden><a href="index.html#involved">Get Involved</a><a href="index.html#about">About</a><a href="index.html#coming-up">Calendar</a><a href="voting.html">Resources</a></div>
 </header>
 
 <main id="main">
@@ -187,5 +189,17 @@
 <script>document.querySelectorAll('.yr').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
 <script src="cal.js?v=20260925"></script>
 <script data-goatcounter="https://phillygop30thward.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<button class="to-top" type="button" aria-label="Back to top" hidden><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<script>
+(function(){
+  var h=document.querySelector('header'),b=h.querySelector('.menu-btn'),p=document.getElementById('m-panel'),t=document.querySelector('.to-top');
+  function close(){h.classList.remove('open');b.setAttribute('aria-expanded','false');p.hidden=true;}
+  b.addEventListener('click',function(){var o=!h.classList.contains('open');h.classList.toggle('open',o);b.setAttribute('aria-expanded',o);p.hidden=!o;});
+  p.addEventListener('click',function(e){if(e.target.tagName==='A')close();});
+  window.addEventListener('resize',function(){if(window.innerWidth>820)close();});
+  window.addEventListener('scroll',function(){t.hidden=!(window.scrollY>700&&window.innerWidth<=820);},{passive:true});
+  t.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
 </body>
 </html>
