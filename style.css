@@ -344,7 +344,7 @@
   .about-wide{max-width:none;margin-top:14px}
   /* featured candidate */
   .cand-feature{flex-direction:row;gap:26px;padding:24px;grid-column:1/-1}
-  .cands.cands:has(> .cand-feature){grid-template-columns:minmax(0,920px)}
+  .cands.cands:has(> .cand-feature){grid-template-columns:1fr}
   .cand-art{flex:0 0 220px;align-self:flex-start;display:block;background:#fff;border:1px solid var(--hair)}
   .cand-art img{display:block;width:100%;height:auto}
   .cand-body{flex:1;display:flex;flex-direction:column;gap:6px;min-width:0}
@@ -353,3 +353,4 @@
   .cand-event .ev-k{font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--red)}
   .cand-event .btn{padding:10px 20px;font-size:15px;margin-top:6px}
   @media (max-width:720px){.cand-feature{flex-direction:column}.cand-art{flex:none;width:min(240px,70%)}}
+  #support .sec-lede,#support h2.big{max-width:none}
