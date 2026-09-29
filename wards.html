@@ -177,7 +177,7 @@
     document.getElementById('cw-lead').textContent=w.leaderVacant?'Looking for a Republican ward leader':'Has a Republican ward leader';
     var a=document.getElementById('cw-contact');
     if(w.ward==='30'){a.textContent='See Our Divisions';a.href='index.html#top';a.onclick=null;}
-    else{a.textContent='Get In Touch';a.href='index.html#start';a.onclick=function(){try{sessionStorage.setItem('ward-msg','I live in Ward '+w.ward+'.');}catch(e){}};}
+    else{a.textContent='Get In Touch';a.href='index.html#start';a.onclick=function(){try{sessionStorage.setItem('ward-msg','I live in Ward '+w.ward+'.');sessionStorage.setItem('ward-num',w.ward);}catch(e){}};}
     if(window.innerWidth<1100) document.getElementById('cw-panel').scrollIntoView({block:'nearest',behavior:'smooth'});
   }
 })();

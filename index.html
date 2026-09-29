@@ -248,7 +248,7 @@
         <input type="hidden" name="_captcha" value="false">
         <button class="btn btn-red" type="submit">Send It</button>
         <div class="status" id="status" role="status" aria-live="polite"></div>
-        <p class="fine">We use this only to get back to you. We do not sell it and we do not add you to anything you did not ask for.</p>
+        <p class="fine">Live outside the 30th Ward? We will pass your note to your own ward's Republican leader so the right neighbor gets back to you. We use this only to get back to you. We do not sell it and we do not add you to anything you did not ask for.</p>
       </form>
     </div>
   </section>
@@ -302,19 +302,55 @@
   }).catch(function(){});
 })();
 (function(){
-  var form=document.getElementById('signup'), status=document.getElementById('status');
+  // Routes a message to another ward's leader when we know their ward and that ward's leader has an email on file.
+  // Ward comes from the street address (City of Philadelphia AIS lookup) or from a ward picked on the citywide map.
+  // Anything we cannot route (30th Ward, no address, unknown ward, leader not signed up, send fails) comes to info@ as before.
+  var form=document.getElementById('signup'), status=document.getElementById('status'), HOME='30', routes={}, pickedWard=null;
+  try{pickedWard=sessionStorage.getItem('ward-num');sessionStorage.removeItem('ward-num');}catch(e){}
+  // Leader emails come from the Committee of Seventy list (data/ward-leaders.json); data/ward-contacts.json corrects or overrides it.
+  var j=function(f){return fetch('data/'+f+'?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).catch(function(){return {};});};
+  Promise.all([j('ward-leaders.json'),j('ward-contacts.json')]).then(function(x){
+    var fix=(x[1]&&x[1].wards)||{};
+    ((x[0]&&x[0].wards)||[]).forEach(function(w){
+      var o=fix[w.ward]||{}, email=o.email||w.email, ep=o.endpoint||(email&&'https://formsubmit.co/ajax/'+email);
+      if(w.leader&&ep&&!o.skip) routes[w.ward]={leader:(o.leader||w.leader).replace(/,?\s+(Jr|Sr)\.?$/i,' $1.'),endpoint:ep};
+    });
+  });
   function say(msg){status.textContent=msg;status.classList.add('show');}
+  function ord(n){n=+n;var s=['th','st','nd','rd'],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0]);}
+  function wardFor(addr){
+    if(!addr||!addr.trim()) return Promise.resolve(pickedWard);
+    var ctl=window.AbortController?new AbortController():null, t=setTimeout(function(){ctl&&ctl.abort();},4000);
+    return fetch('https://api.phila.gov/ais/v1/search/'+encodeURIComponent(addr.replace(/,?\s*philadelphia.*$/i,'').trim()),ctl?{signal:ctl.signal}:{})
+      .then(function(r){return r.json();})
+      .then(function(j){clearTimeout(t);var p=j.features&&j.features[0]&&j.features[0].properties;return p&&p.political_ward?String(+p.political_ward):pickedWard;})
+      .catch(function(){clearTimeout(t);return pickedWard;});
+  }
+  function post(url,fd){
+    return fetch(url,{method:'POST',body:fd,headers:{'Accept':'application/json'}})
+      .then(function(r){return r.json().catch(function(){return {};}).then(function(j){if(!r.ok||String(j.success)==='false')throw 0;});});
+  }
+  function mailto(){var f=new FormData(form),b='Name: '+f.get('first_name')+' '+f.get('last_name')+'\nEmail: '+f.get('email')+(f.get('phone')?'\nPhone: '+f.get('phone'):'')+(f.get('address')?'\nAddress: '+f.get('address'):'')+'\n\n'+(f.get('message')||'');location.href='mailto:info@phillygop30thward.com?subject='+encodeURIComponent(f.get('interest')+' — 30th Ward')+'&body='+encodeURIComponent(b);say('Your email app should open with your note ready to send.');}
   form.addEventListener('submit',function(e){
     e.preventDefault();
     var bad=[].slice.call(form.querySelectorAll('[required]')).filter(function(i){return !i.value.trim()||(i.type==='email'&&!/^\S+@\S+\.\S+$/.test(i.value));});
     if(bad.length){bad[0].focus();say('Please fill in your name and a valid email.');return;}
     var url=form.getAttribute('data-endpoint');
-    if(!url){var f=new FormData(form),b='Name: '+f.get('first_name')+' '+f.get('last_name')+'\nEmail: '+f.get('email')+(f.get('phone')?'\nPhone: '+f.get('phone'):'')+(f.get('address')?'\nAddress: '+f.get('address'):'')+'\n\n'+(f.get('message')||'');location.href='mailto:info@phillygop30thward.com?subject='+encodeURIComponent(f.get('interest')+' — 30th Ward')+'&body='+encodeURIComponent(b);say('Your email app should open with your note ready to send.');return;}
+    if(!url){mailto();return;}
     var btn=form.querySelector('button');btn.disabled=true;btn.textContent='Sending…';
-    fetch(url,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}})
-      .then(function(r){return r.json().catch(function(){return {};}).then(function(j){if(!r.ok||String(j.success)==='false')throw 0;form.reset();say('Got it. We will be in touch soon.');});})
-      .catch(function(){var f=new FormData(form),b='Name: '+f.get('first_name')+' '+f.get('last_name')+'\nEmail: '+f.get('email')+(f.get('phone')?'\nPhone: '+f.get('phone'):'')+(f.get('address')?'\nAddress: '+f.get('address'):'')+'\n\n'+(f.get('message')||'');location.href='mailto:info@phillygop30thward.com?subject='+encodeURIComponent(f.get('interest')+' — 30th Ward')+'&body='+encodeURIComponent(b);say('Your email app should open with your note ready to send.');})
-      .then(function(){btn.disabled=false;btn.textContent='Send It';});
+    wardFor(form.address.value).then(function(ward){
+      var fd=new FormData(form), r=ward&&ward!==HOME&&routes[ward], done;
+      if(ward&&ward!==HOME) fd.set('_subject','New message from phillygop30thward.com · Ward '+ward);
+      if(r&&r.endpoint){
+        var rf=new FormData(form);
+        rf.set('_subject','A neighbor in the '+ord(ward)+' Ward wants to connect');
+        rf.set('ward',ward);
+        rf.set('referred_by','Sent to you by the 30th Ward Republicans (phillygop30thward.com), using the ward leader list from the Committee of Seventy. Reply to reach this neighbor directly.');
+        done=post(r.endpoint,rf).then(function(){return 'Got it. We passed your note to '+r.leader+', the Republican leader for the '+ord(ward)+' Ward, who will be in touch.';})
+          .catch(function(){return post(url,fd).then(function(){return 'Got it. We will be in touch soon.';});});
+      } else done=post(url,fd).then(function(){return 'Got it. We will be in touch soon.';});
+      return done.then(function(msg){form.reset();pickedWard=null;say(msg);});
+    }).catch(mailto).then(function(){btn.disabled=false;btn.textContent='Send It';});
   });
 })();
 </script>
