@@ -1,5 +1,6 @@
 // Refreshes the site's data files. Run daily by .github/workflows/update-data.yml.
-//  - data/ward-leaders.json  Republican ward leaders, from the Committee of Seventy (contact details not copied)
+//  - data/ward-leaders.json  Republican ward leaders and their public contact info, from the Committee of Seventy
+//                            (the contact form uses the email to route neighbors to their own ward leader)
 //  - data/seats.json         committee seats filled vs. open, citywide and for the 30th Ward
 //  - data/polling.json       polling place for each 30th Ward division (city data)
 //  - data/wards.json         citywide ward map (city ward boundaries) with seats and ward leader status per ward
@@ -35,7 +36,12 @@ export function parseLeaders(html) {
   for (const row of table[0].matchAll(/<tr[\s\S]*?<\/tr>/gi)) {
     const cells = [...row[0].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)].map(c => clean(c[1]));
     if (cells.length < 2 || !/^\d+[A-Z]?$/i.test(cells[0])) continue;
-    wards.push({ ward: cells[0].toUpperCase(), leader: /^vacant$/i.test(cells[1]) ? null : cells[1] });
+    const leader = /^vacant$/i.test(cells[1]) ? null : cells[1];
+    const contact = cells[2] || '';
+    // Only keep a complete address (Seventy sometimes lists one without a domain ending).
+    const email = leader && (contact.match(/[\w.+-]+@[\w-]+(\.[\w-]+)*\.[a-z]{2,}/i) || [])[0] || null;
+    const phone = leader && (contact.match(/\(?\d{3}\)?[\s.-]*\d{3}[\s.-]*\d{4}/) || [])[0] || null;
+    wards.push({ ward: cells[0].toUpperCase(), leader, email: email && email.toLowerCase(), phone });
   }
   return wards;
 }
