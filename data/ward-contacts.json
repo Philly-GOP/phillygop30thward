@@ -1,0 +1,4 @@
+{
+  "about": "Leader emails come from the Committee of Seventy list (data/ward-leaders.json, refreshed daily). Use this file only to correct or override that list for a ward: \"email\" replaces Seventy's address, \"endpoint\" sets a FormSubmit alias (https://formsubmit.co/ajax/ALIAS) so the email is not published, and \"skip\": true sends that ward's messages to info@ instead.",
+  "wards": {}
+}

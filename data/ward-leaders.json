@@ -27,271 +27,405 @@
   "wards": [
     {
       "ward": "1",
-      "leader": "Billy Lanzillotti, Sr"
+      "leader": "Billy Lanzillotti, Sr",
+      "email": "blanz2003@gmail.com",
+      "phone": "(267) 838-1596"
     },
     {
       "ward": "2",
-      "leader": "Anthony Christina"
+      "leader": "Anthony Christina",
+      "email": "achristina@26thward.org",
+      "phone": "(215) 399-4782"
     },
     {
       "ward": "3",
-      "leader": "Ron Blue"
+      "leader": "Ron Blue",
+      "email": "libraforce1@gmail.com",
+      "phone": "(267) 981-1365"
     },
     {
       "ward": "4",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "5",
-      "leader": "Michael Cibik"
+      "leader": "Michael Cibik",
+      "email": "cibik@cibiklaw.com",
+      "phone": "(215) 735-1060"
     },
     {
       "ward": "6",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "7",
-      "leader": "Bruce Holtz"
+      "leader": "Bruce Holtz",
+      "email": null,
+      "phone": "(215) 385-6178"
     },
     {
       "ward": "8",
-      "leader": "Albert Doering IV"
+      "leader": "Albert Doering IV",
+      "email": "lindsaydoering@yahoo.com",
+      "phone": "(215) 840-1364"
     },
     {
       "ward": "9",
-      "leader": "Mark Umansky"
+      "leader": "Mark Umansky",
+      "email": "mumansky@phillyninthwardgop.com",
+      "phone": "(484) 434-7782"
     },
     {
       "ward": "10",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "11",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "12",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "13",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "14",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "15",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "16",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "17",
-      "leader": "Todd Johnson"
+      "leader": "Todd Johnson",
+      "email": "toddjohnsonj@gmail.com",
+      "phone": "(215) 888-6648"
     },
     {
       "ward": "18",
-      "leader": "Vincent Fenerty, Jr."
+      "leader": "Vincent Fenerty, Jr.",
+      "email": "vincentfenerty@comcast.net",
+      "phone": "(215) 680-9977"
     },
     {
       "ward": "19",
-      "leader": "Carlos Santiago, Jr."
+      "leader": "Carlos Santiago, Jr.",
+      "email": "chandriver1@gmail.com",
+      "phone": "(267) 892-1112"
     },
     {
       "ward": "20",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "21",
-      "leader": "Rindi Khanuja"
+      "leader": "Rindi Khanuja",
+      "email": "rindikhanuja1@gmail.com",
+      "phone": "(267) 532-6716"
     },
     {
       "ward": "22",
-      "leader": "Calvin Tucker"
+      "leader": "Calvin Tucker",
+      "email": "ctucker6644@gmail.com",
+      "phone": "(215) 694-9278"
     },
     {
       "ward": "23",
-      "leader": "Charles O’Connor, Jr."
+      "leader": "Charles O’Connor, Jr.",
+      "email": "charliepont@aol.com",
+      "phone": "(215) 427-0536"
     },
     {
       "ward": "24",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "25",
-      "leader": "Deborah Clegg"
+      "leader": "Deborah Clegg",
+      "email": "debbie.clegg@aol.com",
+      "phone": "(267) 825-2303"
     },
     {
       "ward": "26",
-      "leader": "George Gunning"
+      "leader": "George Gunning",
+      "email": "ggunning@26thward.org",
+      "phone": "(215) 468-2210"
     },
     {
       "ward": "27",
-      "leader": "Matthew Wolfe"
+      "leader": "Matthew Wolfe",
+      "email": "matthew@wolfe.org",
+      "phone": "(215) 387-7300"
     },
     {
       "ward": "28",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "29",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "30",
-      "leader": "Scott Cohen"
+      "leader": "Scott Cohen",
+      "email": "scottinnj@msm.com",
+      "phone": "(856) 220-4730"
     },
     {
       "ward": "31",
-      "leader": "Vincent Fenerty, Jr."
+      "leader": "Vincent Fenerty, Jr.",
+      "email": "vincentfenerty@comcast.net",
+      "phone": "(215) 680-9977"
     },
     {
       "ward": "32",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "33",
-      "leader": "Louis Cabrera, Sr."
+      "leader": "Louis Cabrera, Sr.",
+      "email": "lacabrera2@yahoo.com",
+      "phone": "(267) 444-2563"
     },
     {
       "ward": "34",
-      "leader": "Tiffany Vann"
+      "leader": "Tiffany Vann",
+      "email": null,
+      "phone": "(267) 902-1001"
     },
     {
       "ward": "35",
-      "leader": "Linwood Holland"
+      "leader": "Linwood Holland",
+      "email": "linwoodholland@yahoo.com",
+      "phone": "(267) 407-6732"
     },
     {
       "ward": "36",
-      "leader": "Marjilyn Murray"
+      "leader": "Marjilyn Murray",
+      "email": "marjilyn@yahoo.com",
+      "phone": "(215) 518-3430"
     },
     {
       "ward": "37",
-      "leader": "Jessica Arriaga"
+      "leader": "Jessica Arriaga",
+      "email": "jessicaarriaga14@gmail.com",
+      "phone": "(267) 304-0526"
     },
     {
       "ward": "38",
-      "leader": "Michael Couch"
+      "leader": "Michael Couch",
+      "email": "mykecouch@gmail.com",
+      "phone": "(267) 252-5348"
     },
     {
       "ward": "39A",
-      "leader": "Billy Lanzilotti"
+      "leader": "Billy Lanzilotti",
+      "email": "billylanzilotti@yahoo.com",
+      "phone": "(215) 806-4650"
     },
     {
       "ward": "39B",
-      "leader": "Sonny Mazzone"
+      "leader": "Sonny Mazzone",
+      "email": null,
+      "phone": "(267) 339-1207"
     },
     {
       "ward": "40",
-      "leader": "Craig Melidosian"
+      "leader": "Craig Melidosian",
+      "email": "craigsolve@aol.com",
+      "phone": "215-868-1268"
     },
     {
       "ward": "41",
-      "leader": "Robert Kownacki"
+      "leader": "Robert Kownacki",
+      "email": "robertkownacki0863@comcast.net",
+      "phone": "(267) 266-3285"
     },
     {
       "ward": "42",
-      "leader": "David Rodriguez"
+      "leader": "David Rodriguez",
+      "email": "david.42gopward@gmail.com",
+      "phone": "267-560-4982"
     },
     {
       "ward": "43",
-      "leader": "Emilio Vasquez"
+      "leader": "Emilio Vasquez",
+      "email": "vazquezemilio13@gmail.com",
+      "phone": "(215) 834-3121"
     },
     {
       "ward": "44",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "45",
-      "leader": "Charles O’Connor, Jr."
+      "leader": "Charles O’Connor, Jr.",
+      "email": "charliepont@aol.com",
+      "phone": "(215) 427-0536"
     },
     {
       "ward": "46",
-      "leader": "Denise Furey"
+      "leader": "Denise Furey",
+      "email": "denise.furey@wolfe.org",
+      "phone": "(215) 266-4121"
     },
     {
       "ward": "47",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "48",
-      "leader": "Mike Burke"
+      "leader": "Mike Burke",
+      "email": "mike@southphillyvotes.org",
+      "phone": "(267) 593-0288"
     },
     {
       "ward": "49",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "50",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "51",
-      "leader": "Morris Manson"
+      "leader": "Morris Manson",
+      "email": "morrismanson1@gmail.com",
+      "phone": "(814) 418-3277"
     },
     {
       "ward": "52",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "53",
-      "leader": "Gary Grisafi"
+      "leader": "Gary Grisafi",
+      "email": "gop53rdward@aol.com",
+      "phone": "(215) 820-8553"
     },
     {
       "ward": "54",
-      "leader": "Aaron Bashir"
+      "leader": "Aaron Bashir",
+      "email": "bashirforcongress@gmail.com",
+      "phone": "(215) 954-7836"
     },
     {
       "ward": "55",
-      "leader": "Christopher Vogler"
+      "leader": "Christopher Vogler",
+      "email": "friendsofcv@aol.com",
+      "phone": "(215) 303-7421"
     },
     {
       "ward": "56",
-      "leader": "Peter Gill"
+      "leader": "Peter Gill",
+      "email": "petergillgop56@gmail.com",
+      "phone": "(215) 745-3164"
     },
     {
       "ward": "57",
-      "leader": "Mark Costanzo"
+      "leader": "Mark Costanzo",
+      "email": "emcostanzo59@gmail.com",
+      "phone": "(215) 594-9333"
     },
     {
       "ward": "58",
-      "leader": "Joseph Giedemann"
+      "leader": "Joseph Giedemann",
+      "email": "yojtjjg@aol.com",
+      "phone": "(215) 669-7222"
     },
     {
       "ward": "59",
-      "leader": "Connie Winters"
+      "leader": "Connie Winters",
+      "email": "wincapp@aol.com",
+      "phone": "(215) 432-8765"
     },
     {
       "ward": "60",
-      "leader": null
+      "leader": null,
+      "email": null,
+      "phone": null
     },
     {
       "ward": "61",
-      "leader": "John Yust"
+      "leader": "John Yust",
+      "email": "wardleader61gop@gmail.com",
+      "phone": "(215) 378-0753"
     },
     {
       "ward": "62",
-      "leader": "Charles O’Connor, Jr."
+      "leader": "Charles O’Connor, Jr.",
+      "email": "charliepont@aol.com",
+      "phone": "(215) 427-0536"
     },
     {
       "ward": "63",
-      "leader": "James Nicolo"
+      "leader": "James Nicolo",
+      "email": "jdnicolo@verizon.net",
+      "phone": "(215) 806-9639"
     },
     {
       "ward": "64",
-      "leader": "Bill Heeney"
+      "leader": "Bill Heeney",
+      "email": "bheeney22@yahoo.com",
+      "phone": "(267) 228-4040"
     },
     {
       "ward": "65",
-      "leader": "Joseph Zieminski"
+      "leader": "Joseph Zieminski",
+      "email": "joseph.zieminski@gmail.com",
+      "phone": "(215) 888-9738"
     },
     {
       "ward": "66",
-      "leader": "Michael Costanzo"
+      "leader": "Michael Costanzo",
+      "email": "primonesac@aol.com",
+      "phone": "215-908-3324"
     }
   ],
   "checked": "2026-09-29",
