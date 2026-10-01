@@ -30,7 +30,7 @@
     Calendar: edit data/events.json
   FORM: sends through FormSubmit to info@phillygop30thward.com.
 -->
-<link rel="stylesheet" href="style.css?v=20260927d">
+<link rel="stylesheet" href="style.css?v=20261001a">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "30th Ward Republican Committee", "alternateName": ["30th Ward Republicans", "30th Ward GOP", "Philadelphia 30th Ward Republicans"], "url": "https://phillygop30thward.com/", "logo": "https://phillygop30thward.com/img/sig-badge.png", "image": "https://phillygop30thward.com/img/share.jpg", "description": "The Republican Party's local ward committee for Philadelphia's 30th Ward, covering Graduate Hospital and Southwest Center City.", "email": "info@phillygop30thward.com", "areaServed": {"@type": "Place", "name": "30th Ward, Philadelphia, PA (Graduate Hospital and Southwest Center City)"}, "member": [{"@type": "Person", "name": "Scott Cohen", "jobTitle": "Ward Leader"}, {"@type": "Person", "name": "Shirah M. Brown", "jobTitle": "Committeeperson, Division 4"}]}</script>
 </head>
 <body>
@@ -51,7 +51,7 @@
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="m-panel"><span></span><span></span><span></span><b class="sr-only">Menu</b></button>
     </nav>
   </div>
-  <div class="m-panel" id="m-panel" hidden><a href="#involved">Get Involved</a><a href="#about">About</a><a href="#coming-up">Calendar</a><a href="voting.html">Resources</a></div>
+  <div class="m-panel" id="m-panel" hidden><a href="#involved">Get Involved</a><a href="#about">About</a><a href="#coming-up">Calendar</a><a href="voting.html">Resources</a><a href="#block">Report a Block Issue</a></div>
 </header>
 
 <main id="top">
@@ -65,6 +65,7 @@
           <a class="btn btn-red" href="#start">Get In Touch</a>
           <a class="btn btn-line" href="#about">Meet the Ward</a>
         </div>
+        <p class="hero-issue">Something on your block that needs attention? <a href="#block">Tell us about it</a>.</p>
       </div>
       <figure class="ward-map" aria-label="Map of the 30th Ward's 17 divisions, shaded by filled committee seats">
         <div class="map-frame"><span class="tag" aria-hidden="true"><svg viewBox="0 0 100 100" width="40" height="40"><path d="M4 2h92l-9 42-9 54H22l-9-54z" fill="#C8102E"/><path d="M50 22l7.6 15.4 17 2.5-12.3 12 2.9 16.9L50 60.8l-15.2 8 2.9-16.9-12.3-12 17-2.5z" fill="#F4EEE1"/></svg></span><svg viewBox="-12 -12 1024 437" role="img">
@@ -122,6 +123,10 @@
         <h2 class="big">There is a place for you in the 30th.</h2>
         <p class="serif job-lede">Lend a hand on Election Day, be a voice for Philly Republicans on your block, or take one of the ward's committee seats. Start wherever you are comfortable.</p>
         <p class="ctas"><a class="btn btn-red" href="#start">Get Involved</a><a class="btn btn-line-light" href="committee-seat.html">What a Committee Seat Involves</a><a class="btn btn-line-light" href="wards.html">See the Citywide Map</a></p>
+        <div class="switch">
+          <p><b>Already a Republican at heart?</b> Update your voter registration with the state. It takes about five minutes online.</p>
+          <p class="switch-links"><a class="btn btn-red" href="https://www.pavoterservices.pa.gov/Pages/VoterRegistrationApplication.aspx" target="_blank" rel="noopener">Update Your Registration</a><a href="https://www.pavoterservices.pa.gov/pages/voterregistrationstatus.aspx" target="_blank" rel="noopener">Check your current party</a></p>
+        </div>
       </div>
       <div class="three ways">
         <div>
@@ -250,6 +255,48 @@
       </form>
     </div>
   </section>
+
+  <section class="start block-issue" id="block">
+    <div class="wrap">
+      <div class="start-head">
+        <p class="eyebrow">Report a Block Issue</p>
+        <h2>Something on your block that needs attention?</h2>
+        <p>A broken streetlight, a problem property, trash that never gets picked up. Tell us what is going on and we will look into it. If you would like, we will bring it to our city or state representatives.</p>
+        <p class="lookup">For emergencies, call 911. For routine city services, you can also use <a href="https://www.phila.gov/311/" target="_blank" rel="noopener">Philly311</a>.</p>
+      </div>
+
+      <form id="issue" data-endpoint="https://formsubmit.co/ajax/info@phillygop30thward.com" novalidate>
+        <div class="row">
+          <label>First name<input type="text" name="first_name" placeholder="First" autocomplete="given-name" required></label>
+          <label>Last name<input type="text" name="last_name" placeholder="Last" autocomplete="family-name" required></label>
+        </div>
+        <div class="row">
+          <label>Email<input type="email" name="email" placeholder="you@example.com" autocomplete="email" required></label>
+          <label>Phone (optional)<input type="tel" name="phone" placeholder="(215) 000-0000" autocomplete="tel"></label>
+        </div>
+        <label>Where is it?<input type="text" name="location" placeholder="Address or cross streets" required></label>
+        <fieldset>
+          <legend class="legend">What kind of issue</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="issue_type" value="Streets and sidewalks" checked><span>Streets &amp; Sidewalks</span></label>
+            <label class="chip"><input type="radio" name="issue_type" value="Trash and cleanliness"><span>Trash &amp; Cleanliness</span></label>
+            <label class="chip"><input type="radio" name="issue_type" value="Safety"><span>Safety</span></label>
+            <label class="chip"><input type="radio" name="issue_type" value="Housing and property"><span>Housing &amp; Property</span></label>
+            <label class="chip"><input type="radio" name="issue_type" value="Something else"><span>Something Else</span></label>
+          </div>
+        </fieldset>
+        <label>What is going on?<textarea name="description" rows="5" placeholder="What you have seen, how long it has been happening, and anything you have already tried." required></textarea></label>
+        <label class="check"><input type="checkbox" name="raise_with_reps" value="Yes"><span>Please raise this with our city or state representatives.</span></label>
+        <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="_subject" value="Block issue from phillygop30thward.com">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <button class="btn btn-red" type="submit">Send It</button>
+        <div class="status" id="issue-status" role="status" aria-live="polite"></div>
+        <p class="fine">A neighbor from the ward reads every report. We use your details only to follow up on this issue. We do not sell them and we do not add you to anything you did not ask for.</p>
+      </form>
+    </div>
+  </section>
 </main>
 
 <footer id="meetings">
@@ -266,7 +313,7 @@
         </div>
         <div>
           <h2>REACH US</h2>
-          <p><a href="mailto:info@phillygop30thward.com">info@phillygop30thward.com</a></p>
+          <p><a href="mailto:info@phillygop30thward.com">info@phillygop30thward.com</a><br><a href="#block">Report a block issue</a></p>
         </div>
         <div>
           <h2>CITY PARTY</h2>
@@ -349,6 +396,36 @@
       } else done=post(url,fd).then(function(){return 'Got it. We will be in touch soon.';});
       return done.then(function(msg){form.reset();pickedWard=null;say(msg);});
     }).catch(mailto).then(function(){btn.disabled=false;btn.textContent='Send It';});
+  });
+})();
+</script>
+<script>
+(function(){
+  // Block issue reports go to info@ through FormSubmit, with an email-app fallback if the send fails.
+  var form=document.getElementById('issue'), status=document.getElementById('issue-status');
+  if(!form) return;
+  function say(msg){status.textContent=msg;status.classList.add('show');}
+  function fields(){
+    var fd=new FormData(form), reps=form.raise_with_reps.checked;
+    fd.set('raise_with_reps',reps?'Yes':'No');
+    fd.set('_subject','Block issue'+(reps?' (raise with reps)':'')+': '+fd.get('issue_type')+' · '+fd.get('location'));
+    return fd;
+  }
+  function mailto(){
+    var f=fields(), b='Name: '+f.get('first_name')+' '+f.get('last_name')+'\nEmail: '+f.get('email')+(f.get('phone')?'\nPhone: '+f.get('phone'):'')+'\nWhere: '+f.get('location')+'\nType: '+f.get('issue_type')+'\nRaise with representatives: '+f.get('raise_with_reps')+'\n\n'+f.get('description');
+    location.href='mailto:info@phillygop30thward.com?subject='+encodeURIComponent(f.get('_subject'))+'&body='+encodeURIComponent(b);
+    say('Your email app should open with your report ready to send.');
+  }
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var bad=[].slice.call(form.querySelectorAll('[required]')).filter(function(i){return !i.value.trim()||(i.type==='email'&&!/^\S+@\S+\.\S+$/.test(i.value));});
+    if(bad.length){bad[0].focus();say('Please fill in your name, a valid email, where it is and what is going on.');return;}
+    var btn=form.querySelector('button');btn.disabled=true;btn.textContent='Sending…';
+    fetch(form.getAttribute('data-endpoint'),{method:'POST',body:fields(),headers:{'Accept':'application/json'}})
+      .then(function(r){return r.json().catch(function(){return {};}).then(function(j){if(!r.ok||String(j.success)==='false')throw 0;});})
+      .then(function(){form.reset();say('Got it. A neighbor from the ward will look into it and follow up with you.');})
+      .catch(mailto)
+      .then(function(){btn.disabled=false;btn.textContent='Send It';});
   });
 })();
 </script>
