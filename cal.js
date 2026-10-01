@@ -1,5 +1,6 @@
 // Renders data/events.json into any <ol class="events" data-limit="N"> on the page,
 // with an "Add to calendar" button that downloads an .ics file.
+// data-show: "local" (default, hides around:true events), "around" (only those, plus alsoAround), or "all".
 (function(){
   var MONTHS=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
   var DAYS=['SUN','MON','TUE','WED','THU','FRI','SAT'];
@@ -21,7 +22,8 @@
   }
   function render(list,events){
     var limit=+list.getAttribute('data-limit')||0, today=new Date(); today.setHours(0,0,0,0);
-    var up=events.filter(function(e){return d(e)>=today;}).sort(function(a,b){return d(a)-d(b)||(a.start||'').localeCompare(b.start||'');});
+    var show=list.getAttribute('data-show')||'local';
+    var up=events.filter(function(e){if(d(e)<today)return false;if(show==='around')return e.around||e.alsoAround;if(show==='local')return !e.around;return true;}).sort(function(a,b){return d(a)-d(b)||(a.start||'').localeCompare(b.start||'');});
     if(limit) up=up.slice(0,limit);
     list.innerHTML='';
     if(!up.length){var p=document.createElement('p');p.className='ev-empty';p.textContent='Nothing on the calendar right now. Check back soon.';list.appendChild(p);return;}
