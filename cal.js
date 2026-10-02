@@ -61,8 +61,8 @@
   }
   window.WardCal={render:render,download:download,date:d,time12:time12};
   // Lists marked data-manual are rendered by their own page (calendar.html), not here.
-  var lists=document.querySelectorAll('ol.events:not([data-manual])'); if(!lists.length) return;
-  fetch('data/events.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();})
+  var lists=document.querySelectorAll('ol.events:not([data-manual])');
+  if(lists.length) fetch('data/events.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();})
     .then(function(j){[].forEach.call(lists,function(l){render(l,j.events||[]);});})
     .catch(function(){});
   // countdown to the next election event, if the page has one
