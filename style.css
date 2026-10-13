@@ -414,6 +414,9 @@
 
   /* block issue form */
   .block-issue{background:var(--cream);border-top:0}
+  .join-list{background:var(--cream)}
+  .join-list input[type=text],.join-list input[type=email]{background:#fff}
+  .join-list form{align-self:center}
   .block-issue input[type=text],.block-issue input[type=email],.block-issue input[type=tel],.block-issue textarea{background:#fff}
   .check{flex-direction:row;align-items:flex-start;gap:12px;font-size:16px;font-weight:600;letter-spacing:0;text-transform:none;line-height:1.4;cursor:pointer}
   .check input{flex-shrink:0;width:22px;height:22px;margin:0;accent-color:var(--navy);cursor:pointer}
