@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="style.css?v=20261001c">
+<link rel="stylesheet" href="style.css?v=20261013a">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -135,7 +135,7 @@
 </footer>
 
 <script>document.querySelectorAll('.yr').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
-<script src="cal.js?v=20261002a"></script>
+<script src="cal.js?v=20261013a"></script>
 <script>
 (function(){
   var CAT={election:'Election dates',ward:'30th Ward',around:'Around Philly'};
@@ -210,6 +210,16 @@
   fetch('data/events.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(j){
     all=(j.events||[]).slice(); counts();
     cur=new Date(today.getFullYear(),today.getMonth(),1); pickDay();
+    // Shareable link to one event (used by Facebook posts): calendar.html?event=ID opens its day and highlights it.
+    var want=new URLSearchParams(location.search).get('event'), hit=want&&all.filter(function(e){return WardCal.slug(e)===want;})[0];
+    if(hit){
+      var dt=WardCal.date(hit); cur=new Date(dt.getFullYear(),dt.getMonth(),1); sel=hit.date;
+      document.getElementById('cal-day-list').setAttribute('data-focus',want);
+      if(hit.around&&!on.around){on.around=true;}
+      setView('month');
+      var li=document.getElementById('ev-'+want); if(li) setTimeout(function(){li.scrollIntoView({behavior:'smooth',block:'center'});},150);
+      return;
+    }
     var h=location.hash.slice(1); setView(h==='list'||h==='month'?h:(window.innerWidth<640?'list':'month'));
   }).catch(function(){grid.innerHTML='<p class="ev-empty">The calendar could not load. Please refresh the page.</p>';});
 })();

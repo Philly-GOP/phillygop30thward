@@ -6,6 +6,8 @@
   var MONTHS=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
   var DAYS=['SUN','MON','TUE','WED','THU','FRI','SAT'];
   function d(e){return new Date(e.date+'T12:00:00');}
+  // Stable id for an event, used in shareable links (calendar.html?event=ID). scripts/post-events.mjs uses the same rule.
+  function slug(e){return e.date+'-'+e.title.toLowerCase().replace(/\W+/g,'-').replace(/^-+|-+$/g,'');}
   function time12(t){var h=+t.slice(0,2),m=t.slice(3);return (h%12||12)+(m==='00'?'':':'+m)+(h<12?' a.m.':' p.m.');}
   function esc(s){return String(s||'').replace(/[\;,]/g,function(c){return '\\'+c;}).replace(/\n/g,'\\n');}
   // ics(event) or ics([events]) builds one .ics file; several events become one file the phone imports at once.
@@ -41,7 +43,7 @@
     list.innerHTML='';
     if(!up.length){var p=document.createElement('p');p.className='ev-empty';p.textContent=list.getAttribute('data-empty')||'Nothing on the calendar right now. Check back soon.';list.appendChild(p);return;}
     up.forEach(function(e){
-      var li=document.createElement('li'); li.className='event'; var dt=d(e);
+      var li=document.createElement('li'); li.className='event'+(list.getAttribute('data-focus')===slug(e)?' focus':''); li.id='ev-'+slug(e); var dt=d(e);
       li.innerHTML='<div class="ev-date" aria-hidden="true"><span class="m"></span><span class="d"></span><span class="w"></span></div><div class="ev-body"><h3></h3><p></p></div><button class="ics" type="button">Add to calendar</button>';
       li.querySelector('.m').textContent=MONTHS[dt.getMonth()];
       li.querySelector('.d').textContent=dt.getDate();
@@ -59,7 +61,7 @@
       list.appendChild(li);
     });
   }
-  window.WardCal={render:render,download:download,date:d,time12:time12};
+  window.WardCal={render:render,download:download,date:d,time12:time12,slug:slug};
   // Lists marked data-manual are rendered by their own page (calendar.html), not here.
   var lists=document.querySelectorAll('ol.events:not([data-manual])');
   if(lists.length) fetch('data/events.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();})

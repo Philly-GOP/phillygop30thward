@@ -1,0 +1,45 @@
+name: Post events to Facebook
+
+# Announces new ward and election events on the Facebook Page and reminds people the day before,
+# each post linking to the event on calendar.html. See scripts/post-events.mjs.
+# Until the FB_PAGE_ID and FB_PAGE_TOKEN secrets are set it runs in preview mode:
+# open a run and read its summary to see the drafted posts.
+
+on:
+  schedule:
+    - cron: '7 14 * * *'   # daily, about 10am Philadelphia time (9am in winter)
+  push:
+    branches: [main]
+    paths: ['data/events.json']   # post a newly added event right away
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: facebook-events
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/post-events.mjs
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          FB_GRAPH_VERSION: ${{ vars.FB_GRAPH_VERSION }}
+      - name: Save the record of what was posted
+        if: always()
+        run: |
+          git config user.name "ward-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          [ -f data/facebook-posts.json ] || exit 0
+          git add data/facebook-posts.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Record Facebook event posts"
+          git pull --rebase && git push

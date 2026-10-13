@@ -181,6 +181,7 @@
   .ev-tag.election{background:var(--red)}
   .ics{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--navy);border:1.5px solid var(--navy);background:transparent;padding:10px 14px;min-height:44px;cursor:pointer;white-space:nowrap}
   .ics:hover{background:var(--navy);color:var(--cream)}
+  .event.focus{background:var(--cream);box-shadow:inset 4px 0 0 var(--red);padding-left:14px;padding-right:14px}
   .ev-empty{font-family:var(--serif);font-size:17px;padding:18px 0;margin:0;border-bottom:1px solid var(--hair)}
 
   /* polling table */

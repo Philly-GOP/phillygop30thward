@@ -1,5 +1,5 @@
 {
-  "note": "Ward calendar. Add an event by copying one block. date = YYYY-MM-DD; start/end = 24-hour HH:MM (leave out for all-day); kind = election, ward, or party. Past events hide themselves. Set \"around\": true for events hosted by other wards, candidates or the city party; those show only in the Around Philly list on voting.html, not on the home page.",
+  "note": "Ward calendar. Add an event by copying one block. date = YYYY-MM-DD; start/end = 24-hour HH:MM (leave out for all-day); kind = election, ward, or party. Past events hide themselves. Set \"around\": true for events hosted by other wards, candidates or the city party; those show only in the Around Philly list on voting.html, not on the home page. Facebook: ward and election events post to the Page automatically (an announcement, then a reminder the day before); add \"facebook\": false to skip one, or \"facebook\": true to post an Around Philly event. Changing a title or date after it posts makes it post again as new.",
   "events": [
     {
       "date": "2026-10-02",
@@ -75,7 +75,8 @@
       "title": "Last day to register to vote",
       "details": "Register or update your party and address before the November 3 election.",
       "kind": "election",
-      "link": "https://www.pavoterservices.pa.gov/pages/VoterRegistrationApplication.aspx"
+      "link": "https://www.pavoterservices.pa.gov/pages/VoterRegistrationApplication.aspx",
+      "facebook": false
     },
     {
       "date": "2026-10-19",
