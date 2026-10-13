@@ -273,7 +273,7 @@
         </fieldset>
         <label>Message (optional)<textarea name="message" rows="4" placeholder="What is on your mind?"></textarea></label>
         <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <input type="hidden" name="_subject" value="New message from phillygop30thward.com">
+        <input type="hidden" name="_subject" value="Get in Touch: phillygop30thward.com">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
         <button class="btn btn-red" type="submit">Send It</button>
@@ -412,7 +412,8 @@
     var btn=form.querySelector('button');btn.disabled=true;btn.textContent='Sending…';
     wardFor(form.address.value).then(function(ward){
       var fd=new FormData(form), r=ward&&ward!==HOME&&routes[ward], done;
-      if(ward&&ward!==HOME) fd.set('_subject','New message from phillygop30thward.com · Ward '+ward);
+      var who=(fd.get('first_name')+' '+fd.get('last_name')).trim();
+      fd.set('_subject','Get in Touch: '+fd.get('interest')+' · '+who+(ward&&ward!==HOME?' · Ward '+ward:''));
       if(r&&r.endpoint){
         var rf=new FormData(form);
         rf.set('_subject','A neighbor in the '+ord(ward)+' Ward wants to connect');
