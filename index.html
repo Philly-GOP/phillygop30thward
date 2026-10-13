@@ -51,7 +51,7 @@
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="m-panel"><span></span><span></span><span></span><b class="sr-only">Menu</b></button>
     </nav>
   </div>
-  <div class="m-panel" id="m-panel" hidden><a href="#involved">Get Involved</a><a href="#about">About</a><a href="calendar.html">Calendar</a><a href="voting.html">Resources</a><a href="#block">Report a Block Issue</a></div>
+  <div class="m-panel" id="m-panel" hidden><a href="#involved">Get Involved</a><a href="#about">About</a><a href="calendar.html">Calendar</a><a href="voting.html">Resources</a><a href="#block">Report a Block Issue</a><a href="#join">Join Our Mailing List</a></div>
 </header>
 
 <main id="top">
@@ -216,6 +216,32 @@
     </div>
   </section>
 
+
+  <section class="start join-list" id="join">
+    <div class="wrap">
+      <div class="start-head">
+        <p class="eyebrow">Join Our Mailing List</p>
+        <h2>Hear what is happening on your blocks.</h2>
+        <p>Ward meetings, Election Day help, local candidates and the city issues that reach our neighborhood. A short note when there is something worth knowing, never a flood.</p>
+      </div>
+
+      <form id="join-form" data-endpoint="https://formsubmit.co/ajax/info@phillygop30thward.com" novalidate>
+        <div class="row">
+          <label>First name<input type="text" name="first_name" placeholder="First" autocomplete="given-name" required></label>
+          <label>Last name<input type="text" name="last_name" placeholder="Last" autocomplete="family-name" required></label>
+        </div>
+        <label>Email<input type="email" name="email" placeholder="you@example.com" autocomplete="email" required></label>
+        <input type="hidden" name="list" value="Mailing list">
+        <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="_subject" value="Mailing list: phillygop30thward.com">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <button class="btn btn-red" type="submit">Join the List</button>
+        <div class="status" id="join-status" role="status" aria-live="polite"></div>
+        <p class="fine">We use your email only to send ward news. We do not sell it, and you can unsubscribe anytime by replying "unsubscribe."</p>
+      </form>
+    </div>
+  </section>
 
   <section class="start" id="start">
     <div class="wrap">
@@ -467,6 +493,31 @@
   window.addEventListener('resize',function(){if(window.innerWidth>820)close();});
   window.addEventListener('scroll',function(){t.hidden=!(window.scrollY>700&&window.innerWidth<=820);},{passive:true});
   t.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+})();
+</script>
+<script>
+(function(){
+  // Mailing-list sign-ups go to info@ through FormSubmit, with an email-app fallback if the send fails.
+  var form=document.getElementById('join-form'), status=document.getElementById('join-status');
+  if(!form) return;
+  function say(msg){status.textContent=msg;status.classList.add('show');}
+  function fields(){var fd=new FormData(form);fd.set('_subject','Mailing list: '+(fd.get('first_name')+' '+fd.get('last_name')).trim());return fd;}
+  function mailto(){
+    var f=fields();
+    location.href='mailto:info@phillygop30thward.com?subject='+encodeURIComponent(f.get('_subject'))+'&body='+encodeURIComponent('Please add me to the 30th Ward mailing list.\n\nName: '+f.get('first_name')+' '+f.get('last_name')+'\nEmail: '+f.get('email'));
+    say('Your email app should open with your sign-up ready to send.');
+  }
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var bad=[].slice.call(form.querySelectorAll('[required]')).filter(function(i){return !i.value.trim()||(i.type==='email'&&!/^\S+@\S+\.\S+$/.test(i.value));});
+    if(bad.length){bad[0].focus();say('Please fill in your name and a valid email.');return;}
+    var btn=form.querySelector('button');btn.disabled=true;btn.textContent='Joining…';
+    fetch(form.getAttribute('data-endpoint'),{method:'POST',body:fields(),headers:{'Accept':'application/json'}})
+      .then(function(r){return r.json().catch(function(){return {};}).then(function(j){if(!r.ok||String(j.success)==='false')throw 0;});})
+      .then(function(){form.reset();say('You are on the list. Welcome, neighbor.');})
+      .catch(mailto)
+      .then(function(){btn.disabled=false;btn.textContent='Join the List';});
+  });
 })();
 </script>
 </body>
