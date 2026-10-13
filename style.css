@@ -507,3 +507,16 @@
 /* Get Involved headline: always one line, scales with its column */
 #involved .wrap>div:first-child{container-type:inline-size}
 #involved h2.big{white-space:nowrap;max-width:none;font-size:min(44px,calc(100cqi / 17))}
+/* Get Involved: tighter layout, registration block under the three ways */
+#involved h2.big{font-size:min(38px,calc(100cqi / 17))}
+.involved .wrap{row-gap:28px}
+.involved .wrap>div:first-child{grid-row:span 2}
+.involved .switch{grid-column:2;margin:0;padding-top:24px;border-top:1px solid rgba(169,192,224,.3)}
+.involved .switch p:first-child{margin-top:0}
+.involved .ctas{margin-top:26px}
+.involved .ctas .btn,.involved .switch-links .btn{min-height:58px}
+@media (max-width:1100px){.involved .wrap>div:first-child{grid-row:auto}.involved .switch{grid-column:auto}}
+#involved h2.big{font-size:min(30px,calc(100cqi / 17))}
+.involved.job .wrap{padding-top:64px;padding-bottom:64px;row-gap:20px}
+.involved .ways>div{padding:16px 0}
+.involved .switch{padding-top:20px;gap:14px}
