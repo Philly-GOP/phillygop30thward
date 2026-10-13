@@ -504,3 +504,6 @@
 .involved .ctas,.involved .switch-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:640px;grid-auto-rows:1fr}
 .involved .ctas .btn,.involved .switch-links .btn{width:100%;min-height:68px;padding:12px 20px;font-size:17px;box-sizing:border-box;text-align:center}
 @media (max-width:640px){.involved .ctas,.involved .switch-links{grid-template-columns:1fr}}
+/* Get Involved headline: always one line, scales with its column */
+#involved .wrap>div:first-child{container-type:inline-size}
+#involved h2.big{white-space:nowrap;max-width:none;font-size:min(44px,calc(100cqi / 17))}
