@@ -41,7 +41,10 @@ export function parseLeaders(html) {
     // Only keep a complete address (Seventy sometimes lists one without a domain ending).
     const email = leader && (contact.match(/[\w.+-]+@[\w-]+(\.[\w-]+)*\.[a-z]{2,}/i) || [])[0] || null;
     const phone = leader && (contact.match(/\(?\d{3}\)?[\s.-]*\d{3}[\s.-]*\d{4}/) || [])[0] || null;
-    wards.push({ ward: cells[0].toUpperCase(), leader, email: email && email.toLowerCase(), phone });
+    const ward = cells[0].toUpperCase();
+    // Never publish our own ward leader's personal contact info; 30th Ward messages go to info@.
+    const home = ward === HOME_WARD;
+    wards.push({ ward, leader, email: home ? null : email && email.toLowerCase(), phone: home ? null : phone });
   }
   return wards;
 }
