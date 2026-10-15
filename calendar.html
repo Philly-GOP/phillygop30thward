@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="style.css?v=20261013l">
+<link rel="stylesheet" href="style.css?v=20261014a">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -86,6 +86,11 @@
           <h3 id="cal-day-title"></h3>
           <ol class="events" id="cal-day-list" data-manual data-show="all" data-past="show" data-empty="Nothing on the calendar this day."></ol>
         </div>
+        <dialog class="cal-pop" id="cal-pop" aria-labelledby="cal-pop-title">
+          <button type="button" class="cal-pop-x" aria-label="Close">&times;</button>
+          <h3 id="cal-pop-title"></h3>
+          <ol class="events" id="cal-pop-list" data-manual data-show="all" data-past="show"></ol>
+        </dialog>
       </div>
 
       <div id="view-list" hidden>
@@ -193,8 +198,17 @@
     try{history.replaceState(null,'','#'+v);}catch(e){}
     draw();
   }
-  grid.addEventListener('click',function(e){var c=e.target.closest('[data-day]');if(!c)return;sel=c.getAttribute('data-day');drawMonth();
-    if(window.innerWidth<820) document.getElementById('cal-day').scrollIntoView({behavior:'smooth',block:'start'});});
+  // Clicking a day with events opens a pop-up with the full event details (title, time, place, link, Add to calendar).
+  var pop=document.getElementById('cal-pop');
+  function openPop(day){
+    document.getElementById('cal-pop-title').textContent=new Date(day+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+    WardCal.render(document.getElementById('cal-pop-list'),shown().filter(function(e){return e.date===day;}));
+    if(pop.showModal){try{pop.showModal();return;}catch(x){}}
+    document.getElementById('cal-day').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  pop.querySelector('.cal-pop-x').addEventListener('click',function(){pop.close();});
+  pop.addEventListener('click',function(e){if(e.target===pop)pop.close();});
+  grid.addEventListener('click',function(e){var c=e.target.closest('[data-day]');if(!c)return;sel=c.getAttribute('data-day');drawMonth();openPop(sel);});
   document.getElementById('cal-prev').addEventListener('click',function(){cur=new Date(cur.getFullYear(),cur.getMonth()-1,1);pickDay();drawMonth();});
   document.getElementById('cal-next').addEventListener('click',function(){cur=new Date(cur.getFullYear(),cur.getMonth()+1,1);pickDay();drawMonth();});
   document.getElementById('cal-today').addEventListener('click',function(){cur=new Date(today.getFullYear(),today.getMonth(),1);pickDay();drawMonth();});
