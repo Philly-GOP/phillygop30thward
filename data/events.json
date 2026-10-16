@@ -19,7 +19,8 @@
       "where": "AOH Division 87, 3524 E. Thompson St",
       "details": "$95",
       "kind": "ward",
-      "around": true
+      "around": true,
+      "link": "https://www.phillygop.com/events/republican-river-wards-evening-with-friends-fundraiser"
     },
     {
       "date": "2026-10-07",
@@ -59,16 +60,19 @@
       "where": "Union League Golf Club at Torresdale, 3801 Grant Ave",
       "details": "$100",
       "kind": "party",
-      "around": true
+      "around": true,
+      "link": "https://www.phillygop.com/events/martina-white-at-the-union-league-golf-club-at-torresdale"
     },
     {
       "date": "2026-10-17",
-      "start": "20:00",
+      "start": "19:00",
       "title": "South Philly Votes Gala",
       "where": "Mummers Museum, 1100 S. 2nd St",
-      "details": "$80. Runs until midnight",
+      "details": "$80",
       "kind": "party",
-      "around": true
+      "around": true,
+      "link": "https://www.phillygop.com/events/south-philly-votes-gala",
+      "end": "23:00"
     },
     {
       "date": "2026-10-19",
@@ -86,7 +90,8 @@
       "where": "Curran's Irish Inn, 7968 Veree Rd",
       "details": "$50",
       "kind": "ward",
-      "around": true
+      "around": true,
+      "link": "https://www.phillygop.com/events/7h7dghu9t5me0uzegii679xf2f1o50"
     },
     {
       "date": "2026-10-19",
@@ -96,7 +101,8 @@
       "where": "Fergie's Pub, 1214 Sansom St",
       "details": "Cash bar",
       "kind": "ward",
-      "around": true
+      "around": true,
+      "link": "https://www.phillygop.com/events/center-city-gop-mixer-open-mic-night"
     },
     {
       "date": "2026-10-22",
@@ -106,7 +112,8 @@
       "where": "Cannstatters, 9130 Academy Rd",
       "details": "$100",
       "kind": "party",
-      "around": true
+      "around": true,
+      "link": "https://www.phillygop.com/events/phillygop-fall-cocktail-reception-2026"
     },
     {
       "date": "2026-10-27",
@@ -123,7 +130,8 @@
       "where": "AOH Division 61, 4131 Rhawn St",
       "details": "$50",
       "kind": "ward",
-      "around": true
+      "around": true,
+      "link": "https://www.phillygop.com/events/66th-57th-wards-republican-fundraiser-2"
     },
     {
       "date": "2026-10-29",
@@ -133,6 +141,17 @@
       "details": "$50, VIP $100",
       "kind": "ward",
       "around": true
+    },
+    {
+      "date": "2026-10-30",
+      "start": "19:30",
+      "end": "21:30",
+      "title": "31st & 18th Wards cocktail party",
+      "where": "Amvets Club, E. Sergeant & Gaul Sts",
+      "details": "$50",
+      "kind": "ward",
+      "around": true,
+      "link": "https://www.phillygop.com/events/31st-ward-cocktail-party"
     },
     {
       "date": "2026-11-03",
