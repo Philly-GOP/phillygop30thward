@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="style.css?v=20261014a">
+<link rel="stylesheet" href="style.css?v=20261019a">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -52,6 +52,14 @@
       <p class="eyebrow">Calendar · 30th Ward Republicans</p>
       <h1>Everything on the calendar.</h1>
       <p class="countdown" id="countdown">Election Day is Tuesday, November 3. Polls are open 7 a.m. to 8 p.m.</p>
+    </div>
+  </section>
+
+  <!-- Today's events, filled in by the script below. Stays hidden when nothing is on today. -->
+  <section class="sec today-sec" id="today" hidden>
+    <div class="wrap">
+      <h2 class="today-h">Today<span id="today-date"></span></h2>
+      <ol class="events" id="today-list" data-manual data-show="all" data-past="show"></ol>
     </div>
   </section>
 
@@ -211,6 +219,12 @@
   });
   fetch('data/events.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(j){
     all=(j.events||[]).slice(); counts();
+    var now=all.filter(function(e){return e.date===key(today);});
+    if(now.length){
+      document.getElementById('today-date').textContent=today.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+      WardCal.render(document.getElementById('today-list'),now);
+      document.getElementById('today').hidden=false;
+    }
     cur=new Date(today.getFullYear(),today.getMonth(),1); pickDay();
     // Shareable link to one event (used by Facebook posts): calendar.html?event=ID opens its day and highlights it.
     var want=new URLSearchParams(location.search).get('event'), hit=want&&all.filter(function(e){return WardCal.slug(e)===want;})[0];

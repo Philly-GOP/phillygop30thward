@@ -182,6 +182,9 @@
   .ics{font-family:var(--sans);font-size:13px;font-weight:700;color:var(--navy);border:1.5px solid var(--navy);background:transparent;padding:10px 14px;min-height:44px;cursor:pointer;white-space:nowrap}
   .ics:hover{background:var(--navy);color:var(--cream)}
   .event.focus{background:var(--cream);box-shadow:inset 4px 0 0 var(--red);padding-left:14px;padding-right:14px}
+  .today-sec .wrap{padding-top:36px;padding-bottom:36px;gap:16px}
+  .today-h{font-size:clamp(26px,3vw,34px);margin:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+  .today-h span{font-family:var(--serif);font-size:18px;font-weight:400;color:var(--caption)}
   .ev-empty{font-family:var(--serif);font-size:17px;padding:18px 0;margin:0;border-bottom:1px solid var(--hair)}
 
   /* polling table */
