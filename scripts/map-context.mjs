@@ -115,6 +115,14 @@ function inside([px, py], rings) {
 const pathD = lines => lines.map(l => 'M' + l.map(p => p.map(v => +v.toFixed(1)).join(',')).join('L')).join('');
 
 // Label spot: the longest run of nearly straight line whose middle sits where we want it (inside or outside the city).
+function labelSpots(lines, want, len, n = 3, gap = 220) {
+  const got = [];
+  for (let k = 0; k < n; k++) {
+    const s = labelSpot(lines, p => want(p) && got.every(g => Math.hypot(g.x - p[0], g.y - p[1]) > gap), len);
+    if (!s) break; got.push(s);
+  }
+  return got;
+}
 function labelSpot(lines, want, len) {
   let best = null;
   for (const l of lines) for (let i = 0; i < l.length; i++) {
@@ -180,8 +188,12 @@ out;`);
     if (!lines.length) { console.warn(`No shape found for ${w.name}`); return null; }
     // Wide rivers get labeled on the water; creeks on the line.
     const [hx, hy] = w.near ? toPx(w.near) : [0, 0];
-    const lab = w.near && labelSpot(lines, p => Math.hypot(p[0] - hx, p[1] - hy) < 90, w.w > 4 ? 70 : 35);
-    return { name: w.label, w: w.w, d: pathD(lines), label: lab };
+    // Rivers wind, so if there's no long straight stretch near the spot, accept a shorter one.
+    const near = p => Math.hypot(p[0] - hx, p[1] - hy) < 110;
+    const first = w.near && [1, .6, .35].reduce((got, f) => got || labelSpot(lines, near, (w.w > 4 ? 70 : 40) * f), null);
+    // Big rivers also get labeled farther along, away from the first spot.
+    const more = first && w.w > 4 ? labelSpots(lines, p => onFrame(p) && p[0] > 20 && p[0] < W - 20 && p[1] > 20 && p[1] < H - 20 && Math.hypot(p[0] - first.x, p[1] - first.y) > 220, 45, 2) : [];
+    return { name: w.label, w: w.w, d: pathD(lines), labels: first ? [first, ...more] : [] };
   }).filter(Boolean);
 
   const roads = ROADS.map(r => {
@@ -199,7 +211,7 @@ out;`);
       const p = [l[i][0] + (l[i + 1][0] - l[i][0]) * k / 4, l[i][1] + (l[i + 1][1] - l[i][1]) * k / 4];
       const w = wardOf(p); if (w) wards.add(w);
     }
-    return { name: r.label, tier: r.tier, highway: !!r.highway, d: pathD(lines), label: labelSpot(lines, inCity, 70), wards: [...wards].sort((a, b) => a - b) };
+    return { name: r.label, tier: r.tier, highway: !!r.highway, d: pathD(lines), labels: labelSpots(lines, inCity, 45, 4, 200), wards: [...wards].sort((a, b) => a - b) };
   }).filter(Boolean);
 
   // Neighborhood names by ward (OpenStreetMap place names inside each ward's lines).

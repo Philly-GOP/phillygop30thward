@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="style.css?v=20261014a">
+<link rel="stylesheet" href="style.css?v=20261020a">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -57,10 +57,29 @@
 
   <section class="sec band" id="citymap">
     <div class="wrap">
+      <form class="cw-find" id="cw-find" role="search" autocomplete="off">
+        <label for="cw-q">Find your ward</label>
+        <div class="cw-find-row">
+          <input type="text" id="cw-q" list="cw-hoods" placeholder="Neighborhood or ward, such as Fishtown" enterkeyhint="search">
+          <button class="btn btn-red" type="submit">Find</button>
+        </div>
+        <datalist id="cw-hoods"></datalist>
+        <p class="cw-find-note" id="cw-find-note">Not sure? Look up your address with the <a href="https://www.pavoterservices.pa.gov/Pages/PollingPlaceInfo.aspx" target="_blank" rel="noopener">state's polling place finder</a>; it shows your ward and division.</p>
+      </form>
       <div class="cw">
         <figure class="cw-map">
+          <div class="cw-layers" role="group" aria-label="Map layers">
+            <label class="cw-chip"><input type="checkbox" data-layer="roads" checked><span>Streets</span></label>
+            <label class="cw-chip"><input type="checkbox" data-layer="water" checked><span>Rivers</span></label>
+            <label class="cw-chip"><input type="checkbox" data-layer="areas" checked><span>Areas &amp; landmarks</span></label>
+          </div>
           <div class="map-frame cw-frame">
-            <svg id="cw-svg" viewBox="0 0 1000 1088" role="img" aria-label="Map of Philadelphia's 66 wards shaded by Republican committee seats ready for a neighbor"><text x="500" y="540" text-anchor="middle" fill="#A9C0E0" font-size="28">Loading the ward map…</text></svg>
+            <svg id="cw-svg" viewBox="-10 -10 1020 1108" role="img" aria-label="Map of Philadelphia's 66 wards shaded by Republican committee seats ready for a neighbor, with rivers, major streets and area names"><text x="500" y="540" text-anchor="middle" fill="#A9C0E0" font-size="28">Loading the ward map…</text></svg>
+            <div class="cw-zoom" role="group" aria-label="Zoom">
+              <button type="button" data-z="in" aria-label="Zoom in">+</button>
+              <button type="button" data-z="out" aria-label="Zoom out">&minus;</button>
+              <button type="button" data-z="reset" aria-label="Show the whole city">&#8634;</button>
+            </div>
           </div>
           <figcaption class="cw-key">
             <span><i class="k" style="background:#F4EEE1"></i>Under half ready</span>
@@ -68,15 +87,19 @@
             <span><i class="k" style="background:#D9546A"></i>Three quarters or more</span>
             <span><i class="k" style="background:#C8102E"></i>Nine in ten or more</span>
             <span><i class="k dot"></i>Looking for a ward leader</span>
+            <span class="cw-key-tip">Use + and &minus; to zoom, then drag to move around.</span>
           </figcaption>
         </figure>
         <aside class="cw-side">
-          <div class="dv-panel cw-panel" id="cw-panel">
+          <div class="dv-panel cw-panel" id="cw-panel" aria-live="polite">
             <p class="dv-hint">Ward</p>
             <h3 id="cw-title">Tap a ward</h3>
-            <p id="cw-div">Pick any ward on the map to see its committee seats and whether it has a Republican ward leader.</p>
+            <p class="cw-hoodline" id="cw-hood"></p>
+            <p id="cw-div">Pick any ward on the map, or search above, to see its neighborhoods, committee seats and how to reach its Republican team.</p>
             <p id="cw-seats"></p>
             <p id="cw-lead"></p>
+            <p class="cw-streets" id="cw-streets"></p>
+            <ul class="cw-links" id="cw-links"></ul>
             <div class="dv-btns"><a class="btn btn-red" id="cw-contact" href="index.html#start">Get In Touch</a></div>
           </div>
           <div class="cw-totals">
@@ -87,16 +110,17 @@
           <div class="cw-ours"><p>The 30th Ward is outlined on the map.</p><a href="index.html#top" class="btn btn-line">Our Ward's Divisions</a></div>
         </aside>
       </div>
-      <p class="asof" id="cw-asof">Ward lines from the City of Philadelphia. Seat counts come from the 2026 primary results plus appointments we know of, so wards that have appointed people since the primary may show fewer seats filled than they have. Ward leader status from public records.</p>
+      <p class="asof" id="cw-asof">Ward lines from the City of Philadelphia. Rivers, streets and neighborhood names &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors. Seat counts come from the 2026 primary results plus appointments we know of, so wards that have appointed people since the primary may show fewer seats filled than they have. Ward leaders from the <a href="https://seventy.org/get-informed/philadelphia-ward-leaders-committeepeople/republican-ward-leaders/" target="_blank" rel="noopener">Committee of Seventy</a> list.</p>
     </div>
   </section>
 
-  <section class="sec">
+  <section class="sec" id="directory">
     <div class="wrap">
-      <div class="callout">
-        <p>Live in another ward? The Philadelphia Republican Party can connect you with your ward's team.</p>
-        <a class="btn btn-red" href="https://phillygop.com/" target="_blank" rel="noopener" style="padding:14px 26px;font-size:16px">Visit Philly GOP</a>
-      </div>
+      <p class="eyebrow">Republicans Across Philadelphia</p>
+      <h2 class="big">Find your local team online</h2>
+      <p class="sec-lede">Ward committees and Republican groups around the city that have their own website or page. Tap a ward on the map to see its links, or browse them all here.</p>
+      <div class="dir" id="dir"><p class="ev-empty">Loading the directory…</p></div>
+      <p class="asof" id="dir-asof">We list these to help neighbors find their local Republican team. Each organization is responsible for its own site and content, and a listing is not an endorsement. Run a ward or Republican group site that is missing or out of date? <a href="index.html#start">Let us know</a>.</p>
     </div>
   </section>
 </main>
@@ -141,38 +165,233 @@
 <script>
 (function(){
   var svg=document.getElementById('cw-svg'),NS='http://www.w3.org/2000/svg';
+  var BASE={x:-10,y:-10,w:1020,h:1108},vb=Object.assign({},BASE),MAXZ=6;
+  var wardsById={},ctx={wards:{}},leaders={},sites=[],sel=null,gTop,labels=[],wardLabs=[];
+  function el(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;}
   function tier(w){var r=w.seats?w.open/w.seats:0;return r>=.9?'#C8102E':r>=.75?'#D9546A':r>=.5?'#E7A3AE':'#F4EEE1';}
   function fmt(n){return Number(n).toLocaleString('en-US');}
-  fetch('data/wards.json?v='+Date.now(),{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){
-    svg.setAttribute('viewBox','-10 -10 '+(d.width+20)+' '+(d.height+20)); svg.innerHTML='';
-    var gAll=document.createElementNS(NS,'g'), gTop=document.createElementNS(NS,'g'), vac=0, sel=null;
+  function j(u){return fetch('data/'+u+'?v='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw r.status;return r.json();});}
+  function soft(p){return p.catch(function(){return null;});}
+  function list(a){return a.length<3?a.join(' and '):a.slice(0,-1).join(', ')+' and '+a[a.length-1];}
+  function host(u){try{return new URL(u).hostname.replace(/^www\./,'');}catch(e){return u;}}
+
+  Promise.all([j('wards.json'),soft(j('map-context.json')),soft(j('ward-leaders.json')),soft(j('ward-sites.json'))]).then(function(x){
+    var d=x[0]; ctx=x[1]||ctx; sites=(x[3]&&x[3].sites)||[];
+    ((x[2]&&x[2].wards)||[]).forEach(function(l){leaders[String(+l.ward)]=l;});
+    BASE={x:-10,y:-10,w:d.width+20,h:d.height+20}; vb=Object.assign({},BASE);
+    svg.innerHTML='';
+    var gAll=el('g',{}); gTop=el('g',{});
+    var gWater=el('g',{'class':'geo water','data-layer':'water'}), gRoads=el('g',{'class':'geo roads','data-layer':'roads'});
+    var gLab=el('g',{'class':'geo labs'}), vac=0;
     d.wards.forEach(function(w){
-      if(w.leaderVacant) vac++;
-      var g=document.createElementNS(NS,'g'); g.setAttribute('class','cw-w'+(w.ward==='30'?' ours':'')); g.setAttribute('tabindex','0'); g.setAttribute('role','button');
-      g.setAttribute('aria-label','Ward '+w.ward);
-      var p=document.createElementNS(NS,'path'); p.setAttribute('d',w.d); p.setAttribute('fill',tier(w)); g.appendChild(p);
-      if(w.leaderVacant){var c=document.createElementNS(NS,'circle'); c.setAttribute('cx',w.x); c.setAttribute('cy',w.y+13); c.setAttribute('r',5); c.setAttribute('class','cw-dot'); g.appendChild(c);}
-      var t=document.createElementNS(NS,'text'); t.setAttribute('x',w.x); t.setAttribute('y',w.y); t.textContent=w.ward;
-      var r=w.seats?w.open/w.seats:0; t.setAttribute('fill',r>=.75?'#F4EEE1':'#16305C'); g.appendChild(t);
-      function pick(){ if(sel) sel.classList.remove('sel'); sel=g; g.classList.add('sel'); gTop.appendChild(g); show(w); }
-      g.addEventListener('click',pick); g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick();}});
+      wardsById[w.ward]=w; if(w.leaderVacant) vac++;
+      var g=el('g',{'class':'cw-w'+(w.ward==='30'?' ours':''),tabindex:'0',role:'button','aria-label':'Ward '+w.ward});
+      el('path',{d:w.d,fill:tier(w)},g);
+      if(w.leaderVacant) el('circle',{cx:w.x,cy:w.y+13,r:5,'class':'cw-dot','data-y':w.y},g);
+      var r=w.seats?w.open/w.seats:0, t=el('text',{x:w.x,y:w.y,fill:r>=.75?'#F4EEE1':'#16305C'},g); t.textContent=w.ward;
+      wardLabs.push(t); w.g=g;
+      g.addEventListener('click',function(){if(!moved)pick(w);});
+      g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(w);}});
       (w.ward==='30'?gTop:gAll).appendChild(g);
     });
-    svg.appendChild(gAll); svg.appendChild(gTop);
+    // Geography: rivers sit over the wards (they run along ward lines), streets over the rivers, labels on top.
+    (ctx.water||[]).forEach(function(r){el('path',{d:r.d,'stroke-width':r.w},gWater);});
+    (ctx.roads||[]).slice().sort(function(a,b){return b.tier-a.tier;}).forEach(function(r){
+      var c=r.tier===1?(r.highway?'t1 hw':'t1'):'t2';
+      el('path',{d:r.d,'class':'case '+c},gRoads); el('path',{d:r.d,'class':'line '+c},gRoads);
+    });
+    function lab(text,cls,x,y,a,layer,pri){
+      var t=el('text',{x:x,y:y,'class':'lab '+cls},gLab); t.textContent=text;
+      if(a) t.setAttribute('transform','rotate('+a+' '+x+' '+y+')');
+      labels.push({el:t,layer:layer,pri:pri,x:x,y:y,a:a||0,ox:x,oy:y,cls:cls}); return t;
+    }
+    (ctx.outside||[]).forEach(function(p){lab(p.name,'outer',p.x,p.y,0,'areas',0);});
+    (ctx.regions||[]).forEach(function(p){lab(p.name,'area',p.x,p.y,0,'areas',1);});
+    // A long street or river can carry a few labels, so it stays named wherever you zoom in.
+    function spots(r){return r.labels||(r.label?[r.label]:[]);}
+    (ctx.water||[]).forEach(function(r){spots(r).forEach(function(p,i){lab(r.name,'riv',p.x,p.y,p.a,'water',(r.w>4?2:5)+i*.1);});});
+    (ctx.roads||[]).forEach(function(r){spots(r).forEach(function(p,i){lab(r.name,r.tier===1?'st':'st t2',p.x,p.y,p.a,'roads',(r.tier===1?3:6)+i*.1);});});
+    (ctx.landmarks||[]).forEach(function(p){
+      var c=el('circle',{cx:p.x,cy:p.y,r:4,'class':'lm-dot'},gLab);
+      var o=lab(p.name,'lm',p.x+7,p.y,0,'areas',4); labels[labels.length-1].dot=c;
+    });
+    svg.appendChild(gAll); svg.appendChild(gWater); svg.appendChild(gRoads); svg.appendChild(gTop); svg.appendChild(gLab);
     document.getElementById('cw-t3').textContent=vac;
     var seats=d.wards.reduce(function(n,w){return n+w.seats;},0), divs=d.wards.reduce(function(n,w){return n+w.divisions;},0);
     if(divs){document.getElementById('cw-t1').textContent=fmt(divs);document.getElementById('cw-t2').textContent=fmt(seats);}
-    if(d.checked) document.getElementById('cw-asof').textContent+=' Last checked '+new Date(d.checked+'T12:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})+'.';
+    if(d.checked) document.getElementById('cw-asof').insertAdjacentText('beforeend',' Last checked '+new Date(d.checked+'T12:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})+'.');
+    fillSearch(); setView(); directory();
+    var hw=(location.hash.match(/^#ward-(\d+)$/)||[])[1]; if(hw&&wardsById[hw]) pick(wardsById[hw],true);
   }).catch(function(){svg.innerHTML='<text x="500" y="540" text-anchor="middle" fill="#A9C0E0" font-size="28">The ward map could not load. Please refresh.</text>';});
+
+  // ---- View: zoom, pan and label sizing ----
+  function units(){return vb.w/Math.max(1,svg.getBoundingClientRect().width);}
+  function setView(){
+    var z=BASE.w/vb.w;
+    vb.w=Math.min(BASE.w,vb.w); vb.h=vb.w*BASE.h/BASE.w;
+    vb.x=Math.max(BASE.x,Math.min(BASE.x+BASE.w-vb.w,vb.x)); vb.y=Math.max(BASE.y,Math.min(BASE.y+BASE.h-vb.h,vb.y));
+    svg.setAttribute('viewBox',vb.x+' '+vb.y+' '+vb.w+' '+vb.h);
+    svg.classList.toggle('zoomed',z>1.01);
+    svg.style.setProperty('--u',units().toFixed(3));
+    // Ward numbers, borders and dots grow a little when zoomed in, but not as fast as the map.
+    var k=Math.pow(z,-.7); svg.style.setProperty('--k',k.toFixed(3));
+    svg.querySelectorAll('.cw-dot').forEach(function(c){c.setAttribute('r',(5*k).toFixed(2));c.setAttribute('cy',(+c.dataset.y+13*k).toFixed(1));});
+    svg.querySelectorAll('.lm-dot').forEach(function(c){c.setAttribute('r',(4*units()).toFixed(2));});
+    document.querySelector('[data-z=in]').disabled=z>=MAXZ-.01;
+    document.querySelector('[data-z=out]').disabled=document.querySelector('[data-z=reset]').disabled=z<=1.01;
+    declutter();
+  }
+  function zoomTo(f,cx,cy){
+    var nw=Math.max(BASE.w/MAXZ,Math.min(BASE.w,vb.w/f)), k=nw/vb.w;
+    if(cx==null){cx=vb.x+vb.w/2;cy=vb.y+vb.h/2;}
+    vb.x=cx-(cx-vb.x)*k; vb.y=cy-(cy-vb.y)*k; vb.w=nw; setView();
+  }
+  document.querySelector('.cw-zoom').addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    if(b.dataset.z==='in') zoomTo(1.6); else if(b.dataset.z==='out') zoomTo(1/1.6); else {vb=Object.assign({},BASE);setView();}
+  });
+  var drag=null,moved=false;
+  svg.addEventListener('pointerdown',function(e){if(vb.w>=BASE.w-1)return;drag={x:e.clientX,y:e.clientY,vx:vb.x,vy:vb.y,id:e.pointerId};moved=false;});
+  svg.addEventListener('pointermove',function(e){
+    if(!drag||e.pointerId!==drag.id) return;
+    var dx=e.clientX-drag.x, dy=e.clientY-drag.y;
+    if(!moved&&Math.hypot(dx,dy)<6) return;
+    if(!moved){moved=true;svg.classList.add('dragging');try{svg.setPointerCapture(drag.id);}catch(_){}}
+    var u=units(); vb.x=drag.vx-dx*u; vb.y=drag.vy-dy*u; setView();
+  });
+  function end(){if(drag){drag=null;svg.classList.remove('dragging');setTimeout(function(){moved=false;},0);}}
+  svg.addEventListener('pointerup',end); svg.addEventListener('pointercancel',end);
+  var rt; window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(setView,150);});
+
+  // Keep labels from piling up: higher-priority labels claim space first; others shift a little or hide.
+  function box(l){
+    var b=l.el.getBBox(),c=Math.cos(l.a*Math.PI/180),s=Math.sin(l.a*Math.PI/180),xs=[],ys=[];
+    [[b.x,b.y],[b.x+b.width,b.y],[b.x,b.y+b.height],[b.x+b.width,b.y+b.height]].forEach(function(p){var dx=p[0]-l.x,dy=p[1]-l.y;xs.push(l.x+dx*c-dy*s);ys.push(l.y+dx*s+dy*c);});
+    return [Math.min.apply(0,xs),Math.min.apply(0,ys),Math.max.apply(0,xs),Math.max.apply(0,ys)];
+  }
+  function hit(a,b){return a[0]<b[2]&&b[0]<a[2]&&a[1]<b[3]&&b[1]<a[3];}
+  function within(a,v){return a[0]>=v[0]+4&&a[1]>=v[1]+4&&a[2]<=v[2]-4&&a[3]<=v[3]-4;}
+  // Spots to try (screen px) when a label's first choice is taken: nearby first, then a little farther out.
+  var NUDGE=[[0,0]]; [12,24,36,48].forEach(function(r){[[0,-r],[0,r],[-r,0],[r,0],[-r,-r],[r,-r],[-r,r],[r,r]].forEach(function(o){NUDGE.push(o);});});
+  var OUTER_TRIES=[[0,0]]; [30,60,90,120,160].forEach(function(r){OUTER_TRIES.push([r,0],[-r,0],[r,20],[-r,20],[0,30]);});
+  function declutter(){
+    if(!labels.length) return;
+    var u=units(), z=BASE.w/vb.w, taken=[], view=[vb.x,vb.y,vb.x+vb.w,vb.y+vb.h];
+    wardLabs.forEach(function(t){var b=t.getBBox();taken.push([b.x,b.y+b.height*.15,b.x+b.width,b.y+b.height*.85]);});
+    // Keep clear of the zoom buttons.
+    var zb=document.querySelector('.cw-zoom').getBoundingClientRect(), sb=svg.getBoundingClientRect();
+    taken.push([vb.x+(zb.left-sb.left-6)*u,vb.y+(zb.top-sb.top-6)*u,vb.x+(zb.right-sb.left+6)*u,vb.y+(zb.bottom-sb.top+6)*u]);
+    labels.slice().sort(function(a,b){return a.pri-b.pri;}).forEach(function(l){
+      var on=!layerOff(l.layer)&&!(/t2/.test(l.cls)&&z<1.8)&&!(l.cls==='lm'&&z<1.3);
+      if(l.dot) l.dot.classList.toggle('off',!on);
+      var db=null; if(l.dot){var r=+l.dot.getAttribute('r'),cx=+l.dot.getAttribute('cx'),cy=+l.dot.getAttribute('cy');db=[cx-r,cy-r,cx+r,cy+r];}
+      if(!on){l.el.classList.add('off');return;}
+      l.el.classList.remove('off');
+      var tries=l.a?[[0,0]]:l.cls==='outer'?OUTER_TRIES:NUDGE, placed=false;
+      for(var i=0;i<tries.length&&!placed;i++){
+        l.x=l.ox+tries[i][0]*u; l.y=l.oy+tries[i][1]*u;
+        l.el.setAttribute('x',l.x); l.el.setAttribute('y',l.y);
+        if(l.a) l.el.setAttribute('transform','rotate('+l.a+' '+l.x+' '+l.y+')');
+        var b=box(l);
+        if(!within(b,view)) continue;
+        if(l.cls==='outer'&&overCity(b)) continue;
+        if(!taken.some(function(t){return hit(t,b)||(db&&hit(t,db));})){taken.push(b);if(db)taken.push(db);placed=true;}
+      }
+      if(!placed){l.el.classList.add('off'); if(l.dot) l.dot.classList.add('off');}
+    });
+  }
+  // Labels for the counties and New Jersey belong outside the city line.
+  function overCity(b){
+    var pts=[[b[0],b[1]],[b[2],b[1]],[b[0],b[3]],[b[2],b[3]],[(b[0]+b[2])/2,(b[1]+b[3])/2]];
+    return Object.keys(wardsById).some(function(k){var p=wardsById[k].g.firstChild;
+      return pts.some(function(q){try{var pt=svg.createSVGPoint();pt.x=q[0];pt.y=q[1];return p.isPointInFill(pt);}catch(e){return false;}});});
+  }
+  function layerOff(n){var i=document.querySelector('.cw-layers input[data-layer="'+n+'"]');return i&&!i.checked;}
+  document.querySelectorAll('.cw-layers input').forEach(function(i){
+    i.addEventListener('change',function(){
+      svg.querySelectorAll('[data-layer="'+i.dataset.layer+'"]').forEach(function(g){g.classList.toggle('off',!i.checked);});
+      declutter();
+    });
+  });
+
+  // ---- Find a ward by neighborhood or number ----
+  var hoodIndex={};
+  function norm(s){return String(s).toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();}
+  function fillSearch(){
+    var dl=document.getElementById('cw-hoods'), names=[];
+    Object.keys(ctx.wards||{}).forEach(function(w){(ctx.wards[w].neighborhoods||[]).forEach(function(n){var k=norm(n);(hoodIndex[k]=hoodIndex[k]||{name:n,wards:[]}).wards.push(w);});});
+    Object.keys(hoodIndex).sort().forEach(function(k){var o=document.createElement('option');o.value=hoodIndex[k].name;dl.appendChild(o);});
+  }
+  document.getElementById('cw-find').addEventListener('submit',function(e){
+    e.preventDefault();
+    var q=document.getElementById('cw-q').value, note=document.getElementById('cw-find-note'), n=norm(q).replace(/^ward /,'').replace(/(st|nd|rd|th)( ward)?$/,'').trim();
+    note.classList.remove('err');
+    if(/^\d+$/.test(n)&&wardsById[String(+n)]) return pick(wardsById[String(+n)],true);
+    var hit=hoodIndex[norm(q)]||hoodIndex[Object.keys(hoodIndex).filter(function(k){return k.indexOf(norm(q))===0;})[0]];
+    if(hit&&norm(q)){
+      var ws=hit.wards.slice().sort(function(a,b){return a-b;});
+      pick(wardsById[ws[0]],true);
+      if(ws.length>1){note.textContent=hit.name+' crosses Wards '+list(ws)+'. Showing Ward '+ws[0]+'; tap the others on the map. Check your address with the state lookup to be sure.';}
+      else note.textContent=hit.name+' is in Ward '+ws[0]+'. Neighborhood edges are approximate, so check your address with the state lookup to be sure.';
+      return;
+    }
+    note.classList.add('err'); note.textContent='We could not find that. Try a neighborhood name or a ward number from 1 to 66, or look up your address with the state’s polling place finder.';
+  });
+
+  // ---- Ward panel ----
+  function pick(w,zoom){
+    if(sel) sel.classList.remove('sel'); sel=w.g; sel.classList.add('sel'); gTop.appendChild(sel);
+    if(zoom){var b=w.g.getBBox(),f=Math.min(4,Math.max(1,BASE.w/(Math.max(b.width,b.height*BASE.w/BASE.h)*3)));
+      vb.w=BASE.w/f; vb.h=vb.w*BASE.h/BASE.w; vb.x=b.x+b.width/2-vb.w/2; vb.y=b.y+b.height/2-vb.h/2; setView();}
+    show(w);
+    try{history.replaceState(null,'','#ward-'+w.ward);}catch(e){}
+  }
   function show(w){
-    document.getElementById('cw-title').textContent='Ward '+w.ward+(w.ward==='30'?' · our ward':'');
+    var c=(ctx.wards||{})[w.ward]||{}, l=leaders[w.ward]||{}, ours=w.ward==='30';
+    document.getElementById('cw-title').textContent='Ward '+w.ward+(ours?' · our ward':'');
+    var hoods=(c.neighborhoods||[]);
+    document.getElementById('cw-hood').textContent=hoods.length?(hoods.slice(0,6).join(' · ')+(hoods.length>6?' and more':'')):'';
     document.getElementById('cw-div').textContent=w.divisions+' divisions · '+w.seats+' Republican committee seats';
     document.getElementById('cw-seats').textContent=w.open+' of '+w.seats+' seats ready for a neighbor';
-    document.getElementById('cw-lead').textContent=w.leaderVacant?'Looking for a Republican ward leader':'Has a Republican ward leader';
+    document.getElementById('cw-lead').textContent=w.leaderVacant?'Looking for a Republican ward leader':(l.leader?'Republican ward leader: '+l.leader:'Has a Republican ward leader');
+    var st=c.streets||[];
+    document.getElementById('cw-streets').textContent=st.length?'Major streets: '+list(st):'';
+    var ul=document.getElementById('cw-links'); ul.innerHTML='';
+    sites.filter(function(s){return (s.wards||[]).indexOf(w.ward)>=0;}).forEach(function(s){
+      var li=document.createElement('li'),a=document.createElement('a'); a.href=s.url; a.target='_blank'; a.rel='noopener';
+      a.textContent=s.name; li.appendChild(a);
+      var sm=document.createElement('small'); sm.textContent=(s.kind==='facebook'?'Facebook page':s.kind==='instagram'?'Instagram':host(s.url)); li.appendChild(sm); ul.appendChild(li);
+    });
     var a=document.getElementById('cw-contact');
-    if(w.ward==='30'){a.textContent='See Our Divisions';a.href='index.html#top';a.onclick=null;}
-    else{a.textContent='Get In Touch';a.href='index.html#start';a.onclick=function(){try{sessionStorage.setItem('ward-msg','I live in Ward '+w.ward+'.');sessionStorage.setItem('ward-num',w.ward);}catch(e){}};}
+    if(ours){a.textContent='See Our Divisions';a.href='index.html#top';a.onclick=null;}
+    else{
+      a.textContent=w.leaderVacant?'Get In Touch':'Message This Ward Leader'; a.href='index.html#start';
+      a.onclick=function(){try{sessionStorage.setItem('ward-msg','I live in Ward '+w.ward+'.');sessionStorage.setItem('ward-num',w.ward);}catch(e){}};
+    }
     if(window.innerWidth<1100) document.getElementById('cw-panel').scrollIntoView({block:'nearest',behavior:'smooth'});
+  }
+
+  // ---- Directory of Republican sites across the city ----
+  function directory(){
+    var box=document.getElementById('dir');
+    if(!sites.length){box.innerHTML='<p class="ev-empty">The directory is being put together. Check back soon.</p>';return;}
+    box.innerHTML='';
+    var groups=[['citywide','Citywide'],['club','Clubs and groups'],['ward','Ward committees']];
+    groups.forEach(function(g){
+      var items=sites.filter(function(s){return (s.type==='ward'?'ward':s.type==='citywide'?'citywide':'club')===g[0];});
+      if(!items.length) return;
+      if(g[0]==='ward') items.sort(function(a,b){return (+(a.wards||[])[0]||99)-(+(b.wards||[])[0]||99);});
+      var h=document.createElement('h3'); h.className='dir-group'; h.textContent=g[1]; box.appendChild(h);
+      items.forEach(function(s){
+        var c=document.createElement('div'); c.className='dir-card';
+        if(s.wards&&s.wards.length){var wl=document.createElement('span');wl.className='w';wl.textContent=(s.wards.length>1?'Wards ':'Ward ')+list(s.wards);c.appendChild(wl);}
+        var a=document.createElement('a'); a.className='n'; a.href=s.url; a.target='_blank'; a.rel='noopener'; a.textContent=s.name; c.appendChild(a);
+        if(s.ours){var o=document.createElement('span');o.className='ours';o.textContent='OUR WARD';a.after(o);}
+        if(s.blurb){var p=document.createElement('p');p.textContent=s.blurb;c.appendChild(p);}
+        var u=document.createElement('span'); u.className='u'; u.textContent=s.kind==='facebook'?'Facebook page':s.kind==='instagram'?'Instagram':host(s.url); c.appendChild(u);
+        box.appendChild(c);
+      });
+    });
   }
 })();
 </script>
