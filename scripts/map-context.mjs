@@ -13,11 +13,12 @@ const merc = ([lon, lat]) => [R * lon * Math.PI / 180, R * Math.log(Math.tan(Mat
 const unmerc = ([x, y]) => [x / R * 180 / Math.PI, (2 * Math.atan(Math.exp(y / R)) - Math.PI / 2) * 180 / Math.PI];
 
 // Rivers and creeks people navigate by. w = drawn width in px.
+// near = where the label should go (lon, lat); creeks without one are drawn but not labeled.
 const WATER = [
-  { name: 'Delaware River', w: 16, label: 'Delaware River' },
-  { name: 'Schuylkill River', w: 5, label: 'Schuylkill River' },
-  { name: 'Wissahickon Creek', w: 2, label: 'Wissahickon Creek' },
-  { name: 'Pennypack Creek', w: 2, label: 'Pennypack Creek' },
+  { name: 'Delaware River', w: 16, label: 'Delaware River', near: [-75.105, 39.968] },
+  { name: 'Schuylkill River', w: 5, label: 'Schuylkill River', near: [-75.198, 39.982] },
+  { name: 'Wissahickon Creek', w: 2, label: 'Wissahickon Creek', near: [-75.218, 40.045] },
+  { name: 'Pennypack Creek', w: 2, label: 'Pennypack Creek', near: [-75.045, 40.065] },
   { name: 'Cobbs Creek', w: 2, label: 'Cobbs Creek' },
   { name: 'Frankford Creek', w: 2, label: 'Frankford Creek' },
   { name: 'Tacony Creek', w: 2, label: 'Tacony Creek' },
@@ -51,12 +52,11 @@ const REGIONS = [
   ['NORTHWEST', -75.2050, 40.0430], ['LOWER NORTHEAST', -75.0850, 40.0330], ['FAR NORTHEAST', -75.0100, 40.0950],
 ];
 const OUTSIDE = [
-  ['NEW JERSEY', -75.0800, 39.9300], ['DELAWARE COUNTY', -75.2950, 39.9000],
-  ['MONTGOMERY COUNTY', -75.2000, 40.0950], ['BUCKS COUNTY', -74.9700, 40.1500],
+  ['NEW JERSEY', -75.0700, 39.9250], ['DELAWARE COUNTY', -75.2650, 39.8930],
+  ['MONTGOMERY COUNTY', -75.2000, 40.0950], ['BUCKS COUNTY', -74.9850, 40.1450],
 ];
 const LANDMARKS = [
   ['City Hall', -75.16352, 39.95236], ['PHL Airport', -75.2424, 39.8744], ['Navy Yard', -75.1760, 39.8920],
-  ['Fairmount Park', -75.2010, 39.9900], ['30th Street Station', -75.18186, 39.95568],
 ];
 
 async function overpass(q) {
@@ -152,6 +152,8 @@ async function main() {
   const toPx = ll => { const [x, y] = merc(ll); return [(x - minx) * s, (maxy - y) * s]; };
   const wardRings = j.features.map(f => ({ ward: String(+f.attributes.ward_num), rings: f.geometry.rings.map(r => r.map(([x, y]) => [(x - minx) * s, (maxy - y) * s])) }));
   const inCity = p => wardRings.some(w => inside(p, w.rings));
+  // City Ave and a few others run right along the city line, so allow a few px of slack.
+  const nearCity = p => inCity(p) || [[4, 0], [-4, 0], [0, 4], [0, -4]].some(([dx, dy]) => inCity([p[0] + dx, p[1] + dy]));
   const wardOf = p => (wardRings.find(w => inside(p, w.rings)) || {}).ward;
   const pad = 2500, [w0, s0] = unmerc([minx - pad, miny - pad]), [e0, n0] = unmerc([maxx + pad, maxy + pad]);
   const bbox = `${s0},${w0},${n0},${e0}`;
@@ -161,7 +163,7 @@ async function main() {
   const els = await overpass(`[out:json][timeout:180];
 (
   way["waterway"~"^(river|stream)$"]["name"~"^(${waterNames})$"](${bbox});
-  way["highway"~"^(motorway|trunk|primary|secondary|tertiary)$"]["name"~"Broad Street|Market Street|Roosevelt Boulevard|Girard Avenue|Lehigh Avenue|Spring Garden Street|Washington Avenue|Oregon Avenue|Germantown Avenue|Ridge Avenue|Cottman Avenue|Frankford Avenue|Baltimore Avenue|Lancaster Avenue|City Avenue|Kelly Drive"](${bbox});
+  way["highway"~"^(motorway|trunk|primary|secondary|tertiary|unclassified|residential)$"]["name"~"Broad Street|Market Street|Roosevelt Boulevard|Girard Avenue|Lehigh Avenue|Spring Garden Street|Washington Avenue|Oregon Avenue|Germantown Avenue|Ridge Avenue|Cottman Avenue|Frankford Avenue|Baltimore Avenue|Lancaster Avenue|City Avenue|Kelly Drive"](${bbox});
   way["highway"="motorway"]["ref"~"I 95|I 76"](${bbox});
 );
 out geom;
@@ -177,7 +179,8 @@ out;`);
     const lines = chain(raw).flatMap(clip).map(l => simplify(l, 0.8)).filter(l => l.length > 1);
     if (!lines.length) { console.warn(`No shape found for ${w.name}`); return null; }
     // Wide rivers get labeled on the water; creeks on the line.
-    const lab = labelSpot(lines, p => onFrame(p) && p[0] > 20 && p[0] < W - 20 && p[1] > 20 && p[1] < H - 20, w.w > 4 ? 110 : 60);
+    const [hx, hy] = w.near ? toPx(w.near) : [0, 0];
+    const lab = w.near && labelSpot(lines, p => Math.hypot(p[0] - hx, p[1] - hy) < 90, w.w > 4 ? 70 : 35);
     return { name: w.label, w: w.w, d: pathD(lines), label: lab };
   }).filter(Boolean);
 
@@ -186,7 +189,9 @@ out;`);
       .map(lineOf).filter(l => l.length > 1);
     // Divided roads come as two parallel ways; snap to a coarse grid so both carriageways collapse into one line.
     const snapped = raw.map(l => simplify(l, 1).map(p => p.map(v => Math.round(v * 2) / 2)));
-    const lines = chain(snapped).flatMap(clip).map(l => simplify(l, 1.2)).filter(l => l.length > 1);
+    // Keep only the parts inside the city (I-95, I-76 and Market St carry on into New Jersey and the suburbs).
+    const cityClip = l => { const out = []; let cur = []; for (const p of l) { if (nearCity(p)) cur.push(p); else { if (cur.length) { cur.push(p); if (cur.length > 1) out.push(cur); } cur = []; } } if (cur.length > 1) out.push(cur); return out; };
+    const lines = chain(snapped).flatMap(cityClip).map(l => simplify(l, 1.2)).filter(l => l.length > 1);
     if (!lines.length) { console.warn(`No shape found for ${r.label}`); return null; }
     // Which wards this street runs through, for the ward panel.
     const wards = new Set();
