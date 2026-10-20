@@ -1,0 +1,35 @@
+name: Update map geography
+
+# Rebuilds data/map-context.json (rivers, major streets, neighborhood names and landmarks drawn over
+# the citywide ward map). The geography rarely changes, so this runs by hand from the Actions tab,
+# and on its own whenever scripts/map-context.mjs changes. See scripts/map-context.mjs.
+
+on:
+  workflow_dispatch:
+  push:
+    paths: ['scripts/map-context.mjs']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: map-context-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/map-context.mjs
+      - name: Save any changes
+        run: |
+          git config user.name "ward-data-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/map-context.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Update map geography"
+          git pull --rebase origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}"
