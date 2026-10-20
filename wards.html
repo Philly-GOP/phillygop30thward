@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="style.css?v=20261020a">
+<link rel="stylesheet" href="style.css?v=20261020b">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -118,7 +118,7 @@
     <div class="wrap">
       <p class="eyebrow">Republicans Across Philadelphia</p>
       <h2 class="big">Find your local team online</h2>
-      <p class="sec-lede">Ward committees and Republican groups around the city that have their own website or page. Tap a ward on the map to see its links, or browse them all here.</p>
+      <p class="sec-lede">Republican ward committees and groups around the city. Tap an icon to visit their website, Facebook or Instagram.</p>
       <div class="dir" id="dir"><p class="ev-empty">Loading the directory…</p></div>
       <p class="asof" id="dir-asof">We list these to help neighbors find their local Republican team. Each organization is responsible for its own site and content, and a listing is not an endorsement. Run a ward or Republican group site that is missing or out of date? <a href="index.html#start">Let us know</a>.</p>
     </div>
@@ -176,7 +176,7 @@
   function host(u){try{return new URL(u).hostname.replace(/^www\./,'');}catch(e){return u;}}
 
   Promise.all([j('wards.json'),soft(j('map-context.json')),soft(j('ward-leaders.json')),soft(j('ward-sites.json'))]).then(function(x){
-    var d=x[0]; ctx=x[1]||ctx; sites=(x[3]&&x[3].sites)||[];
+    var d=x[0]; ctx=x[1]||ctx; sites=(x[3]&&x[3].orgs)||[];
     ((x[2]&&x[2].wards)||[]).forEach(function(l){leaders[String(+l.ward)]=l;});
     BASE={x:-10,y:-10,w:d.width+20,h:d.height+20}; vb=Object.assign({},BASE);
     svg.innerHTML='';
@@ -356,12 +356,7 @@
     document.getElementById('cw-lead').textContent=w.leaderVacant?'Looking for a Republican ward leader':(l.leader?'Republican ward leader: '+l.leader:'Has a Republican ward leader');
     var st=c.streets||[];
     document.getElementById('cw-streets').textContent=st.length?'Major streets: '+list(st):'';
-    var ul=document.getElementById('cw-links'); ul.innerHTML='';
-    sites.filter(function(s){return (s.wards||[]).indexOf(w.ward)>=0;}).forEach(function(s){
-      var li=document.createElement('li'),a=document.createElement('a'); a.href=s.url; a.target='_blank'; a.rel='noopener';
-      a.textContent=s.name; li.appendChild(a);
-      var sm=document.createElement('small'); sm.textContent=(s.kind==='facebook'?'Facebook page':s.kind==='instagram'?'Instagram':host(s.url)); li.appendChild(sm); ul.appendChild(li);
-    });
+    wardLinks(w.ward);
     var a=document.getElementById('cw-contact');
     if(ours){a.textContent='See Our Divisions';a.href='index.html#top';a.onclick=null;}
     else{
@@ -371,26 +366,54 @@
     if(window.innerWidth<1100) document.getElementById('cw-panel').scrollIntoView({block:'nearest',behavior:'smooth'});
   }
 
-  // ---- Directory of Republican sites across the city ----
+  // ---- Directory of Republican groups across the city: one compact tile per organization ----
+  var ICONS={
+    website:'<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 3.9 5.8 3.9 9s-1.3 6.2-3.9 9c-2.6-2.8-3.9-5.8-3.9-9S9.4 5.8 12 3z"/></g></svg>',
+    facebook:'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21z"/></svg>',
+    instagram:'<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>',
+    x:'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L2 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z"/></svg>'
+  };
+  var LABEL={website:'Website',facebook:'Facebook',instagram:'Instagram',x:'X'};
+  function linkRow(o){
+    var row=document.createElement('div'); row.className='dir-links';
+    ['website','facebook','instagram','x'].forEach(function(k){
+      var u=(o.links||{})[k]; if(!u) return;
+      var a=document.createElement('a'); a.href=u; a.target='_blank'; a.rel='noopener'; a.className='dir-ic ic-'+k;
+      a.setAttribute('aria-label',(o.short||o.name)+' on '+(k==='website'?'the web ('+host(u)+')':LABEL[k]));
+      a.title=LABEL[k]+(k==='website'?' · '+host(u):'');
+      a.innerHTML=ICONS[k]; row.appendChild(a);
+    });
+    return row;
+  }
+  function badge(o){
+    var b=document.createElement('span'); b.className='dir-badge'; b.setAttribute('aria-hidden','true');
+    if(o.ours){var m=document.querySelector('header .mark'); if(m){b.classList.add('mark-ours'); b.appendChild(m.cloneNode(true)); return b;}}
+    var t=o.type==='ward'&&o.wards&&o.wards.length?o.wards[0]:(o.badge||o.name.slice(0,2)).slice(0,3);
+    b.classList.add(o.type==='ward'?'b-ward':'b-org'); if(String(t).length>2) b.classList.add('b-long');
+    b.innerHTML='<b>'+t+'</b>'; return b;
+  }
+  function orgsFor(ward){return sites.filter(function(o){return (o.wards||[]).indexOf(ward)>=0;});}
+  function wardLinks(ward){
+    var box=document.getElementById('cw-links'); box.innerHTML='';
+    orgsFor(ward).forEach(function(o){
+      var li=document.createElement('li'); li.className='cw-org';
+      var n=document.createElement('span'); n.className='cw-org-n'; n.textContent=o.ours?'Find us online':'Find this ward online';
+      li.appendChild(n); li.appendChild(linkRow(o)); box.appendChild(li);
+    });
+  }
   function directory(){
     var box=document.getElementById('dir');
     if(!sites.length){box.innerHTML='<p class="ev-empty">The directory is being put together. Check back soon.</p>';return;}
     box.innerHTML='';
-    var groups=[['citywide','Citywide'],['club','Clubs and groups'],['ward','Ward committees']];
-    groups.forEach(function(g){
-      var items=sites.filter(function(s){return (s.type==='ward'?'ward':s.type==='citywide'?'citywide':'club')===g[0];});
-      if(!items.length) return;
-      if(g[0]==='ward') items.sort(function(a,b){return (+(a.wards||[])[0]||99)-(+(b.wards||[])[0]||99);});
-      var h=document.createElement('h3'); h.className='dir-group'; h.textContent=g[1]; box.appendChild(h);
-      items.forEach(function(s){
-        var c=document.createElement('div'); c.className='dir-card';
-        if(s.wards&&s.wards.length){var wl=document.createElement('span');wl.className='w';wl.textContent=(s.wards.length>1?'Wards ':'Ward ')+list(s.wards);c.appendChild(wl);}
-        var a=document.createElement('a'); a.className='n'; a.href=s.url; a.target='_blank'; a.rel='noopener'; a.textContent=s.name; c.appendChild(a);
-        if(s.ours){var o=document.createElement('span');o.className='ours';o.textContent='OUR WARD';a.after(o);}
-        if(s.blurb){var p=document.createElement('p');p.textContent=s.blurb;c.appendChild(p);}
-        var u=document.createElement('span'); u.className='u'; u.textContent=s.kind==='facebook'?'Facebook page':s.kind==='instagram'?'Instagram':host(s.url); c.appendChild(u);
-        box.appendChild(c);
-      });
+    var rank={citywide:0,club:1,ward:2};
+    sites.slice().sort(function(a,b){return (rank[a.type]-rank[b.type])||((+(a.wards||[])[0]||0)-(+(b.wards||[])[0]||0))||a.name.localeCompare(b.name);}).forEach(function(o){
+      var c=document.createElement('div'); c.className='dir-tile'+(o.ours?' ours':''); if(o.blurb) c.title=o.blurb;
+      c.appendChild(badge(o));
+      var tx=document.createElement('div'); tx.className='dir-tx';
+      var n=document.createElement('b'); n.className='dir-n'; n.textContent=o.short||o.name; tx.appendChild(n);
+      var k=document.createElement('span'); k.className='dir-k';
+      k.textContent=o.type==='ward'?(o.ours?'Our ward':'Ward committee'):o.type==='citywide'?'City party':'Club';
+      tx.appendChild(k); c.appendChild(tx); c.appendChild(linkRow(o)); box.appendChild(c);
     });
   }
 })();
