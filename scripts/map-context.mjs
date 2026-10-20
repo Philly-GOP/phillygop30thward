@@ -59,15 +59,23 @@ const LANDMARKS = [
   ['City Hall', -75.16352, 39.95236], ['PHL Airport', -75.2424, 39.8744], ['Navy Yard', -75.1760, 39.8920],
 ];
 
+// The public Overpass servers are often busy or rate-limited. Try every mirror; if all refuse,
+// wait and go round again (30s, then 60s) before giving up.
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
 async function overpass(q) {
   let last;
-  for (const url of OVERPASS) {
-    try {
-      const res = await fetch(url, { method: 'POST', body: 'data=' + encodeURIComponent(q),
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'User-Agent': '30th Ward site map builder (phillygop30thward.com)' } });
-      if (!res.ok) throw new Error(`${url} returned ${res.status}`);
-      return (await res.json()).elements;
-    } catch (e) { last = e; console.warn('Overpass:', e.message); }
+  const waits = [0, 30000, 60000];
+  for (const [round, wait] of waits.entries()) {
+    if (wait) { console.warn(`Overpass: all mirrors refused; retrying in ${wait / 1000}s (round ${round + 1} of ${waits.length})`); await sleep(wait); }
+    for (const url of OVERPASS) {
+      try {
+        const res = await fetch(url, { method: 'POST', body: 'data=' + encodeURIComponent(q),
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'User-Agent': '30th Ward site map builder (phillygop30thward.com)' } });
+        if (!res.ok) throw new Error(`${url} returned ${res.status}`);
+        return (await res.json()).elements;
+      } catch (e) { last = e; console.warn('Overpass:', e.message); }
+    }
   }
   throw last;
 }
