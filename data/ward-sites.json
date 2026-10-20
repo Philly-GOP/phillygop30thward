@@ -1,86 +1,61 @@
 {
-  "about": "Republican ward and group sites around Philadelphia, shown in the citywide map's ward panel and the directory on wards.html. Edit by hand. type: citywide | ward | club. kind: website | facebook | instagram | other. wards: the ward numbers a site belongs to (ward sites only). ours: true for our own ward.",
+  "about": "Republican ward committees and groups around Philadelphia, shown as tiles in the directory on wards.html and as links in the citywide map's ward panel. One entry per organization; edit by hand. type: citywide | ward | club. badge: up to 3 characters shown in the round badge (a ward shows its number automatically). links: any of website, facebook, instagram, x. wards: ward numbers (ward committees only). ours: true for our own ward.",
   "checked": "2026-10-20",
-  "sites": [
+  "orgs": [
     {
       "name": "Philadelphia Republican Party",
+      "short": "Philly GOP",
       "type": "citywide",
-      "kind": "website",
-      "url": "https://www.phillygop.com/",
-      "blurb": "The Republican City Committee, with a citywide calendar that includes ward fundraisers."
-    },
-    {
-      "name": "Philly GOP on Facebook",
-      "type": "citywide",
-      "kind": "facebook",
-      "url": "https://www.facebook.com/PhillyGOP"
-    },
-    {
-      "name": "Philly GOP on Instagram",
-      "type": "citywide",
-      "kind": "instagram",
-      "url": "https://www.instagram.com/philly_gop"
+      "badge": "GOP",
+      "blurb": "The Republican City Committee, with a citywide events calendar.",
+      "links": {
+        "website": "https://www.phillygop.com/",
+        "facebook": "https://www.facebook.com/PhillyGOP",
+        "instagram": "https://www.instagram.com/philly_gop"
+      }
     },
     {
       "name": "Philadelphia Young Republicans",
+      "short": "Young Republicans",
       "type": "club",
-      "kind": "facebook",
-      "url": "https://www.facebook.com/PhillyYR/",
-      "blurb": "Young Republicans in Philadelphia."
+      "badge": "YR",
+      "blurb": "Young Republicans in Philadelphia.",
+      "links": { "facebook": "https://www.facebook.com/PhillyYR/" }
     },
     {
       "name": "United Republican Club",
+      "short": "United Republican Club",
       "type": "club",
-      "kind": "instagram",
-      "url": "https://www.instagram.com/urcphila",
-      "blurb": "Republican club on Frankford Avenue that hosts events across the Northeast and River Wards."
+      "badge": "URC",
+      "blurb": "Republican club on Frankford Avenue.",
+      "links": { "instagram": "https://www.instagram.com/urcphila" }
     },
     {
       "name": "South Philly Liberty",
+      "short": "South Philly Liberty",
       "type": "club",
-      "kind": "website",
-      "url": "https://southphillyliberty.org/",
-      "blurb": "Grassroots group in South Philadelphia that publishes a list of the city's Republican ward leaders."
+      "badge": "SPL",
+      "blurb": "Grassroots group in South Philadelphia.",
+      "links": { "website": "https://southphillyliberty.org/" }
     },
     {
-      "name": "26th Ward Republican Party on Facebook",
+      "name": "26th Ward Republican Committee",
+      "short": "26th Ward",
       "type": "ward",
-      "kind": "facebook",
-      "url": "https://www.facebook.com/p/26th-Ward-Republican-Party-Philadelphia-100075908757191/",
-      "wards": [
-        "26"
-      ]
+      "wards": ["26"],
+      "links": { "facebook": "https://www.facebook.com/p/26th-Ward-Republican-Party-Philadelphia-100075908757191/" }
     },
     {
       "name": "Philly GOP 30th Ward",
+      "short": "30th Ward",
       "type": "ward",
-      "kind": "website",
-      "url": "https://phillygop30thward.com/",
-      "wards": [
-        "30"
-      ],
+      "wards": ["30"],
       "ours": true,
-      "blurb": "Graduate Hospital and Southwest Center City."
-    },
-    {
-      "name": "Philly GOP 30th Ward on Facebook",
-      "type": "ward",
-      "kind": "facebook",
-      "url": "https://www.facebook.com/PhillyGOP30thWard",
-      "wards": [
-        "30"
-      ],
-      "ours": true
-    },
-    {
-      "name": "Philly GOP 30th Ward on Instagram",
-      "type": "ward",
-      "kind": "instagram",
-      "url": "https://www.instagram.com/phillygop30thward",
-      "wards": [
-        "30"
-      ],
-      "ours": true
+      "links": {
+        "website": "https://phillygop30thward.com/",
+        "facebook": "https://www.facebook.com/PhillyGOP30thWard",
+        "instagram": "https://www.instagram.com/phillygop30thward"
+      }
     }
   ]
 }
