@@ -1,0 +1,18 @@
+{
+  "about": "Republican ward and group sites around Philadelphia, shown in the citywide map's ward panel and the directory on wards.html. Edit by hand. type: citywide | ward | club. kind: website | facebook | instagram | other. wards: the ward numbers a site belongs to (ward sites only). ours: true for our own ward.",
+  "checked": "2026-10-20",
+  "sites": [
+    { "name": "Philadelphia Republican Party", "type": "citywide", "kind": "website", "url": "https://www.phillygop.com/", "blurb": "The Republican City Committee, with a citywide calendar that includes ward fundraisers." },
+    { "name": "Philly GOP on Facebook", "type": "citywide", "kind": "facebook", "url": "https://www.facebook.com/PhillyGOP" },
+    { "name": "Philly GOP on Instagram", "type": "citywide", "kind": "instagram", "url": "https://www.instagram.com/philly_gop" },
+    { "name": "Philadelphia Young Republicans", "type": "club", "kind": "facebook", "url": "https://www.facebook.com/PhillyYR/", "blurb": "Young Republicans in Philadelphia." },
+    { "name": "United Republican Club", "type": "club", "kind": "instagram", "url": "https://www.instagram.com/urcphila", "blurb": "Republican club on Frankford Avenue that hosts events across the Northeast and River Wards." },
+    { "name": "South Philly Liberty", "type": "club", "kind": "website", "url": "https://southphillyliberty.org/", "blurb": "Grassroots group in South Philadelphia that publishes a list of the city's Republican ward leaders." },
+    { "name": "9th Ward Republican Committee", "type": "ward", "kind": "website", "url": "https://phillyninthwardgop.com/", "wards": ["9"] },
+    { "name": "26th Ward Republican Committee", "type": "ward", "kind": "website", "url": "https://26thward.org/", "wards": ["26"] },
+    { "name": "26th Ward Republican Party on Facebook", "type": "ward", "kind": "facebook", "url": "https://www.facebook.com/p/26th-Ward-Republican-Party-Philadelphia-100075908757191/", "wards": ["26"] },
+    { "name": "Philly GOP 30th Ward", "type": "ward", "kind": "website", "url": "https://phillygop30thward.com/", "wards": ["30"], "ours": true, "blurb": "Graduate Hospital and Southwest Center City." },
+    { "name": "Philly GOP 30th Ward on Facebook", "type": "ward", "kind": "facebook", "url": "https://www.facebook.com/PhillyGOP30thWard", "wards": ["30"], "ours": true },
+    { "name": "Philly GOP 30th Ward on Instagram", "type": "ward", "kind": "instagram", "url": "https://www.instagram.com/phillygop30thward", "wards": ["30"], "ours": true }
+  ]
+}

@@ -604,3 +604,4 @@ html{scroll-padding-top:102px}
 #cw-svg .roads .line.hw{stroke-width:calc(var(--u)*2.4px)} #cw-svg .roads .case.hw{stroke-width:calc(var(--u)*4.2px)}
 #cw-svg .roads .line.t2{stroke-width:calc(var(--u)*1.1px)} #cw-svg .roads .case.t2{stroke-width:calc(var(--u)*2.5px)}
 @media (max-width:520px){#cw-svg .cw-w text{font-size:calc(var(--k)*20px)}}
+.dir-card .ours{align-self:flex-start;margin:0}
