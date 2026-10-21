@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="style.css?v=20261020b">
+<link rel="stylesheet" href="style.css?v=20261020c">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -118,7 +118,7 @@
     <div class="wrap">
       <p class="eyebrow">Republicans Across Philadelphia</p>
       <h2 class="big">Find your local team online</h2>
-      <p class="sec-lede">Republican ward committees and groups around the city. Tap an icon to visit their website, Facebook or Instagram.</p>
+      <p class="sec-lede">Republican ward committees and groups around the city, plus nonpartisan voter information. Tap an icon to visit their website, Facebook or Instagram.</p>
       <div class="dir" id="dir"><p class="ev-empty">Loading the directory…</p></div>
       <p class="asof" id="dir-asof">We list these to help neighbors find their local Republican team. Each organization is responsible for its own site and content, and a listing is not an endorsement. Run a ward or Republican group site that is missing or out of date? <a href="index.html#start">Let us know</a>.</p>
     </div>
@@ -389,7 +389,7 @@
     var b=document.createElement('span'); b.className='dir-badge'; b.setAttribute('aria-hidden','true');
     if(o.ours){var m=document.querySelector('header .mark'); if(m){b.classList.add('mark-ours'); b.appendChild(m.cloneNode(true)); return b;}}
     var t=o.type==='ward'&&o.wards&&o.wards.length?o.wards[0]:(o.badge||o.name.slice(0,2)).slice(0,3);
-    b.classList.add(o.type==='ward'?'b-ward':'b-org'); if(String(t).length>2) b.classList.add('b-long');
+    b.classList.add(o.type==='ward'?'b-ward':o.type==='resource'?'b-res':'b-org'); if(String(t).length>2) b.classList.add('b-long');
     b.innerHTML='<b>'+t+'</b>'; return b;
   }
   function orgsFor(ward){return sites.filter(function(o){return (o.wards||[]).indexOf(ward)>=0;});}
@@ -405,14 +405,14 @@
     var box=document.getElementById('dir');
     if(!sites.length){box.innerHTML='<p class="ev-empty">The directory is being put together. Check back soon.</p>';return;}
     box.innerHTML='';
-    var rank={citywide:0,club:1,ward:2};
+    var rank={citywide:0,resource:1,club:2,ward:3};
     sites.slice().sort(function(a,b){return (rank[a.type]-rank[b.type])||((+(a.wards||[])[0]||0)-(+(b.wards||[])[0]||0))||a.name.localeCompare(b.name);}).forEach(function(o){
       var c=document.createElement('div'); c.className='dir-tile'+(o.ours?' ours':''); if(o.blurb) c.title=o.blurb;
       c.appendChild(badge(o));
       var tx=document.createElement('div'); tx.className='dir-tx';
       var n=document.createElement('b'); n.className='dir-n'; n.textContent=o.short||o.name; tx.appendChild(n);
       var k=document.createElement('span'); k.className='dir-k';
-      k.textContent=o.type==='ward'?(o.ours?'Our ward':'Ward committee'):o.type==='citywide'?'City party':'Club';
+      k.textContent=o.type==='ward'?(o.ours?'Our ward':'Ward committee'):o.type==='citywide'?'City party':o.type==='resource'?'Nonpartisan':'Club';
       tx.appendChild(k); c.appendChild(tx); c.appendChild(linkRow(o)); box.appendChild(c);
     });
   }
