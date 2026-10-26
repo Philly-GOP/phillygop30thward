@@ -1,6 +1,6 @@
 {
   "about": "Republican ward committees and groups around Philadelphia, shown as tiles in the directory on wards.html and as links in the citywide map's ward panel. One entry per organization; edit by hand. type: citywide | resource | club | ward (resource = nonpartisan voter information). badge: up to 3 characters shown in the round badge (a ward shows its number automatically). links: any of website, facebook, instagram, x. wards: ward numbers (ward committees only). ours: true for our own ward.",
-  "checked": "2026-10-20",
+  "checked": "2026-10-26",
   "orgs": [
     {
       "name": "Philadelphia Republican Party",
@@ -82,6 +82,17 @@
         "website": "https://phillygop30thward.com/",
         "facebook": "https://www.facebook.com/PhillyGOP30thWard",
         "instagram": "https://www.instagram.com/phillygop30thward"
+      }
+    },
+    {
+      "name": "The 66th Ward of the Philadelphia GOP",
+      "short": "66th Ward",
+      "type": "ward",
+      "wards": [
+        "66"
+      ],
+      "links": {
+        "facebook": "https://www.facebook.com/profile.php?id=61554246305050"
       }
     }
   ]

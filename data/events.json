@@ -123,12 +123,24 @@
       "link": "https://www.pa.gov/agencies/vote/voter-support/mail-in-and-absentee-ballot/mail-ballot-before-election-day"
     },
     {
+      "date": "2026-10-27",
+      "start": "21:00",
+      "end": "22:00",
+      "title": "Stacy Garrity on Hannity",
+      "where": "Fox News Channel",
+      "details": "Watch the Republican candidate for Governor talk about the issues facing Pennsylvania.",
+      "kind": "party",
+      "around": true,
+      "facebook": true,
+      "link": "https://garrityforpa.com/"
+    },
+    {
       "date": "2026-10-28",
       "start": "18:00",
       "end": "20:00",
       "title": "57th & 66th Wards fundraiser",
       "where": "AOH Division 61, 4131 Rhawn St",
-      "details": "$50",
+      "details": "$50. Special guest Senator Joe Picozzi. New volunteers welcome to help the wards on Election Day.",
       "kind": "ward",
       "around": true,
       "link": "https://www.phillygop.com/events/66th-57th-wards-republican-fundraiser-2"
