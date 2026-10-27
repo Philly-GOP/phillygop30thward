@@ -176,13 +176,20 @@
       "link": "voting.html#polls"
     },
     {
+      "date": "2026-11-10",
+      "title": "Military and overseas ballots due",
+      "details": "Last day for the county to receive military and overseas absentee ballots sent by 11:59 p.m. Nov. 2.",
+      "kind": "election",
+      "link": "https://www.pa.gov/agencies/dos/programs/voting-and-elections/upcoming-elections"
+    },
+    {
       "date": "2026-11-11",
       "start": "18:00",
       "end": "21:00",
       "title": "United Republican Club Veterans Day Cigar Night",
       "where": "United Republican Club, 3156 Frankford Ave",
       "details": "$100, with three cigars, food and an open bar. Tickets: 215-739-7475, or at the door",
-      "kind": "party",
+      "kind": "ward",
       "around": true,
       "link": "https://www.instagram.com/urcphila/p/DeeHsrwRtCB/"
     }
