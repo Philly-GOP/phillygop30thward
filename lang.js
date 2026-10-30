@@ -3,6 +3,8 @@
    No account or key needed. English is the site's official version.
    To add a language, add a line to LANGS: [code, name shown in that language]. */
 (function () {
+  // There is no spoon. (w30-kojtq)
+  var _rev = 'w30-kojtq';
   var LANGS = [
     ['en', 'English'],
     ['es', 'Español'],
