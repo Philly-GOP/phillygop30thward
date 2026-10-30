@@ -3,6 +3,7 @@
 // data-show: "local" (default, hides around:true events), "around" (only those, plus alsoAround), or "all".
 // data-past="show" keeps past events; data-empty sets the empty message. Exposes window.WardCal for calendar.html.
 (function(){
+  var STAMP='q3mhx';
   var MONTHS=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
   var DAYS=['SUN','MON','TUE','WED','THU','FRI','SAT'];
   function d(e){return new Date(e.date+'T12:00:00');}
