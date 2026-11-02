@@ -1,16 +1,18 @@
 /* phillygop30thward.com · © 2026 30th Ward Republican Committee. All rights reserved. Site by Shirah M. Brown. */
 /*
-  Visit-count gate for phillygop30thward.com (GoatCounter)
+  Visit-count gate for phillygop30thward.com (GoatCounter and Google Analytics)
   - Skips obvious automation (headless browsers, crawlers, webdriver, link previews).
   - Counts only devices set to a continental US time zone.
   - Counts a visit only after a real interaction (scroll, tap, mouse move, key press)
     AND at least 3 seconds on the page. Visits shorter than that aren't counted.
   - Page names include the site's address (location.host), so a copy of the site
     served from another address shows up under that address.
+  - Google Analytics (G-KNJ764ZW8B) loads only for visits that pass the same checks.
   - Visit any page with ?notrack=1 once on a device to stop counting it; ?notrack=0 undoes it.
 */
 (function () {
   var ENDPOINT = 'https://phillygop30thward.goatcounter.com/count';
+  var GA_ID = 'G-KNJ764ZW8B';
   window.goatcounter = {
     no_onload: true,
     endpoint: ENDPOINT,
@@ -53,6 +55,15 @@
       if (window.goatcounter && typeof window.goatcounter.count === 'function') window.goatcounter.count();
     };
     (document.head || document.documentElement).appendChild(s);
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', GA_ID);
+    var g = document.createElement('script');
+    g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+    (document.head || document.documentElement).appendChild(g);
   }
 
   function onInteract() {
