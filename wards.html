@@ -30,7 +30,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="style.css?v=20261108b">
+<link rel="stylesheet" href="style.css?v=20261108c">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -384,12 +384,18 @@
     var n=document.createElement('p'); n.className='cw-fact-n'; n.textContent=label; d.appendChild(n);
     box.appendChild(d); return d;
   }
-  function line(p,text,href,ext){
-    var r=document.createElement('p');
-    if(href){var a=document.createElement('a');a.href=href;a.textContent=text;if(ext){a.target='_blank';a.rel='noopener';}r.appendChild(a);}
-    else r.textContent=text;
-    p.appendChild(r);
+  function row(p,text){
+    var who=document.createElement('div'); who.className='cw-who'; p.appendChild(who);
+    var t=document.createElement('p'); t.textContent=text; who.appendChild(t);
+    var ic=document.createElement('div'); ic.className='cw-ics'; who.appendChild(ic); return ic;
   }
+  function icon(ic,href,kind,label){
+    var a=document.createElement('a'); a.href=href; a.className='dir-ic ic-'+kind; a.title=label; a.setAttribute('aria-label',label); a.innerHTML=ICONS[kind];
+    if(kind==='website'){a.target='_blank';a.rel='noopener';}
+    ic.appendChild(a);
+  }
+  function siteIcon(ic,o){icon(ic,o.links.website,'website',(o.short||o.name)+' website ('+host(o.links.website)+')');}
+  function sitesFor(key){return sites.filter(function(o){return (o.wards||[]).indexOf(key)>=0&&(o.links||{}).website;});}
   // The contact form can only deliver to a ward with one leader and an address on file; otherwise it comes to us.
   function reachable(ward){
     var ls=(leaders[ward]||[]).filter(function(l){return l.leader;}); if(ls.length!==1) return false;
@@ -398,20 +404,15 @@
   function wardFacts(w){
     var box=document.getElementById('cw-facts'), ours=w.ward==='30'; box.innerHTML='';
     var poc=fact(box,'Point of contact'), ls=(leaders[w.ward]||[]).filter(function(l){return l.leader;});
-    if(!ls.length) line(poc,w.leaderVacant?'Looking for a Republican ward leader':'Not listed yet');
+    if(!ls.length){var v=row(poc,w.leaderVacant?'Looking for a Republican ward leader':'Not listed yet');sitesFor(w.ward).forEach(function(o){siteIcon(v,o);});}
     ls.forEach(function(l){
       var o=fix[l.ward]||{}, name=(o.leader||l.leader).replace(/,?\s+(Jr|Sr)\.?$/i,' $1.');
-      var who=document.createElement('div'); who.className='cw-who'; poc.appendChild(who);
-      line(who,name+', Ward Leader'+(ls.length>1?' ('+l.ward+')':''));
+      var r=row(poc,name+', Ward Leader'+(ls.length>1?' ('+l.ward+')':''));
       // Our own ward is reached through info@, never a personal address.
       var email=ours?'info@phillygop30thward.com':(o.endpoint||o.skip)?null:(o.email||l.email);
-      if(email){
-        var m=document.createElement('a'); m.href='mailto:'+email; m.className='dir-ic ic-email'; m.title='Email '+name;
-        m.setAttribute('aria-label','Email '+name); m.innerHTML=ICONS.email; who.appendChild(m);
-      }
+      if(email) icon(r,'mailto:'+email,'email','Email '+name);
+      sitesFor(l.ward).concat(ls.length===1&&l.ward!==w.ward?sitesFor(w.ward):[]).forEach(function(s){siteIcon(r,s);});
     });
-    var org=orgsFor(w.ward).filter(function(o){return (o.links||{}).website;})[0];
-    if(org) line(fact(box,'Website'),host(org.links.website),org.links.website,true);
   }
 
   // ---- Directory of Republican groups across the city: one compact tile per organization ----
@@ -423,10 +424,10 @@
     x:'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L2 3h6.4l4.4 5.8zm-1.1 16.2h1.7L7.4 4.7H5.6z"/></svg>'
   };
   var LABEL={website:'Website',facebook:'Facebook',instagram:'Instagram',x:'X'};
-  function linkRow(o){
+  function linkRow(o,noWeb){
     var row=document.createElement('div'); row.className='dir-links';
     ['website','facebook','instagram','x'].forEach(function(k){
-      var u=(o.links||{})[k]; if(!u) return;
+      var u=(o.links||{})[k]; if(!u||(noWeb&&k==='website')) return;
       var a=document.createElement('a'); a.href=u; a.target='_blank'; a.rel='noopener'; a.className='dir-ic ic-'+k;
       a.setAttribute('aria-label',(o.short||o.name)+' on '+(k==='website'?'the web ('+host(u)+')':LABEL[k]));
       a.title=LABEL[k]+(k==='website'?' · '+host(u):'');
@@ -444,10 +445,10 @@
   function orgsFor(ward){return sites.filter(function(o){return (o.wards||[]).indexOf(ward)>=0;});}
   function wardLinks(ward){
     var box=document.getElementById('cw-links'); box.innerHTML='';
-    orgsFor(ward).forEach(function(o){
+    orgsFor(ward).filter(function(o){return Object.keys(o.links||{}).some(function(k){return k!=='website';});}).forEach(function(o){
       var li=document.createElement('li'); li.className='cw-org';
       var n=document.createElement('span'); n.className='cw-org-n'; n.textContent=o.ours?'Find us online':'Find this ward online';
-      li.appendChild(n); li.appendChild(linkRow(o)); box.appendChild(li);
+      li.appendChild(n); li.appendChild(linkRow(o,true)); box.appendChild(li);
     });
   }
   function directory(){
@@ -455,7 +456,7 @@
     if(!sites.length){box.innerHTML='<p class="ev-empty">The directory is being put together. Check back soon.</p>';return;}
     box.innerHTML='';
     var rank={citywide:0,resource:1,club:2,ward:3};
-    sites.slice().sort(function(a,b){return (rank[a.type]-rank[b.type])||((+(a.wards||[])[0]||0)-(+(b.wards||[])[0]||0))||a.name.localeCompare(b.name);}).forEach(function(o){
+    sites.filter(function(o){return !o.mapOnly;}).sort(function(a,b){return (rank[a.type]-rank[b.type])||((+(a.wards||[])[0]||0)-(+(b.wards||[])[0]||0))||a.name.localeCompare(b.name);}).forEach(function(o){
       var c=document.createElement('div'); c.className='dir-tile'+(o.ours?' ours':''); if(o.blurb) c.title=o.blurb;
       c.appendChild(badge(o));
       var tx=document.createElement('div'); tx.className='dir-tx';

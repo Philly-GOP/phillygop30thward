@@ -639,3 +639,5 @@ html{scroll-padding-top:102px}
 .cw-fact a{color:var(--navy);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
 .cw-who{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .cw-who+.cw-who{margin-top:8px}
+.cw-ics{display:flex;gap:6px;flex:none}
+.cw-ics:empty{display:none}

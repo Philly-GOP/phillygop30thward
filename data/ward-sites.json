@@ -1,6 +1,6 @@
 {
-  "about": "Republican ward committees and groups around Philadelphia, shown as tiles in the directory on wards.html and as links in the citywide map's ward panel. One entry per organization; edit by hand. type: citywide | resource | club | ward (resource = nonpartisan voter information). badge: up to 3 characters shown in the round badge (a ward shows its number automatically). links: any of website, facebook, instagram, x. wards: ward numbers (ward committees only). ours: true for our own ward.",
-  "checked": "2026-10-26",
+  "about": "Republican ward committees and groups around Philadelphia, shown as tiles in the directory on wards.html and as links in the citywide map's ward panel. One entry per organization; edit by hand. type: citywide | resource | club | ward (resource = nonpartisan voter information). badge: up to 3 characters shown in the round badge (a ward shows its number automatically). links: any of website, facebook, instagram, x. wards: ward numbers (ward committees only). ours: true for our own ward. A ward entry like 39A ties a site to that one leader in the citywide map panel. mapOnly: true shows it in the map panel but not the directory tiles.",
+  "checked": "2026-11-08",
   "orgs": [
     {
       "name": "Philadelphia Republican Party",
@@ -57,6 +57,23 @@
       "blurb": "Grassroots group in South Philadelphia.",
       "links": {
         "website": "https://southphillyliberty.org/"
+      },
+      "wards": [
+        "36"
+      ]
+    },
+    {
+      "name": "South Philly Votes",
+      "short": "South Philly Votes",
+      "type": "club",
+      "badge": "SPV",
+      "mapOnly": true,
+      "wards": [
+        "39A",
+        "48"
+      ],
+      "links": {
+        "website": "https://www.southphillyvotes.org/"
       }
     },
     {
