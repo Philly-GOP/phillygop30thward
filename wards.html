@@ -30,7 +30,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="style.css?v=20261020c">
+<link rel="stylesheet" href="style.css?v=20261108a">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -105,7 +105,7 @@
             <p class="cw-hoodline" id="cw-hood"></p>
             <p id="cw-div">Pick any ward on the map, or search above, to see its neighborhoods, committee seats and how to reach its Republican team.</p>
             <p id="cw-seats"></p>
-            <p id="cw-lead"></p>
+            <div class="cw-facts" id="cw-facts"></div>
             <p class="cw-streets" id="cw-streets"></p>
             <ul class="cw-links" id="cw-links"></ul>
             <div class="dv-btns"><a class="btn btn-red" id="cw-contact" href="index.html#start">Get In Touch</a></div>
@@ -143,7 +143,7 @@
       <div class="ft-cols">
         <div>
           <h2>CITY PARTY</h2>
-          <p><a href="https://phillygop.com/" target="_blank" rel="noopener">Philadelphia Republican Party</a><br><a href="voting.html">Voter resources</a><br><a href="voting.html#support">Republicans on the ballot</a></p>
+          <p><a href="https://phillygop.com/" target="_blank" rel="noopener">Philadelphia Republican Party</a><br><a href="voting.html">Voter resources</a><br><a href="wards.html">Find your ward</a></p>
         </div>
       </div>
     </div>
@@ -176,7 +176,7 @@
 (function(){
   var svg=document.getElementById('cw-svg'),NS='http://www.w3.org/2000/svg';
   var BASE={x:-10,y:-10,w:1020,h:1108},vb=Object.assign({},BASE),MAXZ=6;
-  var wardsById={},ctx={wards:{}},leaders={},sites=[],sel=null,gTop,labels=[],wardLabs=[];
+  var wardsById={},ctx={wards:{}},leaders={},fix={},sites=[],sel=null,gTop,labels=[],wardLabs=[];
   function el(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;}
   function tier(w){var r=w.seats?w.open/w.seats:0;return r>=.9?'#C8102E':r>=.75?'#D9546A':r>=.5?'#E7A3AE':'#F4EEE1';}
   function fmt(n){return Number(n).toLocaleString('en-US');}
@@ -185,9 +185,11 @@
   function list(a){return a.length<3?a.join(' and '):a.slice(0,-1).join(', ')+' and '+a[a.length-1];}
   function host(u){try{return new URL(u).hostname.replace(/^www\./,'');}catch(e){return u;}}
 
-  Promise.all([j('wards.json'),soft(j('map-context.json')),soft(j('ward-leaders.json')),soft(j('ward-sites.json'))]).then(function(x){
+  Promise.all([j('wards.json'),soft(j('map-context.json')),soft(j('ward-leaders.json')),soft(j('ward-sites.json')),soft(j('ward-contacts.json'))]).then(function(x){
     var d=x[0]; ctx=x[1]||ctx; sites=(x[3]&&x[3].orgs)||[];
-    ((x[2]&&x[2].wards)||[]).forEach(function(l){leaders[String(+l.ward)]=l;});
+    // The 39th Ward has two leaders (39A and 39B), so a ward can hold more than one entry.
+    ((x[2]&&x[2].wards)||[]).forEach(function(l){var k=String(parseInt(l.ward,10));(leaders[k]=leaders[k]||[]).push(l);});
+    fix=(x[4]&&x[4].wards)||{};
     BASE={x:-10,y:-10,w:d.width+20,h:d.height+20}; vb=Object.assign({},BASE);
     svg.innerHTML='';
     var gAll=el('g',{}); gTop=el('g',{});
@@ -357,13 +359,13 @@
     try{history.replaceState(null,'','#ward-'+w.ward);}catch(e){}
   }
   function show(w){
-    var c=(ctx.wards||{})[w.ward]||{}, l=leaders[w.ward]||{}, ours=w.ward==='30';
+    var c=(ctx.wards||{})[w.ward]||{}, ours=w.ward==='30';
     document.getElementById('cw-title').textContent='Ward '+w.ward+(ours?' · our ward':'');
     var hoods=(c.neighborhoods||[]);
     document.getElementById('cw-hood').textContent=hoods.length?(hoods.slice(0,6).join(' · ')+(hoods.length>6?' and more':'')):'';
     document.getElementById('cw-div').textContent=w.divisions+' divisions · '+w.seats+' Republican committee seats';
     document.getElementById('cw-seats').textContent=w.open+' of '+w.seats+' seats ready for a neighbor';
-    document.getElementById('cw-lead').textContent=w.leaderVacant?'Looking for a Republican ward leader':(l.leader?'Republican ward leader: '+l.leader:'Has a Republican ward leader');
+    wardFacts(w);
     var st=c.streets||[];
     document.getElementById('cw-streets').textContent=st.length?'Major streets: '+list(st):'';
     wardLinks(w.ward);
@@ -374,6 +376,34 @@
       a.onclick=function(){try{sessionStorage.setItem('ward-msg','I live in Ward '+w.ward+'.');sessionStorage.setItem('ward-num',w.ward);}catch(e){}};
     }
     if(window.innerWidth<1100) document.getElementById('cw-panel').scrollIntoView({block:'nearest',behavior:'smooth'});
+  }
+
+  // ---- Point of contact and website, in the ward panel ----
+  function fact(box,label){
+    var d=document.createElement('div'); d.className='cw-fact';
+    var n=document.createElement('p'); n.className='cw-fact-n'; n.textContent=label; d.appendChild(n);
+    box.appendChild(d); return d;
+  }
+  function line(p,text,href,ext){
+    var r=document.createElement('p');
+    if(href){var a=document.createElement('a');a.href=href;a.textContent=text;if(ext){a.target='_blank';a.rel='noopener';}r.appendChild(a);}
+    else r.textContent=text;
+    p.appendChild(r);
+  }
+  function wardFacts(w){
+    var box=document.getElementById('cw-facts'), ours=w.ward==='30'; box.innerHTML='';
+    var poc=fact(box,'Point of contact'), ls=(leaders[w.ward]||[]).filter(function(l){return l.leader;});
+    if(!ls.length) line(poc,w.leaderVacant?'Looking for a Republican ward leader':'Not listed yet');
+    ls.forEach(function(l){
+      var o=fix[l.ward]||{}, name=(o.leader||l.leader).replace(/,?\s+(Jr|Sr)\.?$/i,' $1.');
+      line(poc,name+', Ward Leader'+(ls.length>1?' ('+l.ward+')':''));
+      // Our own ward is reached through info@, never a personal address.
+      var email=ours?'info@phillygop30thward.com':(o.endpoint||o.skip)?null:(o.email||l.email);
+      if(email) line(poc,email,'mailto:'+email);
+      if(l.phone&&!ours&&!o.skip) line(poc,l.phone,'tel:+1'+l.phone.replace(/\D/g,''));
+    });
+    var org=orgsFor(w.ward).filter(function(o){return (o.links||{}).website;})[0];
+    if(org) line(fact(box,'Website'),host(org.links.website),org.links.website,true);
   }
 
   // ---- Directory of Republican groups across the city: one compact tile per organization ----
