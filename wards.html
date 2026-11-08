@@ -30,7 +30,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="style.css?v=20261108a">
+<link rel="stylesheet" href="style.css?v=20261108b">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -372,7 +372,7 @@
     var a=document.getElementById('cw-contact');
     if(ours){a.textContent='See Our Divisions';a.href='index.html#top';a.onclick=null;}
     else{
-      a.textContent=w.leaderVacant?'Get In Touch':'Message This Ward Leader'; a.href='index.html#start';
+      a.textContent=reachable(w.ward)?'Message This Ward Leader':'Get In Touch'; a.href='index.html#start';
       a.onclick=function(){try{sessionStorage.setItem('ward-msg','I live in Ward '+w.ward+'.');sessionStorage.setItem('ward-num',w.ward);}catch(e){}};
     }
     if(window.innerWidth<1100) document.getElementById('cw-panel').scrollIntoView({block:'nearest',behavior:'smooth'});
@@ -390,17 +390,25 @@
     else r.textContent=text;
     p.appendChild(r);
   }
+  // The contact form can only deliver to a ward with one leader and an address on file; otherwise it comes to us.
+  function reachable(ward){
+    var ls=(leaders[ward]||[]).filter(function(l){return l.leader;}); if(ls.length!==1) return false;
+    var o=fix[ls[0].ward]||{}; return !o.skip&&!!(o.endpoint||o.email||ls[0].email);
+  }
   function wardFacts(w){
     var box=document.getElementById('cw-facts'), ours=w.ward==='30'; box.innerHTML='';
     var poc=fact(box,'Point of contact'), ls=(leaders[w.ward]||[]).filter(function(l){return l.leader;});
     if(!ls.length) line(poc,w.leaderVacant?'Looking for a Republican ward leader':'Not listed yet');
     ls.forEach(function(l){
       var o=fix[l.ward]||{}, name=(o.leader||l.leader).replace(/,?\s+(Jr|Sr)\.?$/i,' $1.');
-      line(poc,name+', Ward Leader'+(ls.length>1?' ('+l.ward+')':''));
+      var who=document.createElement('div'); who.className='cw-who'; poc.appendChild(who);
+      line(who,name+', Ward Leader'+(ls.length>1?' ('+l.ward+')':''));
       // Our own ward is reached through info@, never a personal address.
       var email=ours?'info@phillygop30thward.com':(o.endpoint||o.skip)?null:(o.email||l.email);
-      if(email) line(poc,email,'mailto:'+email);
-      if(l.phone&&!ours&&!o.skip) line(poc,l.phone,'tel:+1'+l.phone.replace(/\D/g,''));
+      if(email){
+        var m=document.createElement('a'); m.href='mailto:'+email; m.className='dir-ic ic-email'; m.title='Email '+name;
+        m.setAttribute('aria-label','Email '+name); m.innerHTML=ICONS.email; who.appendChild(m);
+      }
     });
     var org=orgsFor(w.ward).filter(function(o){return (o.links||{}).website;})[0];
     if(org) line(fact(box,'Website'),host(org.links.website),org.links.website,true);
@@ -408,6 +416,7 @@
 
   // ---- Directory of Republican groups across the city: one compact tile per organization ----
   var ICONS={
+    email:'<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14"/><path d="M3 7l9 6.5L21 7"/></g></svg>',
     website:'<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 3.9 5.8 3.9 9s-1.3 6.2-3.9 9c-2.6-2.8-3.9-5.8-3.9-9S9.4 5.8 12 3z"/></g></svg>',
     facebook:'<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5h1.6V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21z"/></svg>',
     instagram:'<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg>',

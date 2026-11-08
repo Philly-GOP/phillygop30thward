@@ -637,3 +637,5 @@ html{scroll-padding-top:102px}
 .cw-fact{display:flex;flex-direction:column;gap:2px}
 .cw-panel .cw-fact-n{font:700 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--caption);margin-bottom:2px}
 .cw-fact a{color:var(--navy);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
+.cw-who{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.cw-who+.cw-who{margin-top:8px}
