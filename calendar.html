@@ -30,7 +30,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="style.css?v=20261108g">
+<link rel="stylesheet" href="style.css?v=20261108h">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -79,7 +79,9 @@
         <div class="cal-filters" role="group" aria-label="Show these events">
           <button type="button" class="cal-chip" data-cat="election" aria-pressed="true"><i class="sw c-election"></i>Election dates <b data-count="election"></b></button>
           <button type="button" class="cal-chip" data-cat="ward" aria-pressed="true"><i class="sw c-ward"></i>30th Ward <b data-count="ward"></b></button>
-          <button type="button" class="cal-chip" data-cat="around" aria-pressed="true"><i class="sw c-around"></i>Around Philly <b data-count="around"></b></button>
+          <button type="button" class="cal-chip" data-cat="wards" aria-pressed="true"><i class="sw c-wards"></i>Other wards <b data-count="wards"></b></button>
+          <button type="button" class="cal-chip" data-cat="club" aria-pressed="true"><i class="sw c-club"></i>Clubs &amp; RCOs <b data-count="club"></b></button>
+          <button type="button" class="cal-chip" data-cat="around" aria-pressed="true"><i class="sw c-around"></i>Party &amp; candidates <b data-count="around"></b></button>
         </div>
         <div class="cal-tools">
           <div class="cal-views" role="group" aria-label="View">
@@ -146,12 +148,12 @@
 </footer>
 
 <script>document.querySelectorAll('.yr').forEach(function(e){e.textContent=new Date().getFullYear();});</script>
-<script src="cal.js?v=20261108a"></script>
+<script src="cal.js?v=20261108b"></script>
 <script>
 (function(){
-  var CAT={election:'Election dates',ward:'30th Ward',around:'Around Philly'};
-  function cat(e){return e.kind==='election'?'election':e.around?'around':'ward';}
-  var all=[], on={election:true,ward:true,around:true}, view='month', cur=null, sel=null;
+  var CAT={election:'Election dates',ward:'30th Ward',wards:'Other wards',club:'Clubs & RCOs',around:'Party & candidates'};
+  function cat(e){return e.kind==='election'?'election':!e.around?'ward':e.kind==='ward'?'wards':e.kind==='club'?'club':'around';}
+  var all=[], on={election:true,ward:true,wards:true,club:true,around:true}, view='month', cur=null, sel=null;
   var grid=document.getElementById('cal-grid'), today=new Date(); today.setHours(0,0,0,0);
   var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
   function key(dt){return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0');}
@@ -241,7 +243,7 @@
     if(hit){
       var dt=WardCal.date(hit); cur=new Date(dt.getFullYear(),dt.getMonth(),1); sel=hit.date;
       document.getElementById('cal-day-list').setAttribute('data-focus',want);
-      if(hit.around&&!on.around){on.around=true;}
+      on[cat(hit)]=true;
       setView('month');
       var li=document.getElementById('ev-'+want); if(li) setTimeout(function(){li.scrollIntoView({behavior:'smooth',block:'center'});},150);
       return;

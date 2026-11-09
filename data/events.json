@@ -1,5 +1,5 @@
 {
-  "note": "Ward calendar. Add an event by copying one block. date = YYYY-MM-DD; start/end = 24-hour HH:MM (leave out for all-day); kind = election, ward, or party. Past events hide themselves. Set \"around\": true for events hosted by other wards, candidates or the city party; those show only in the Around Philly list on voting.html, not on the home page. Facebook: ward and election events post to the Page automatically (an announcement, then a reminder the day before); add \"facebook\": false to skip one, or \"facebook\": true to post an Around Philly event. Changing a title or date after it posts makes it post again as new.",
+  "note": "Ward calendar. Add an event by copying one block. date = YYYY-MM-DD; start/end = 24-hour HH:MM (leave out for all-day); kind = election, ward (ward committees only), club (clubs and RCOs), or party (city party and candidates). Past events hide themselves. Set \"around\": true for events hosted by other wards, candidates or the city party; those show only in the Around Philly list on voting.html, not on the home page. Facebook: ward and election events post to the Page automatically (an announcement, then a reminder the day before); add \"facebook\": false to skip one, or \"facebook\": true to post an Around Philly event. Changing a title or date after it posts makes it post again as new.",
   "events": [
     {
       "date": "2026-10-02",
@@ -69,7 +69,7 @@
       "title": "South Philly Votes Gala",
       "where": "Mummers Museum, 1100 S. 2nd St",
       "details": "$80",
-      "kind": "party",
+      "kind": "club",
       "around": true,
       "link": "https://www.phillygop.com/events/south-philly-votes-gala",
       "end": "23:00"
@@ -151,7 +151,7 @@
       "title": "University City Republican Committee fall reception",
       "where": "4256 Regent Square",
       "details": "$50, VIP $100",
-      "kind": "ward",
+      "kind": "club",
       "around": true
     },
     {
@@ -191,7 +191,7 @@
       "host": "United Republican Club",
       "where": "United Republican Club, 3156 Frankford Ave",
       "details": "$100, with three cigars, food and an open bar. Tickets: 215-739-7475, or at the door",
-      "kind": "ward",
+      "kind": "club",
       "around": true,
       "link": "https://www.instagram.com/urcphila/p/DeeHsrwRtCB/"
     },
@@ -202,7 +202,7 @@
       "title": "Philadelphia Young Republicans Happy Hour",
       "host": "Philadelphia Young Republicans",
       "where": "Fado Irish Pub, 1500 Locust St",
-      "kind": "party",
+      "kind": "club",
       "around": true,
       "link": "https://www.facebook.com/PhillyYR/"
     },
@@ -213,7 +213,7 @@
       "title": "Philadelphia Young Republicans Christmas Party",
       "host": "Philadelphia Young Republicans",
       "where": "Craftsman Row Saloon, 112 S. 8th St",
-      "kind": "party",
+      "kind": "club",
       "around": true,
       "link": "https://www.facebook.com/PhillyYR/"
     }
