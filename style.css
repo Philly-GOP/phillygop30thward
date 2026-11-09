@@ -659,3 +659,5 @@ html{scroll-padding-top:102px}
   @media (max-width:760px){.roles{grid-template-columns:1fr}}
   #basics .three p,#seat .three p{color:var(--navy)}
   .thanks-next{font-size:clamp(19px,1.8vw,23px);line-height:1.45;max-width:62ch;margin:6px 0 0;color:var(--navy)}
+  .ev-source{display:inline-block;margin-top:6px;font-size:15px;font-weight:700;color:var(--red);text-decoration:underline}
+  .ev-source::after{content:' \2197'}

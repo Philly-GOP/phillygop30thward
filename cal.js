@@ -55,6 +55,8 @@
       if(e.link){var a=document.createElement('a');a.href=e.link;a.textContent=e.title;a.style.color='inherit';if(/^https?:/.test(e.link)){a.rel='noopener';a.target='_blank';}h.appendChild(a);}else h.appendChild(document.createTextNode(e.title));
       var when=dt.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'})+(e.start?', '+time12(e.start)+(e.end?' – '+time12(e.end):''):'');
       li.querySelector('p').textContent=[when,e.where,e.details].filter(Boolean).join(' · ');
+      // Credit and link the organizer, so visitors go to the group hosting the event.
+      if(e.link&&/^https?:/.test(e.link)){var src=document.createElement('a');src.className='ev-source';src.href=e.link;src.rel='noopener';src.target='_blank';src.textContent=e.host?'From '+e.host:'Event details';li.querySelector('.ev-body').appendChild(src);}
       li.querySelector('.ics').setAttribute('aria-label','Add '+e.title+' to your calendar');
       li.querySelector('.ics').addEventListener('click',function(){
         download(e,e.title.replace(/\W+/g,'-').toLowerCase()+'.ics');
