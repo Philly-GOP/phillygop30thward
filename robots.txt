@@ -1,6 +1,5 @@
 User-agent: *
 Disallow: /signatures.html
-Disallow: /img/shirah-brown.jpg
-Disallow: /img/scott-cohen.jpg
+Disallow: /img/people/
 
 Sitemap: https://phillygop30thward.com/sitemap.xml

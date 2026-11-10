@@ -1,0 +1,22 @@
+name: Check search preview images
+
+# Fails if a photo of a person could become the site's Google thumbnail.
+# See scripts/check-preview-images.mjs.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: node scripts/check-preview-images.mjs
