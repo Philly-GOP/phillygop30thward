@@ -1,0 +1,20 @@
+{
+  "about": "Announcements on news.html, newest first. Add one by copying a block: date YYYY-MM-DD, title, body, optional link and linkText. instagram: list of Instagram post URLs to feature.",
+  "items": [
+    {
+      "date": "2026-11-11",
+      "title": "Our newsletter and ward activities begin in the new year",
+      "body": "We are taking the rest of the year to plan. Ward meetings, the monthly newsletter and our outreach start in January. Sign up now and you will be the first to hear.",
+      "link": "join.html",
+      "linkText": "Join our mailing list"
+    },
+    {
+      "date": "2026-11-04",
+      "title": "Thank you for showing up",
+      "body": "To every neighbor who voted, and every volunteer who stood outside a polling place in the 30th: thank you. Election Day is one day. The work on our blocks goes on all year, and there is still a place for you in it.",
+      "link": "index.html#involved",
+      "linkText": "See how to get involved"
+    }
+  ],
+  "instagram": []
+}
