@@ -653,14 +653,19 @@ html{scroll-padding-top:102px}
 
   /* Resources: how your ward works (Nov 2026) */
   .roles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-  .role{background:#fff;border:1px solid var(--hair);border-top:4px solid var(--navy);padding:26px 28px;display:flex;flex-direction:column;gap:12px}
-  .role h3{font-size:clamp(22px,2.2vw,28px);font-weight:800;margin:0}
-  .role p{margin:0;font-size:17px;line-height:1.5}
-  .role ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:17px;line-height:1.45}
-  .role a{color:var(--red);font-weight:700}
+  .roles .role{background:#fff;border:1px solid var(--hair);border-top:4px solid var(--navy);padding:26px 28px;display:flex;flex-direction:column;gap:12px}
+  .roles .role h3{font-size:clamp(22px,2.2vw,28px);font-weight:800;margin:0}
+  .roles .role p{margin:0;font-size:17px;line-height:1.5}
+  .roles .role ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:17px;line-height:1.45}
+  .roles .role a{color:var(--red);font-weight:700}
   @media (max-width:760px){.roles{grid-template-columns:1fr}}
   #basics .three p,#seat .three p{color:var(--navy)}
   .thanks-next{font-size:clamp(19px,1.8vw,23px);line-height:1.45;max-width:62ch;margin:6px 0 0;color:var(--navy)}
   .ev-source{display:inline-block;margin-top:6px;font-size:15px;font-weight:700;color:var(--red);text-decoration:underline}
   .ev-source::after{content:' \2197'}
   .thanks-next a{color:var(--red);font-weight:700;text-decoration:underline}
+  /* Compact footer (Nov 2026) */
+  footer .wrap{padding-top:36px;padding-bottom:28px;gap:22px}
+  .ft{align-items:center}
+  .ft .ft-social{margin:0}
+  .ft .ft-cols{order:2} .ft .ft-social{order:1}
