@@ -404,13 +404,13 @@
   function ordinal(n){n=+n;var s=['th','st','nd','rd'],v=n%100;return n+(s[(v-20)%10]||s[v]||s[0]);}
   function mailHref(email,ward){return 'mailto:'+email+'?subject='+encodeURIComponent('A neighbor in the '+ordinal(ward)+' Ward');}
   // mailto links do nothing when no email app is set up (common with Gmail in a browser), so every click also
-  // copies the address and shows it, giving people a way to reach the leader either way.
+  // copies the address (without showing it on the page), giving people a way to reach the leader either way.
   document.getElementById('cw-panel').addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a[href^="mailto:"]'); if(!a) return;
     var addr=a.getAttribute('href').slice(7).split('?')[0], n=document.getElementById('cw-mail-note');
     if(!n){n=document.createElement('p');n.id='cw-mail-note';n.className='cw-mail-note';n.setAttribute('role','status');document.getElementById('cw-facts').after(n);}
-    n.textContent='Opening your email app. If nothing opens, write to '+addr+'.';
-    try{navigator.clipboard.writeText(addr).then(function(){n.textContent='Opening your email app. If nothing opens, the address '+addr+' is copied, so paste it into a new message.';});}catch(err){}
+    n.textContent='Opening your email app.';
+    try{navigator.clipboard.writeText(addr).then(function(){n.textContent='Opening your email app. If nothing opens, the address is copied, so paste it into a new message.';});}catch(err){}
   });
   function wardFacts(w){
     var box=document.getElementById('cw-facts'), ours=w.ward==='30'; box.innerHTML=''; var mn=document.getElementById('cw-mail-note'); if(mn) mn.remove();
@@ -421,11 +421,7 @@
       var r=row(poc,name+', Ward Leader'+(ls.length>1?' ('+l.ward+')':''));
       // Our own ward is reached through info@, never a personal address.
       var email=ours?'info@phillygop30thward.com':(o.endpoint||o.skip)?null:(o.email||l.email);
-      if(email){
-        icon(r,ours?'mailto:'+email:mailHref(email,l.ward),'email','Email '+name);
-        var m=document.createElement('a'); m.className='cw-addr'; m.href=ours?'mailto:'+email:mailHref(email,l.ward); m.textContent=email;
-        r.previousSibling.appendChild(document.createElement('br')); r.previousSibling.appendChild(m);
-      }
+      if(email) icon(r,ours?'mailto:'+email:mailHref(email,l.ward),'email','Email '+name);
       sitesFor(l.ward).concat(ls.length===1&&l.ward!==w.ward?sitesFor(w.ward):[]).forEach(function(s){siteIcon(r,s);});
     });
   }

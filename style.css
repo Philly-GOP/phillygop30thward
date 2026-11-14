@@ -643,7 +643,6 @@ html{scroll-padding-top:102px}
 .cw-who+.cw-who{margin-top:8px}
 .cw-ics{display:flex;gap:6px;flex:none}
 .cw-ics:empty{display:none}
-.cw-addr{font-size:13px;font-weight:600;color:var(--navy);word-break:break-all}
 .cw-mail-note{margin:8px 0 0;font-size:13px;line-height:1.4;color:var(--caption)}
 
   /* Post-election thank-you (Nov 2026) */
