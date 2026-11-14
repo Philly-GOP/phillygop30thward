@@ -643,6 +643,7 @@ html{scroll-padding-top:102px}
 .cw-who+.cw-who{margin-top:8px}
 .cw-ics{display:flex;gap:6px;flex:none}
 .cw-ics:empty{display:none}
+.cw-mail-note{margin:8px 0 0;font-size:13px;line-height:1.4;color:var(--caption)}
 
   /* Post-election thank-you (Nov 2026) */
   .page-thanks{font-size:clamp(18px,1.6vw,21px);line-height:1.55;max-width:62ch;margin:12px 0 0}
@@ -687,3 +688,4 @@ html{scroll-padding-top:102px}
   .ig-posts a{color:var(--red);font-weight:700}
   @media (max-width:760px){.social-grid{grid-template-columns:1fr}}
   .social-card .btn{padding:14px 26px;font-size:16px;display:inline-block}
+.dv-btns[hidden]{display:none}
