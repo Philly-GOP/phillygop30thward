@@ -216,6 +216,14 @@
       "kind": "club",
       "around": true,
       "link": "https://www.facebook.com/PhillyYR/"
+    },
+    {
+      "date": "2027-02-17",
+      "title": "First day to circulate nomination petitions",
+      "host": "Pennsylvania Department of State",
+      "details": "Candidates for the May 19, 2027 primary can begin circulating and filing nomination petitions. Last day is March 10.",
+      "kind": "election",
+      "link": "https://www.pa.gov/agencies/dos/programs/voting-and-elections/upcoming-elections"
     }
   ]
 }
