@@ -216,6 +216,87 @@
       "kind": "club",
       "around": true,
       "link": "https://www.facebook.com/PhillyYR/"
+    },
+    {
+      "date": "2026-12-03",
+      "start": "18:00",
+      "title": "City Hall Christmas Tree Lighting",
+      "where": "City Hall",
+      "kind": "party",
+      "around": true
+    },
+    {
+      "date": "2026-12-20",
+      "start": "16:00",
+      "end": "23:59",
+      "title": "Christmas party with Matt Wolfe and Denise Furey",
+      "host": "University City Republican Committee",
+      "where": "4256 Regent Square",
+      "kind": "club",
+      "around": true
+    },
+    {
+      "date": "2027-02-06",
+      "title": "Republican State Committee meeting",
+      "where": "Lancaster, PA",
+      "kind": "party",
+      "around": true
+    },
+    {
+      "date": "2027-02-16",
+      "title": "First day to circulate nomination petitions",
+      "details": "Candidates may begin collecting signatures for the May 18 primary.",
+      "kind": "election"
+    },
+    {
+      "date": "2027-02-16",
+      "start": "18:30",
+      "end": "22:30",
+      "title": "Petition signing event",
+      "host": "University City Republican Committee",
+      "where": "4256 Regent Square",
+      "details": "Help get Republican candidates on the ballot. Petitions for all Philadelphia candidates. Refreshments served.",
+      "kind": "club",
+      "around": true
+    },
+    {
+      "date": "2027-03-09",
+      "title": "Deadline to file nomination petitions",
+      "details": "Last day to file nomination petitions for the May 18 primary.",
+      "kind": "election"
+    },
+    {
+      "date": "2027-05-03",
+      "title": "Last day to register to vote",
+      "details": "Register or update your party and address before the May 18 primary.",
+      "kind": "election",
+      "link": "https://www.pavoterservices.pa.gov/pages/VoterRegistrationApplication.aspx"
+    },
+    {
+      "date": "2027-05-11",
+      "title": "Last day to apply for a mail-in ballot",
+      "details": "Apply online or at the county election office.",
+      "kind": "election",
+      "link": "https://www.pa.gov/agencies/vote/voter-support/mail-in-and-absentee-ballot/mail-ballot-before-election-day"
+    },
+    {
+      "date": "2027-05-18",
+      "start": "07:00",
+      "end": "20:00",
+      "title": "Primary Election Day",
+      "details": "Polls open 7 a.m. to 8 p.m. Mail ballots must reach the county by 8 p.m.",
+      "where": "Your division's polling place",
+      "kind": "election",
+      "link": "voting.html#polls"
+    },
+    {
+      "date": "2027-05-18",
+      "start": "20:00",
+      "title": "Post-primary reception",
+      "host": "University City Republican Committee",
+      "where": "4256 Regent Square",
+      "kind": "club",
+      "around": true
     }
   ]
 }
